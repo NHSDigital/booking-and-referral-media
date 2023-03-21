@@ -25,8 +25,6 @@ _You can edit any part of this document. The licence section **must be edited** 
 
 ## Project structure
 
-> Provide the user with an outline of your repository structure. This template is primarily designed for publications teams at NHS England. Projects with different requirements (e.g. more complex documentation and modelling) should look to [DrivenData's cookiecutter project structure](https://drivendata.github.io/cookiecutter-data-science/#directory-structure), as well as our [Community of Practice](https://nhsdigital.github.io/rap-community-of-practice/training_resources/python/project-structure-and-packaging/) for guidance.
-
 ```text
 |   .gitignore                        <- Files (& file types) automatically removed from version control for security purposes
 |   config.toml                       <- Configuration file with parameters we want to be able to change (e.g. date)
