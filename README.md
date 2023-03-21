@@ -10,7 +10,7 @@ _A **repository** is something that contains all of your project's files and and
 
 ## Link to publication
 
-> Include a link to where your publication is published.
+[Booking and Referrals Standard Implementation Guidance](https://simplifier.net/guide/nhsbookingandreferralstandard/home)
 
 ## Contact
 **This repository is maintained by [NHS England Data Science Team](datascience@nhs.net)**.
@@ -28,42 +28,6 @@ You can learn more about project structure and why it's important in the ['proje
 
 _You can edit any part of this document. The licence section **must be edited** before publishing this repository publicly. For more information about publishing your project please see the ['how to publish your code in the open' guide](https://nhsdigital.github.io/rap-community-of-practice/implementing_RAP/how-to-publish-your-code-in-the-open/)._
 
-## Prerequisites
-
-> If applicable, list the items a user needs to be able to use your repository, such as a certain version of a programming language. It can be useful to link to documentation on how to install these items.
-
-* Python (> 3.0)
-
-## Getting Started
-
-> Tell the user how to get started (using a numbered list can be helpful). List one action per step with example code if possible.
-
-1. Clone the repository. To learn about what this means, and how to use Git, see the [Git guide](https://nhsdigital.github.io/rap-community-of-practice/training_resources/git/using-git-collaboratively/).
-
-```
-git clone <insert URL>
-```
-
-2. Set up your environment, _either_ using [pip](https://pypi.org/project/pip/) or [conda](https://www.anaconda.com/). For more information on how to use virtual environments and why they are important,. see the [virtual environments guide](https://nhsdigital.github.io/rap-community-of-practice/training_resources/python/virtual-environments/why-use-virtual-environments/).
-
-### Using pip
-```
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-```
-For Visual Studio Code it is necessary that you change your default interpreter to the virtual environment you just created .venv. To do this use the shortcut Ctrl-Shift-P, search for Python: Select interpreter and select .venv from the list.
-### Using conda
-The first line of the `environment.yml` file sets the new environment's name. In this template, the name is `rap_template`- you should change this in the `environment.yml` file, as well as the following code, to the name of your project.
-```
-conda env create -f environment.yml
-conda activate <environment_name>
-```
-3. _Optional_: In the terminal, change the directory into the cloned repos' directory, and run the example publication script:
-```
-cd rap-package-template
-python examples/example_create_publication.py
-```
 
 ## Project structure
 
@@ -103,8 +67,6 @@ python examples/example_create_publication.py
 |   |       __init__.py               <- Makes the functions folder an importable Python module
 |   |       write_excel.py            <- Populates an excel .xlsx template with values from your CSV output.
 |   |
-+---sql                               <- SQL scripts for importing data  
-|       example.sql
 |
 +---templates                         <- Templates for output files
 |       publication_template.xlsx
