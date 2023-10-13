@@ -1,32 +1,23 @@
 ---
 topic: APP3-ScopeAndRequirements
 ---
+## {{page-title}}
 
- <div markdown="span" class="alert alert-warning" role="alert"><i class="fa fa-warning"></i><b> Important:</b> This Application is currently under development <hr><p> This is a preview of a developing documentation for information only. It is not intended to be used until the completed v1.0.0 Application is released<p> If you are interested in developing a BaRS compliant solution for these use cases right now, please use the contact form <a href="https://digital.nhs.uk/services/booking-and-referral-standard/enquiry-form" target="_blank">here</a> and the team will be in touch</div>
+### Scope Overview
 
-
-## {{Referrals into CAS (Application 3)}}
-
-### Use cases supported
-
-
-This application supports the following use case:
+This BaRS Application (application 3) covers only use cases:
 * 999 Ambulance Service Trust (AST) referral to Clinical Assessment Service (CAS)
 
-Note: for 999 AST validation requests to CAS, that require a response please see {{pagelink:LINK TO APP4 TO BE ADDED}}
 
-### Data model endorsements
+The payloads and workflow have been designed to support these services. Other {{pagelink:applications, text:BaRS Applications}} offer scope for alternative use cases.
 
-The referral information data model is based on user research with NHS 111 service providers, 999 Ambulance Service Trusts, Clinical Assessment Services and clinical and administrative Emergency Department staff.  We carried out this research in parallel with the [Professional Records Standards Body (PRSB)](https://theprsb.org/) who examined the wider brief of 'referrals from NHS 111 to any other care setting' 
-
-For the Referral into a CAS from a 999 AST use case, the data model was endorsed by NHS England following consultation with the [Association of Ambulance Chief Executives (AACE)](https://aace.org.uk/),  National Ambulance Information Group (NAIG), National Ambulance Services Medical Directors' Group (NASMeD) and National Ambulance Digital Leaders Group (NADLG)
 ### Functional Scope
 
 **Service Discovery**
 
 * Establishing a service to direct requests to is a mandatory step in the workflow
 * There is no restriction on the service discovery tools used. Any are capable of being supported whether national or proprietary
-* The service **must** be configured within the BaRS infrastructure (Endpoint Catalogue) before requests can be made 
+* The service **must** be configured within the BaRS infrastructure (Endpoint Catalogue) before requests can be made to the service
 
 **Referral**
 * A referral is a request for care on behalf of an individual from one service to another 
@@ -43,12 +34,12 @@ For the Referral into a CAS from a 999 AST use case, the data model was endorsed
 * All requests and response associated with BaRS must occur through the BaRS API Proxy
 
 **Constraints**
-* Supporting use of Emergency Call Prioritisation Advisory Group (ECPAG) approved  Clinical Decision Support Systems only (NHS Pathways, NHS Pathways Clinical Content Support (PaCCS) and Advanced Medical Priority Dispatch System (AMPDS)).
+* Supporting use of Emergency Call Prioritisation Advisory Group (ECPAG) approved Clinical Decision Support Systems only (NHS Pathways, NHS Pathways Clinical Content Support (PaCCS) and Advanced Medical Priority Dispatch System (AMPDS)).
 * All Service IDs in First of Type (FoT) will be those of Urgent and Emergency Care (UEC) Directory of Services (DoS) 
 * No guidance provided on display of referral information beyond the {{pagelink:principles_prerequesites, text:Principles for rendering BaRS Payload}}.
 * Consent within BaRS will be for Direct-Care only 
 * Certificates for Receiving messages to use nhs.uk domains only and internet facing 
-* Clincial Constraints exist - See Hazard Log
+* Clinical Constraints exist - See Hazard Log
 
 ### Requirements
 
@@ -58,8 +49,8 @@ For the Referral into a CAS from a 999 AST use case, the data model was endorsed
 **Referral Request**
 * The referral Receiver **must** accept the referral request regardless of whether the patient is known to the service provider
 * The referral Receiver **must** accept potential patients who do **<ins>not</ins>** have a national validated identifier e.g. NHS Number.
-* The referral Sender **must** must send incident location information as part of their request
-* The referral Sender **must** must send scene safety information as part of their request
+* The referral Sender **must** send incident location information as part of their request
+* The referral Sender **must** send scene safety information as part of their request
 * Any new or existing safeguarding concern, recorded as part of the assessment, **must** be included in the referral Sender's request
 * The referral Receiver **must** clearly identify any included safeguarding concern to the end user
 * The referral Receiver **must** accurately represent information made by the Sender to the end user
@@ -73,7 +64,7 @@ For the Referral into a CAS from a 999 AST use case, the data model was endorsed
 *	The referral Sender **must** provide visible confirmation to the end user of the status returned by the referral Receiver, i.e. whether the original referral was successfully updated or not
 *	If the update fails the referral Receiver **must** respond with the most appropriately aligned error 
 *	The referral Receiver **must** store all previous versions of the referral
-*	The referral Receiver **must <ins>not</ins>** be required to inform the patient of the updating of the referral.  Business/clinical responsibility for informing the patient must remain with the referral Sender
+*	The referral Receiver **must <ins>not</ins>** be required to inform the patient of the updating of the referral.  Business/clinical responsibility for informing the patient must remain with the referral Sender
 
 
 **Cancel referral** 
@@ -97,9 +88,6 @@ For the Referral into a CAS from a 999 AST use case, the data model was endorsed
 *  The referral Sender **must** send scene safety information in the referral
 *  Where scene safety questions have not been asked, the scene safety flag **must** be populated with 'UNK' unknown.
 
-**Flags**
-NOT SURE IF WE NEED THIS
-
 **Contacts** 
 * A minimum of one contact (patient or third party) with a contact method (phone, email, etc.) of phone **must** be provided in requests
 * All contacts **must** have a rank
@@ -115,11 +103,11 @@ NOT SURE IF WE NEED THIS
 <br>
 <br>
 ### Error Handling 
-* Suppliers **must** adhere to the {{pagelink:Home/Design/BaRS-Core/Error-Handling.page.md, text:error handling guidance}} 
+* Suppliers **must** adhere to the {{pagelink:core-ErrorHandling, text:error handling guidance}} 
 <br>
 <br>
 ### Non Functional 
-* Suppliers **must** adhere to the {{pagelink:Home/Design/BaRS-Core/Non-functional-requirements.page.md, text:non functional requirements}}
+* Suppliers **must** adhere to the {{pagelink:core-NFR, text:non functional requirements}}
 <br>
 <br>
 <hr>
