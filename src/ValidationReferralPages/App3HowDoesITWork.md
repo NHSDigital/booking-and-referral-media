@@ -2,7 +2,7 @@
 topic: APP3-HowDoesItWork
 ---
 
-## {{page-title}}
+## {{How does it work?}}
 
 
 This section describes how the primary operations used in this application work. This diagram illustrates the workflow and interactions of a Referral request:
@@ -12,15 +12,6 @@ This section describes how the primary operations used in this application work.
 
 
 To support the workflows for this application of the standard the operations that need to be supported are:
-
-<hr>
-
-### Find a Service
-
-????
-
-
-When a service is chosen, the Service ID will be used to then initiate the referral.
 
 <hr>
 
