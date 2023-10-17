@@ -5,8 +5,6 @@ topic: APP3-Payloads
 
 ## {{Payloads}}
 
-## Review everything?????
-
 ### MessageHeader Resource
 The MessageHeader resource is required as part of the technical capability of making a referral. Rather than providing clinical or administrative content for the end users; the function of all other resources are outlined. This resource holds key information about where the request has come from (*MessageHeader.source*), who it is intended for (*MessageHeader.destination*), what type of request it is (*MessageHeader.eventCoding*) and how to start interpreting the request (*MessageHeader.focus*). 
 
@@ -37,20 +35,24 @@ A second Encounter resource is used to transfer the human readable reference of 
 
 ### Location Resource ###
 The Location resource is used to transfer details of the incident location.
-BaRS Senders **must** populate the *Location.extension* with at least one property or non-property element from the following:
-*  Unique Property Reference Number (UPRN)
-*  Postcode Address Finder (PAF) key
-*  Eastings/Northings
-*  What3words
-BaRS Senders *should* populate the *Location.address* for all property based locations. 
-BarS Senders *should* populate *Location.address.line* which is a repeatable element, with the the order in which lines should appear in an address label
-BarS Senders *should* populate *Location.address.name* when there is a property name
-BaRS senders *should* populate *Location.address.text* with a text representation of the full address (including the address name), with each line separated by a comma
+
+When a BARS Sender populates the Location resource;
+
+*  They **must** populate the *Location.extension* with at least one property or non-property element from the following:
+    *  Unique Property Reference Number (UPRN)
+    *  Postcode Address Finder (PAF) key
+    *  Eastings/Northings
+    *  What3words
+
+*  They *should* populate the *Location.address* for all property based locations. 
+*  They *should* populate *Location.address.line* which is a repeatable element, with the the order in which lines should appear in an address label
+*  They *should* populate *Location.address.name* when there is a property name
+*  They *should* populate *Location.address.text* with a text representation of the full address (including the address name), with each line separated by a comma
 
 When a BARS Receiver processes information in a Location resource;
 
-They *should* populate *all* address fields sent, in their system
-They *must* display *all* address fields sent by the Sender
+*  They *should* consume and populate *all* address fields sent, into their system
+*  They *must* display *all* address fields sent by the Sender
 
 
 ### CarePlan Resource
