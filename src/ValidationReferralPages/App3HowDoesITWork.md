@@ -25,7 +25,8 @@ This details a referral into a CAS from a 999 Ambulance Service Trust (AST) for 
 - The CAS Clinician will contact the patient, or their representative, utilising information in the referral message, then undertakes a consultation which may include a triage. The consultation will be informed by the clinical information sent by the referring service. This will be recorded in the CAS system.
 - On completion of the consultation the next action is performed. This may include provision of care advice with or without an electronic prescription (Hear and Treat), onward referral to another service provider or an ambulance request for a worsening patient.
 
-
+<br>
+<br>
 
 To support the workflows for this application of the standard the operations that need to be supported are:
 
