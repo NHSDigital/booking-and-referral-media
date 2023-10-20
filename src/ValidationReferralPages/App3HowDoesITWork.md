@@ -5,16 +5,13 @@ topic: APP3-HowDoesItWork
 ## {{page-title}}
 
 
-This section describes how the primary operations used in this application work. This diagram illustrates the workflow and interactions of a Referral request:
+This section describes how the primary operations used in this application work. The below diagram illustrates the workflow and interactions of a Referral request.
 <br>
 
 <img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/ReferraltoCASSimplified-1.0.0.svg" width="1100"></img></a>
 
-This details a referral into CAS generic workflow: 
 
-
-
-This details a referral into a CAS from a 999 Ambulance Service Trust (AST) for consultation:
+This workflow details a referral into a CAS from a 999 Ambulance Service Trust (AST) for consultation:
 
 - Prior to referral the 999 AST will undertake a triage of the patient to determine the acuity of the case. This will typically be undertaken by a call handler on the Computer Aided Dispatch system (CAD) using an approved Clinical Decision Support System (CDSS) such as NHS Pathways or AMPDS. For cases with a non-ambulance disposition (CAT5), local business rules will be applied to determine if the case meets the requirement for referral to a CAS for consultation.
 - For cases requiring a referral to CAS, a suitable CAS is identified based on the patient’s clinical need and location. Service discovery will use local directories or UEC DOS to ascertain the ServiceID
@@ -34,7 +31,7 @@ To support the workflows for this application of the standard the operations tha
 
 ### Make a Referral
 
-Making a referral for this application follows the {{pagelink:design-core, text:standard pattern for BaRS operations}}.
+Making a referral for this application follows the {{pagelink:dcore-pseudo-code, text:standard pattern for BaRS operations}}.
 
 The message definition that defines this payload for this application is: {{link:MessageDefinition-BARS-MessageDefinition-ServiceRequest-Request-Referral}}
 <p>
@@ -109,9 +106,9 @@ X-Correlation-Id = <GUID_000002>
 
 ### Cancel a Referral
 
-To cancel a referral this application follows the {{pagelink:design-core, text:standard pattern for BaRS operations}} with an additional step. Before beginning the standard pattern as descbribed on the linked section, the referral **sender** must perform a read of the referral to be cancelled, from the referral **receiver**, prior to cancellation to ensure they are working with the most up-to date information and it has not already been actioned. This is done by performing a "GET ServiceRequest by ID" call to the **receiving** system's corresponding API endpoint (via the BaRS proxy).
+To cancel a referral this application follows the {{pagelink:core-pseudo-code, text:standard pattern for BaRS operations}} with an additional step. Before beginning the standard pattern as descbribed on the linked section, the referral **sender** must perform a read of the referral to be cancelled, from the referral **receiver**, prior to cancellation to ensure they are working with the most up-to date information and it has not already been actioned. This is done by performing a "GET ServiceRequest by ID" call to the **receiving** system's corresponding API endpoint (via the BaRS proxy).
 
-The response to this request will be the requested ServiceRequest resource which should be checked for its current status to ensure it does not already have a status of "revoked" or "completed". If not, this version of the ServiceRequest should be used when re-submitting the modified resource in the POST bundle as described in the {{pagelink:design-core, text:standard pattern}}.
+The response to this request will be the requested ServiceRequest resource which should be checked for its current status to ensure it does not already have a status of "revoked" or "completed". If not, this version of the ServiceRequest should be used when re-submitting the modified resource in the POST bundle as described in the {{pagelink:core-pseudo-code, text:standard pattern}}.
 
 The message definition that defines this payload for this application is: {{link:messagedefinition-barsmessagedefinitionservicerequestrequestcancelled}}
 
