@@ -344,49 +344,6 @@ Receive_Request
 							throw exception with "REC_BAD_REQUEST"
 							then return  HTTP.ResponseCode 400;
 					}
-			case "booking-request":
-				if (MessageHeader.Reason.code== "new" && Appointment.Status == "booked")
-					if(slot.IsFree())
-					{RequestType = "Im Receiving a new booking.";}
-					else
-					{
-						OperationOutcome.issue.code = "conflict"
-						throw exception with "REC_CONFLICT"
-						then return with HTTP.ResponseCode 409
-					}
-				else if (MessageHeader.Reason.code == "update")
-					MessageHeaderIsUpdate = true;
-					switch (Appointment.Status)
-					{
-						case "cancelled":
-							RequestType = "Im Receiving a booking cancellation."
-							break						
-						case "entered-in-error":
-							RequestType = "Im Receiving a booking cancellation."
-							break
-						default:
-							OperationOutcome.issue.code = "invariant"//A content validation rule failed
-							throw exception with "REC_BAD_REQUEST"
-							then return with HTTP.ResponseCode 400;
-							break;
-					}
-				else
-				{
-					OperationOutcome.issue.code = "invariant"//A content validation rule failed
-					throw exception with "REC_BAD_REQUEST"
-					then return with HTTP.ResponseCode 400;
-				}
-				break;
-			case "booking-response":
-						OperationOutcome.issue.code = "invariant"//A content validation rule failed
-						throw exception with 'REC_BAD_REQUEST'
-						then return with HTTP.ResponseCode 400
-						break;
-			default:
-				OperationOutcome.issue.code = "invariant"//A content validation rule failed
-				throw exception with 'REC_BAD_REQUEST'
-				then return with HTTP.ResponseCode 400
-				break;
 		}
 		
 	}
@@ -436,6 +393,7 @@ Receive_Request
 			}
 	}	
 }	
+
 
 ```
 
