@@ -23,11 +23,10 @@ This workflow details a referral into a CAS from a 999 Ambulance Service Trust (
 - On completion of the consultation the next action is performed. This may include provision of care advice with or without an electronic prescription (Hear and Treat), onward referral to another service provider or an ambulance request for a worsening patient.
 
 <br>
-<br>
-
+<hr>
 To support the workflows for this application of the standard the operations that need to be supported are:
 
-<hr>
+
 
 ### Make a Referral
 
@@ -36,7 +35,6 @@ Making a referral for this application follows the {{pagelink:dcore-pseudo-code,
 The message definition that defines this payload for this application is: {{link:MessageDefinition-BARS-MessageDefinition-ServiceRequest-Request-Referral}}
 <p>
 
-<hr>
 
 In addition to that the specific workflow parameters that are required are as follows:
 
