@@ -3,7 +3,7 @@ topic: APP3-Payloads
 ---
 
 
-## {{Payloads}}
+## {{page-title}}
 
 ### MessageHeader Resource
 The MessageHeader resource is required as part of the technical capability of making a referral. Rather than providing clinical or administrative content for the end users; the function of all other resources are outlined. This resource holds key information about where the request has come from (*MessageHeader.source*), who it is intended for (*MessageHeader.destination*), what type of request it is (*MessageHeader.eventCoding*) and how to start interpreting the request (*MessageHeader.focus*). 
