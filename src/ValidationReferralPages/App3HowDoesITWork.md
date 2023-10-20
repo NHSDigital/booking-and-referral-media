@@ -2,7 +2,7 @@
 topic: APP3-HowDoesItWork
 ---
 
-## {{How does it work?}}
+## {{page-title}}
 
 
 This section describes how the primary operations used in this application work. This diagram illustrates the workflow and interactions of a Referral request:
