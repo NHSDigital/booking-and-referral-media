@@ -10,19 +10,20 @@ This section describes how the primary operations used in this application work.
 
 <img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/ValidationRequestSimplified-1.0.0.svg" width="1000"></img></a>
 
-This details a Validation request and response into CAS workflow: 
+This details the workflow of a validation request into CAS and the subsequent response: 
 
 
 
-This details a referral into a CAS from a 999 Ambulance Service Trust (AST) for consultation:
+This details a referral into a CAS from a 999 Ambulance Service Trust (AST) for clinical validation of a triage outcome:
 
-- Prior to referral the 999 AST will undertake a triage of the patient to determine the acuity of the case. This will typically be undertaken by a call handler on the Computer Aided Dispatch system (CAD) using an approved Clinical Decision Support System (CDSS) such as NHS Pathways or AMPDS. For cases with a non-ambulance disposition (CAT5), local business rules will be applied to determine if the case meets the requirement for referral to a CAS for consultation.
-- For cases requiring a referral to CAS, a suitable CAS is identified based on the patient’s clinical need and location. Service discovery will use local directories or UEC DOS to ascertain the ServiceID
-- The Service ID is used to query the BaRS endpoint catalogue to identify the receiving CAS system's endpoint details.
-- The 999-AST will send the referral to the CAS, including the information required by a CAS Clinician to continue the patent's clinical care. This will also include the JourneyID created at the patient's first contact.
-- The CAS system will acknowledge the referral on receipt, after which the case may be closed by the 999 AST on the CAD. It should be noted that Duty of care is passed from the 999 AST with the referral and is considered accepted by the CAS on receipt of the acknowledgement.
-- Prior to the consultation the case will typically be posted to a queue for prioritisation, based on information in the referral. This may be based on the call back time, determined locally or nationally based on the triage outcome codes. E.g. Where cases have a Pathways disposition (Dx) these are prioritised in accordance with the criteria specified in the IUC CAS service specification which sets out call-back times by Dx code.
-- The CAS Clinician will contact the patient, or their representative, utilising information in the referral message, then undertakes a consultation which may include a triage. The consultation will be informed by the clinical information sent by the referring service. This will be recorded in the CAS system.
+- Prior to referral the 999 AST will undertake a triage of the patient to determine the acuity of the case. This will typically be undertaken by a call handler on the Computer Aided Dispatch system (CAD) using an approved Clinical Decision Support System (CDSS) such as NHS Pathways or AMPDS. For cases with an ambulance disposition, local business rules will be applied to determine if the case meets the requirement for referral to a CAS for validation by a clinician. This will usually be Ambulance Response Programme (ARP) priority C3 and C4 cases, but may include C2 segmentation cases, subject to local agreements between the 999 AST and the CAS.
+- For cases requiring a referral to CAS for clinical validation, a suitable CAS is identified based on the patient’s clinical need and location. Service discovery will use local directories or UEC DOS to ascertain the ServiceID
+- The Service ID is used to query the BaRS Endpoint Catalogue to identify the receiving CAS system's endpoint details.
+- The 999-AST will send the referral for clinical validation to the CAS, which includes information required by a CAS Clinician to continue the patent's clinical care. This will also include the JourneyID created at the patient's first contact.
+- The CAS system will acknowledge the referral on receipt.
+- On receipt of the acknowledgment (synchronous response), the 999 AST CAD may move the case to a 'pending' stack. If the case exceeds the validation breach time before a validation response is received, a fail-safe process should be implemented to ensure that an ambulance is dispatched according to the original triage outcome.
+- Prior to the CAS consultation the case will typically be posted to a queue on the CAS system for prioritisation, based on information in the referral. This may be based on the validation breech time, determined locally or nationally based on the triage outcome codes.
+- The CAS Clinician will contact the patient, or their representative, utilising information in the referral message, then undertakes a consultation to validate the Sending Service's triage outcome. The consultation will be informed by the clinical information sent by the referring service. The outcome of the validation will be recorded in the CAS system.
 - On completion of the consultation the next action is performed. This may include provision of care advice with or without an electronic prescription (Hear and Treat), onward referral to another service provider or an ambulance request for a worsening patient.
 
 <br>
