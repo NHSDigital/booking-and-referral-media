@@ -10,9 +10,6 @@ This section describes how the primary operations used in this application work.
 
 <img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/ValidationRequestSimplified-1.0.0.svg" width="1000"></img></a>
 
-This details the workflow of a validation request into CAS and the subsequent response: 
-
-
 
 This details a referral into a CAS from a 999 Ambulance Service Trust (AST) for clinical validation of a triage outcome:
 
@@ -22,9 +19,19 @@ This details a referral into a CAS from a 999 Ambulance Service Trust (AST) for 
 - The 999-AST will send the referral for clinical validation to the CAS, which includes information required by a CAS Clinician to continue the patent's clinical care. This will also include the JourneyID created at the patient's first contact.
 - The CAS system will acknowledge the referral on receipt.
 - On receipt of the acknowledgment (synchronous response), the 999 AST CAD may move the case to a 'pending' stack. If the case exceeds the validation breach time before a validation response is received, a fail-safe process should be implemented to ensure that an ambulance is dispatched according to the original triage outcome.
-- Prior to the CAS consultation the case will typically be posted to a queue on the CAS system for prioritisation, based on information in the referral. This may be based on the validation breech time, determined locally or nationally based on the triage outcome codes.
-- The CAS Clinician will contact the patient, or their representative, utilising information in the referral message, then undertakes a consultation to validate the Sending Service's triage outcome. The consultation will be informed by the clinical information sent by the referring service. The outcome of the validation will be recorded in the CAS system.
-- On completion of the consultation the next action is performed. This may include provision of care advice with or without an electronic prescription (Hear and Treat), onward referral to another service provider or an ambulance request for a worsening patient.
+- Prior to the CAS consultation the case will typically be posted to a queue on the CAS system for prioritisation, based on the validation breech time in the referral. This is determined locally or nationally from the triage outcome codes.
+- The CAS Clinician will contact the patient, or their representative, utilising contact details in the referral message.
+- On commencement of the consultation the CAS system sends an interim response back to the Sending 999 AST to inform them that the validation is in progess.
+- The CAS clinican undertakes a consultation to validate the Sending Service's triage outcome. The consultation will be informed by the clinical information sent by the referring service. The outcome of the validation will be recorded in the CAS system.
+- The outcome of the consultation under taken by the CAS clinican to validate the orginal 999 AST triage outcome is sent to the Sending service in a BaRS Final Validation Response. This may include:
+*  An outcome that requires an upgraded ambulance response from the Sending 999 AST
+*  An outcome that requires an downgraded ambulance response from the Sending 999 AST
+*  An outcome that requires an unchanged ambulance response from the Sending 999 AST
+*  An outcome that can be met by the provision of care advice with or without an electronic prescription (Hear and Treat)
+*  An outcome that can be met by the onward referral to another service provider e.g. ED
+- On receipt of the BaRS Final Validation Response the 999 AST will update the case on the CAD and undertake the required action. This may include:
+* Moving the case from the pending stack to the dispatch stack and dispatching a resource within the timescales appropriate for the ARP Priority in the Validation Response.
+*  Closing the case if an ambulance is not required.
 
 <br>
 <br>
@@ -37,7 +44,7 @@ To support the workflows for this application of the standard the operations tha
 
 Making a referral for this application follows the {{pagelink:design-core, text:standard pattern for BaRS operations}}.
 
-The message definition that defines this payload for this application is: {{link:MessageDefinition-BARS-MessageDefinition-ServiceRequest-Request-Referral}}
+The message definition that defines this payload for this application is: {{link:MessageDefinition-BARS-MessageDefinition-ServiceRequest-Request-Validation}}
 <p>
 
 <hr>
@@ -217,7 +224,7 @@ X-Correlation-Id = <GUID_000002>
 
 ### Bundle Processing - detailed
 
-Below is a pseudo code example of how a bundle could be processed based on the above workflow variables:
+Below is a pseudo code example of how a bundle could be processed based on the above workflow variables ???? All pseudo code needs updating for Validation - currently includes GP to Pharmacy?????:
 
 <details>
     <summary>> <b class="barslink">Logical - Based on a logical step through in a code format</b></summary>
@@ -396,6 +403,7 @@ Receive_Request
 	}	
 }	
 
+- ?????? do we need pseudo code for Create a Response and Cancel a Response??????
 
 ```
 
