@@ -1,12 +1,12 @@
 ---
-topic: APP3-ScopeAndRequirements
+topic: APP4-ScopeAndRequirements
 ---
 ## {{page-title}}
 
 ### Scope Overview
 
-This BaRS Application (application 3) covers only use cases:
-* 999 Ambulance Service Trust (AST) referral to Clinical Assessment Service (CAS)
+This BaRS Application (application 4) covers only use cases:
+* 999 Ambulance Service Trust (AST) referral to Clinical Assessment Service (CAS) for validation
 
 
 The payloads and workflow have been designed to support these services. Other {{pagelink:applications, text:BaRS Applications}} offer scope for alternative use cases.
@@ -74,6 +74,12 @@ The payloads and workflow have been designed to support these services. Other {{
 *	The referral Receiver **must** store all previous versions of the referral
 *	The referral Receiver **must <ins>not</ins>** be required to inform the patient of the cancellation of the referral.  Business/clinical responsibility for informing the patient must remain with the referral Sender
 
+** Interim Response**
+*  The referral Receiver **must** send an interim response when the clinician starts the consultation in the CAS system. This **must** not be triggered by a clinician attempting to comtact the patient or by a welfare call.
+*  The referral Sender **must** process the interim response and display the status change to the end user.
+*  The referral Sender **should not** send referral updates after receiving an interim response
+
+** Final Response**
 
 **Incident Location**
 *  The Sender  **must** include the incident location in the referral request
@@ -81,10 +87,10 @@ The payloads and workflow have been designed to support these services. Other {{
 
 **Timings**
 *  The referral Sender **must** send the dispatch (or disposition) code identification time
-*  The referral sender **should** send the callback time
+*  The referral sender **must** send the validation breech time
 
 **Scene Safety**
-*  The referral Sender **should** send scene safety information in the referral
+*  The referral Sender **must** send scene safety information in the referral
 *  Where scene safety questions have not been asked, the Flag resource relating to scene safety  **must** be populated with 'UNK' unknown.
 
 **Contacts** 
