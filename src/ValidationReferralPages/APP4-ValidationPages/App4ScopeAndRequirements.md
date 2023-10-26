@@ -64,6 +64,7 @@ The payloads and workflow have been designed to support these services. Other {{
 *	If the update fails the referral Receiver **must** respond with the most appropriately aligned error 
 *	The referral Receiver **must** store all previous versions of the referral
 *	The referral Receiver **must <ins>not</ins>** be required to inform the patient of the updating of the referral.  Business/clinical responsibility for informing the patient must remain with the referral Sender
+*  The referral Sender **should not** send referral updates after receiving an interim response
 
 
 **Cancel referral** 
@@ -75,23 +76,34 @@ The payloads and workflow have been designed to support these services. Other {{
 *	The referral Receiver **must <ins>not</ins>** be required to inform the patient of the cancellation of the referral.  Business/clinical responsibility for informing the patient must remain with the referral Sender
 
 ** Interim Response**
-*  The referral Receiver **must** send an interim response when the clinician starts the consultation in the CAS system. This **must** not be triggered by a clinician attempting to comtact the patient or by a welfare call.
-*  The referral Sender **must** process the interim response and display the status change to the end user.
-*  The referral Sender **should not** send referral updates after receiving an interim response
+*  The referral Receiver **must** send an interim response when the clinician starts the consultation in the CAS system. This **must** not be triggered by a clinician attempting to contact the patient or by a welfare call.
+*  The referral Sender **must** process the interim response, update the case in the CAD and display the status change to the end user.
 
 ** Final Response**
+*  The referral Receiver **must** send an final response when the clinician has completed the consultation in the CAS system.
+*  The referral Sender **must** process the final response, update the case in the CAD and display the status change to the end user.
+*  ???? something about updated info in the response ????
+*  ??? something about keeping all versions of the triage info ????
 
 **Incident Location**
 *  The Sender  **must** include the incident location in the referral request
+*  The Receiver  **must** include the incident location in the referral response
 *  All Locations **must** include a co-ordinate (Eastings/Northings, Lat/Long or What3Words equivalent) or a property location identifier (UPRN, Address and Postcode)
 
 **Timings**
-*  The referral Sender **must** send the dispatch (or disposition) code identification time
-*  The referral sender **must** send the validation breech time
+*  The referral Sender **must** send the Clock start date/Time (T5). Definition as per AmbSys specification
+*  The referral Sender **must** send the validation breach time
+*  The referral Receiver **must** send the dispatch (or disposition) code identification datetime in the final response:
+    - If the Validation ARP code is the same or downgraded from the original 999 triage, this **must** be populated with the original 999 Clock start date/Time (T5).
+    - If the Validation ARP code is upgraded from the original 999 triage this **must** be populated with the Dispatch/Disposition code identification date/time determined by the CAS"
+
 
 **Scene Safety**
 *  The referral Sender **must** send scene safety information in the referral
 *  Where scene safety questions have not been asked, the Flag resource relating to scene safety  **must** be populated with 'UNK' unknown.
+*  The referral Receiver **should** populate the scene safety flag in their system and **must** display scene safety information to end users.
+*  The referral Receiver **must** send scene safety information in the final response, including any updates.
+*  The referral Sender **should** update their system scene safety flag with any updates in the response and **must** display scene safety updates to end users
 
 **Contacts** 
 * A minimum of one contact (patient or third party) with a contact method (phone, email, etc.) of phone **must** be provided in requests
