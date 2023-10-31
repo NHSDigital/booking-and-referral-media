@@ -267,6 +267,24 @@ Receive_Request
 					{
 						switch(ServiceRequest.Category)
 						{
+							case "Validation":
+								if (CarePlan.status != "active")
+									{							
+										RequestType = "unknown";
+										OperationOutcome.issue.code = "invariant";//A content validation rule failed
+										throw exception with "REC_BAD_REQUEST";
+										then return  HTTP.ResponseCode 400;
+									}
+								else if(Encounter.Status.In("triaged","in-progress")
+									{RequestType = "Im Receiving a new Validation Request";}
+								else
+									{
+										RequestType = "unknown";
+										OperationOutcome.issue.code = "invariant";//A content validation rule failed
+										throw exception with "REC_BAD_REQUEST";
+										then return  HTTP.ResponseCode 400;
+									}
+								break;
 							case "Referral":
 								if (Careplan.status != "completed")
 								{
@@ -294,6 +312,19 @@ Receive_Request
 					{
 						switch(ServiceRequest.category)
 						{
+							case "Validation":
+								if(ServiceRequest.status.In("entered-in-error","revoked"))
+									{RequestType = "im receiving a cancelled validation request";}
+								else if(ServiceRequest.status.In("active","on-hold"))
+									{RequestType = "im receiving an update to a validation request";} 
+								else
+								{
+									RequestType = "unknown"
+									OperationOutcome.issue.code = "invariant"//A content validation rule failed
+									throw exception with "REC_BAD_REQUEST"
+									then return  HTTP.ResponseCode 400								
+								}
+								break;
 							case "Referral":
 								if(ServiceRequest.status.In("entered-in-error","revoked"))
 								{RequestType = "im receiving a cancelled referral"}
@@ -311,6 +342,7 @@ Receive_Request
 								throw exception with "REC_BAD_REQUEST"
 								then return  HTTP.ResponseCode 400;
 						}
+
 					}
 				else
 				{
@@ -347,16 +379,45 @@ Receive_Request
 								then return  HTTP.ResponseCode 400;
 							}
 							break;
+						case "Validation":
+							if(!AnyEncounter.Originates.Local && Encount.Count()<=3)
+							{
+								if (MessageHeader.Reason.code == "new" && ServiceRequest.status == "active" && MessageHeader.FocusEncounter.status!="finished" && Careplan.active=="active")  // encounter status if not finished and careplan is active is an interim update. if service request status is complete it is a final RESPONSE update
+								{Request Type = "im receiving a Validation Response interim update" }
+								else if (MessageHeader.Reason.code.In ("new","update") && ServiceRequest.status == "completed" && MessageHeader.FocusEncounter.status.In("triaged","complete")
+								{Request Type = "im receiving a final Validation Response" }
+								else
+								{
+									RequestType = "unknown"
+									OperationOutcome.issue.code = "invariant"//A content validation rule failed
+									throw exception with "REC_BAD_REQUEST"
+									then return  HTTP.ResponseCode 400;
+								}
+							}
+							else if(MessageHeader.FocusEncounter.status = "triaged" && ServiceRequest.status == "revoked" && MessageHeader.Reason.code.In("new","update"))
+							{ RequestType = "im receiving  a Rejected validation response" } // a new encounter here is an edge case.
+							else
+							{
+								RequestType = "unknown"
+								OperationOutcome.issue.code = "invariant"//A content validation rule failed
+								throw exception with "REC_BAD_REQUEST"
+								then return  HTTP.ResponseCode 400;
+							}
 						default:
 							RequestType = "unknown"
 							OperationOutcome.issue.code = "invariant"//A content validation rule failed
 							throw exception with "REC_BAD_REQUEST"
 							then return  HTTP.ResponseCode 400;
-					}
+					}			
+			default:
+				OperationOutcome.issue.code = "invariant"//A content validation rule failed
+				throw exception with 'REC_BAD_REQUEST'
+				then return with HTTP.ResponseCode 400
+				break;
 		}
 		
 	}
-    //Submit
+	//Submit 
 	{
 		
 		if (Message == "update")
@@ -402,8 +463,6 @@ Receive_Request
 			}
 	}	
 }	
-
-- ?????? do we need pseudo code for Create a Response and Cancel a Response??????
 
 ```
 
