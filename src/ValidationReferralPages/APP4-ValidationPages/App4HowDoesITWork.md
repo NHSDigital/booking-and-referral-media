@@ -24,14 +24,14 @@ This details a referral into a CAS from a 999 Ambulance Service Trust (AST) for 
 - On commencement of the consultation the CAS system sends an interim response back to the Sending 999 AST to inform them that the validation is in progess.
 - The CAS clinican undertakes a consultation to validate the Sending Service's triage outcome. The consultation will be informed by the clinical information sent by the referring service. The outcome of the validation will be recorded in the CAS system.
 - The outcome of the consultation under taken by the CAS clinican to validate the orginal 999 AST triage outcome is sent to the Sending service in a BaRS Final Validation Response. This may include:
-*  An outcome that requires an upgraded ambulance response from the Sending 999 AST
-*  An outcome that requires an downgraded ambulance response from the Sending 999 AST
-*  An outcome that requires an unchanged ambulance response from the Sending 999 AST
-*  An outcome that can be met by the provision of care advice with or without an electronic prescription (Hear and Treat)
-*  An outcome that can be met by the onward referral to another service provider e.g. ED
+	* An outcome that requires an upgraded ambulance response from the Sending 999 AST
+	* An outcome that requires an downgraded ambulance response from the Sending 999 AST
+	* An outcome that requires an unchanged ambulance response from the Sending 999 AST
+	* An outcome that can be met by the provision of care advice with or without an electronic prescription (Hear and Treat)
+	* An outcome that can be met by the onward referral to another service provider e.g. ED
 - On receipt of the BaRS Final Validation Response the 999 AST will update the case on the CAD and undertake the required action. This may include:
-* Moving the case from the pending stack to the dispatch stack and dispatching a resource within the timescales appropriate for the ARP Priority in the Validation Response.
-*  Closing the case if an ambulance is not required. Cases may be closed automatically if they returned with no ambulance is required. 
+- Moving the case from the pending stack to the dispatch stack and dispatching a resource within the timescales appropriate for the ARP Priority in the Validation Response.
+- Closing the case if an ambulance is not required. Cases may be closed automatically if they returned with no ambulance is required. 
 
 <br>
 <br>
