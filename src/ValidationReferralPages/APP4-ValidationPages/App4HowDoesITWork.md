@@ -42,9 +42,9 @@ To support the workflows for this application of the standard the operations tha
 
 ### Make a Referral (Validation Request)
 
-Making a referral for this application follows the {{pagelink:design-core, text:standard pattern for BaRS operations}}.@@@@
+Making a referral for this application follows the {{pagelink:core-standardpattern, text:standard pattern for BaRS operations}}.
 
-The message definition that defines this payload for this application is: {{link:MessageDefinition-BARS-MessageDefinition-ServiceRequest-Request-Validation}} @@@
+The message definition that defines this payload for this application is: {{link:MessageDefinition-BARS-MessageDefinition-ServiceRequest-Request-Validation}}
 <p>
 
 <hr>
@@ -65,7 +65,7 @@ In addition to that the specific workflow parameters that are required are as fo
                 </thead>
                 <tbody>
                     <tr>
-                        <td rowspan=6>Referral Request (New)</td>
+                        <td rowspan=6>Referral Request (New)@@</td>
                         <td rowspan=6>POST /$process-message{servicerequest-request}</td>
                         <td rowspan=6>ServiceRequest (active)</td>
                         <td>MessageHeader (EventCoding) = servicerequest-request</td>
@@ -113,11 +113,11 @@ X-Correlation-Id = <GUID_000002>
 
 ### Cancel a Referral (Validation Request)
 
-To cancel a referral this application follows the {{pagelink:design-core, text:standard pattern for BaRS operations}} @@@ with an additional step. Before beginning the standard pattern as descbribed on the linked section, the referral **sender** must perform a read of the referral to be cancelled, from the referral **receiver**, prior to cancellation to ensure they are working with the most up-to date information and it has not already been actioned or completed. This is done by performing a "GET ServiceRequest by ID" call to the **receiving** system's corresponding API endpoint (via the BaRS proxy).
+To cancel a referral this application follows the {{pagelink:core-standardpattern, text:standard pattern for BaRS operations}} with an additional step. Before beginning the standard pattern as descbribed on the linked section, the referral **sender** must perform a read of the referral to be cancelled, from the referral **receiver**, prior to cancellation to ensure they are working with the most up-to date information and it has not already been actioned or completed. This is done by performing a "GET ServiceRequest by ID" call to the **receiving** system's corresponding API endpoint (via the BaRS proxy).
 
-The response to this request will be the requested ServiceRequest resource which should be checked for its current status to ensure it does not already have a status of "revoked" or "completed". If not, this version of the ServiceRequest should be used when re-submitting the modified resource in the POST bundle as described in the {{pagelink:design-core, text:standard pattern}}.@@@@
+The response to this request will be the requested ServiceRequest resource which should be checked for its current status to ensure it does not already have a status of "revoked" or "completed". If not, this version of the ServiceRequest should be used when re-submitting the modified resource in the POST bundle as described in the {{pagelink:core-standardpattern, text:standard pattern}}.
 
-The message definition that defines this payload for this application is: {{link:messagedefinition-barsmessagedefinitionservicerequestrequestcancelled}} @@@@
+The message definition that defines this payload for this application is: {{link:messagedefinition-barsmessagedefinitionservicerequestrequestcancelled}}
 
 As a general princple, when performing an update type of operation (of which cancellation is a special case), only the focus resource, any resources that are mandated due to contextual, linking or referential integrity reasons and any resources that include elements that are being changed, **should** be include. This is always defined within the relevent message definition.
 
@@ -145,7 +145,7 @@ In addition the specific workflow parameters that are required are as follows:
                         <td>n/a</td>
                     </tr>
                     <tr>
-                        <td rowspan=8>Referral Request (Cancel)</td>
+                        <td rowspan=8>Referral Request (Cancel) @@@</td>
                         <td rowspan=8>POST /$process-message{servicerequest-request}</td>
                         <td rowspan=8>ServiceRequest (revoked)</td>
                         <td>MessageHeader (EventCoding) = servicerequest-request</td>
@@ -215,7 +215,7 @@ X-Correlation-Id = <GUID_000002>
 
 ### Bundle Processing - detailed
 
-Below is a pseudo code example of how a bundle could be processed based on the above workflow variables ????@@@@ All pseudo code needs updating for Validation - currently includes GP to Pharmacy?????:
+Below is a pseudo code example of how a bundle could be processed based on the above workflow variables.
 
 <details>
     <summary>> <b class="barslink">Logical - Based on a logical step through in a code format</b></summary>
@@ -306,7 +306,7 @@ Receive_Request
 							case "Validation":
 								if(ServiceRequest.status.In("entered-in-error","revoked"))
 									{RequestType = "im receiving a cancelled validation request";}
-								else if(ServiceRequest.status=="active"))
+								else if(ServiceRequest.status.In("active","on-hold"))
 									{RequestType = "im receiving an update to a validation request";} 
 								else
 								{
@@ -359,6 +359,17 @@ Receive_Request
 				}
 				switch (ServiceRequest.Category)
 					{
+						case "Referral":
+							if (ServiceRequest.status == "revoked" && MessageHeader.reason.code == "new")
+							{ RequestType = "im receiving a Safeguarding DNA response (noshow)" } 
+							else
+							{
+								RequestType = "unknown"
+								OperationOutcome.issue.code = "invariant"//A content validation rule failed
+								throw exception with "REC_BAD_REQUEST"
+								then return  HTTP.ResponseCode 400;
+							}
+							break;
 						case "Validation":
 							if(!AnyEncounter.Originates.Local && Encount.Count()<=3)
 							{
@@ -397,7 +408,7 @@ Receive_Request
 		}
 		
 	}
-	//Submit
+	//Submit 
 	{
 		
 		if (Message == "update")
