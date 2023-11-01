@@ -8,7 +8,7 @@ topic: APP4-Payloads
 ### MessageHeader Resource
 The MessageHeader resource is required as part of the technical capability of making a referral. Rather than providing clinical or administrative content for the end users; the function of all other resources are outlined. This resource holds key information about where the request has come from (*MessageHeader.source*), who it is intended for (*MessageHeader.destination*), what type of request it is (*MessageHeader.eventCoding*) and how to start interpreting the request (*MessageHeader.focus*). 
 
-Any Receiver of the request 'message bundle' **must** first check the *MessageHeader.destination* and verify the *MessageHeader.destination.receiver.reference* refers to their Organisation. The *MessageHeader.destination.endpoint* is, in turn, the Healthcare Service Id they are expected to be processing the request on behalf of. 
+Any Receiver of the request 'message bundle' **must** first check the *MessageHeader.destination* and verify the *MessageHeader.destination.receiver.reference* refers to their Organisation. The *MessageHeader.destination.endpoint* is, in turn, the Healthcare Service ID they are expected to be processing the request on behalf of. 
 
 The type of request **must** be checked next and there are three important elements which drive workflow: 
 * **eventCoding** - determines the type of request. The value **must** be populated from this [CodeSystem](https://simplifier.net/NHSBookingandReferrals/message-events-bars) and will always be referral for this Application.
@@ -29,30 +29,30 @@ Additionally, the *ServiceRequest.occurrencePeriod* **must** be populated with t
 ### Encounter Resource
 The Encounter is used to represent the interaction between a patient and healthcare service provider. It links with numerous other resources, to reflect the assessment performed. 
 
-In the initial referral request, the Sender will include an Encounter resource as the container for their assessment, which established the need for the referral. This encounter **should** include a reference to the Sender's assessment under *encounter.identifier*. Additionally, the *encounter.episodeOfCare* **must** be populated with a 'journeyId' reference which can be used in subsequent referrals to allow the audit of the route a patient took through service providers to resolve their initial request for care. 
+In the initial referral request, the Sender will include an Encounter resource as the container for their assessment, which established the need for the referral. This encounter **should** include a reference to the Sender's assessment under *encounter.identifier*. Additionally, the *encounter.episodeOfCare* **must** be populated with a 'Journey ID' reference which can be used in subsequent referrals to allow the audit of the route a patient took through service providers to resolve their initial request for care. 
 
-A second Encounter resource is used to transfer the human readable reference of the newly created referral, at the Receiver side. When a referral request is made, the Receiver **should** include a new, secondary, encounter resource with the status of 'planned' in their synchronous HTTP response (200) to the Sender's request. This new 'planned' encounter will have both an Id and an Identifier value, indicating the Receiver's local reference and human readable one, respectively. (See the {{pagelink:Home/Design/BaRS-Applications/Applications/BaRS-APP5/Entity-Relationship-Diagrams.page.md, text:Entity Relationship Diagram}} for reference). The human readable (Identifier) reference is a useful link for the services to use when discussing a patient's transition of care. The local (Id) reference is not intended to be human readable but rather machine readable.
+A second Encounter resource is used to transfer the human readable reference of the newly created referral, at the Receiver side. When a referral request is made, the Receiver **should** include a new, secondary, encounter resource with the status of 'planned' in their synchronous HTTP response (200) to the Sender's request. This new 'planned' encounter will have both an Id and an Identifier value, indicating the Receiver's local reference and human readable one, respectively. (See the {{pagelink:APP3-EntityRelationshipDiagrams, text:Entity Relationship Diagram}} for reference). The human readable (Identifier) reference is a useful link for the services to use when discussing a patient's transition of care. The local (Id) reference is not intended to be human readable but rather machine readable.
 
 ### Location Resource ###
 The Location resource is used to transfer details of the incident location.
 
-When a BARS Sender populates the Location resource;
+When a BARS Sender populates the Location resource:
 
 *  They **must** populate the *Location.extension* with at least one property or non-property element from the following:
     *  Unique Property Reference Number (UPRN)
     *  Postcode Address Finder (PAF) key
     *  Eastings/Northings
-    *  What3words
+    *  what3words
 
-*  They *should* populate the *Location.address* for all property based locations. 
-*  They *should* populate *Location.address.line* which is a repeatable element, with the the order in which lines should appear in an address label
-*  They *should* populate *Location.address.name* when there is a property name
-*  They *should* populate *Location.address.text* with a text representation of the full address (including the address name), with each line separated by a comma
+*  They **should** populate the *Location.address* for all property based locations. 
+*  They **should** populate *Location.address.line* which is a repeatable element, with the the order in which lines should appear in an address label
+*  They **should** populate *Location.address.name* when there is a property name
+*  They **should** populate *Location.address.text* with a text representation of the full address (including the address name), with each line separated by a comma
 
-When a BARS Receiver processes information in a Location resource;
+When a BARS Receiver processes information in a Location resource:
 
-*  They *should* consume and populate *all* address fields sent, into their system
-*  They *must* display *all* address fields sent by the Sender
+*  They **should** consume and populate **all** address fields sent, into their system
+*  They **must** display *all* address fields sent by the Sender
 
 
 ### CarePlan Resource
@@ -65,7 +65,7 @@ Primarily, *careplan.activity* is the section which holds this information, whet
 *  The Ambulance Response Programme (ARP) priority code
 
 ### Flag Resource
-The Flag resource is used to communicate prospective warnings of potential issues when providing care to the patient. The Flag subject may be the Patient (e.g. Safeguarding concern) or the Location (e.g. Scene safety) The population of the Flag Resource is optional as not all subjects will have relevant issues.
+The Flag resource is used to communicate prospective warnings of potential issues when providing care to the patient. The Flag subject may be the Patient (e.g. Safeguarding concern) or the Location (e.g. Scene safety). The population of the Flag Resource is optional as not all subjects will have relevant issues.
 
 BaRS Senders **should** populate Flag resources and **should** make adequate provision in their solution to support key flags in BaRS Application workflows, for example, Safeguarding, for this Application. When populating this resource, Senders **must** include both *flag.category* and *flag.code* values using the specific [BaRS CodeSystems](https://simplifier.net/nhsbookingandreferrals/~resources?category=CodeSystem&sortBy=DisplayName).
 
@@ -73,7 +73,7 @@ When a BARS Receiver processes information in a Flag resource;
 
 * they **should** populate a flag in their system, if their solution supports that flag
 * they **must** display the information in the Flag resource in a way that supports the associated workflow (i.e. the relevant end users can see it and act upon it)
-* rendering of Flag information must be in line with the {{pagelink:Home/About-BaRS/BaRS-Principles-and-Prerequisites/Principles-for-rendering-BaRS-payloads.page.md, text:Principles for rendering BaRS Payload }}.
+* rendering of Flag information must be in line with the {{pagelink:principles_prerequesites, text:Principles for rendering BaRS Payload }}.
 
 ### Observation 
 The Observation resource is used to carry assertions supporting the assessment performed by the Sender. Senders **should** add clinical notes to the Careplan resource rather than Observation, especially where they expect a Receiver to act upon the information. 
