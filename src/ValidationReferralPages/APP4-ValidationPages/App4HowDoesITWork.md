@@ -306,7 +306,7 @@ Receive_Request
 							case "Validation":
 								if(ServiceRequest.status.In("entered-in-error","revoked"))
 									{RequestType = "im receiving a cancelled validation request";}
-								else if(ServiceRequest.status.In("active","on-hold"))
+								else if(ServiceRequest.status=="active"))
 									{RequestType = "im receiving an update to a validation request";} 
 								else
 								{
@@ -359,17 +359,6 @@ Receive_Request
 				}
 				switch (ServiceRequest.Category)
 					{
-						case "Referral":
-							if (ServiceRequest.status == "revoked" && MessageHeader.reason.code == "new")
-							{ RequestType = "im receiving a Safeguarding DNA response (noshow)" } 
-							else
-							{
-								RequestType = "unknown"
-								OperationOutcome.issue.code = "invariant"//A content validation rule failed
-								throw exception with "REC_BAD_REQUEST"
-								then return  HTTP.ResponseCode 400;
-							}
-							break;
 						case "Validation":
 							if(!AnyEncounter.Originates.Local && Encount.Count()<=3)
 							{
@@ -408,7 +397,7 @@ Receive_Request
 		}
 		
 	}
-	//Submit 
+	//Submit
 	{
 		
 		if (Message == "update")
