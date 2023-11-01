@@ -14,13 +14,8 @@ This application supports the use of the following use cases:
 * Validation from 999 to Clinical Assessment Centres(CAS)
 </br>
 </br>
-?????????????
-This use case supports the referral of 999 AST cases with a non-ambulance triage outcome (CAT 5) to a CAS for consultation and treatment and/or onward referral.
-</br>
-</br>
 
-?????????????
-Note: for 999 AST validation requests to CAS, that require a response please see {{pagelink:application4}}
+Note: for referral of 999 AST cases with a non-ambulance triage outcome (CAT 5) to a CAS for consultation and treatment and/or onward referral please see {{pagelink:application3}}
 
 ### Data model endorsements
 

@@ -31,7 +31,7 @@ This details a referral into a CAS from a 999 Ambulance Service Trust (AST) for 
 *  An outcome that can be met by the onward referral to another service provider e.g. ED
 - On receipt of the BaRS Final Validation Response the 999 AST will update the case on the CAD and undertake the required action. This may include:
 * Moving the case from the pending stack to the dispatch stack and dispatching a resource within the timescales appropriate for the ARP Priority in the Validation Response.
-*  Closing the case if an ambulance is not required.
+*  Closing the case if an ambulance is not required. Cases may be closed automatically if they returned with no ambulance is required. 
 
 <br>
 <br>
@@ -40,11 +40,11 @@ To support the workflows for this application of the standard the operations tha
 
 <hr>
 
-### Make a Referral
+### Make a Referral (Validation Request)
 
-Making a referral for this application follows the {{pagelink:design-core, text:standard pattern for BaRS operations}}.
+Making a referral for this application follows the {{pagelink:design-core, text:standard pattern for BaRS operations}}.@@@@
 
-The message definition that defines this payload for this application is: {{link:MessageDefinition-BARS-MessageDefinition-ServiceRequest-Request-Validation}}
+The message definition that defines this payload for this application is: {{link:MessageDefinition-BARS-MessageDefinition-ServiceRequest-Request-Validation}} @@@
 <p>
 
 <hr>
@@ -79,9 +79,6 @@ In addition to that the specific workflow parameters that are required are as fo
                     <tr>
                         <td>ServiceRequest (Category) = referral</td>
                     </tr>
-					<tr>
-                        <td>ServiceRequest (Category) = referraltopharmacy</td>
-                    </tr>
                     <tr>
                         <td>Encounter (Status) = triaged/finished</td>
                     </tr>
@@ -104,7 +101,6 @@ X-Request-Id = <GUID_000001>
 X-Correlation-Id = <GUID_000002>
 NHSD-End-User-Organisation = {FHIR Organisation (Base64 Encoded)}
 NHSD-Requesting-Practitioner = {FHIR Practitioner (Base64 Encoded)} 
-NHSD-Requesting-Person = {FHIR Person (Base64 Encoded)}
 NHSD-Requesting-Software =  {FHIR Device (Base64 Encoded)}
 ```
 
@@ -115,13 +111,13 @@ X-Request-Id = <GUID_000001>
 X-Correlation-Id = <GUID_000002>
 ```
 
-### Cancel a Referral
+### Cancel a Referral (Validation Request)
 
-To cancel a referral this application follows the {{pagelink:design-core, text:standard pattern for BaRS operations}} with an additional step. Before beginning the standard pattern as descbribed on the linked section, the referral **sender** must perform a read of the referral to be cancelled, from the referral **receiver**, prior to cancellation to ensure they are working with the most up-to date information and it has not already been actioned. This is done by performing a "GET ServiceRequest by ID" call to the **receiving** system's corresponding API endpoint (via the BaRS proxy).
+To cancel a referral this application follows the {{pagelink:design-core, text:standard pattern for BaRS operations}} @@@ with an additional step. Before beginning the standard pattern as descbribed on the linked section, the referral **sender** must perform a read of the referral to be cancelled, from the referral **receiver**, prior to cancellation to ensure they are working with the most up-to date information and it has not already been actioned or completed. This is done by performing a "GET ServiceRequest by ID" call to the **receiving** system's corresponding API endpoint (via the BaRS proxy).
 
-The response to this request will be the requested ServiceRequest resource which should be checked for its current status to ensure it does not already have a status of "revoked" or "completed". If not, this version of the ServiceRequest should be used when re-submitting the modified resource in the POST bundle as described in the {{pagelink:design-core, text:standard pattern}}.
+The response to this request will be the requested ServiceRequest resource which should be checked for its current status to ensure it does not already have a status of "revoked" or "completed". If not, this version of the ServiceRequest should be used when re-submitting the modified resource in the POST bundle as described in the {{pagelink:design-core, text:standard pattern}}.@@@@
 
-The message definition that defines this payload for this application is: {{link:messagedefinition-barsmessagedefinitionservicerequestrequestcancelled}}
+The message definition that defines this payload for this application is: {{link:messagedefinition-barsmessagedefinitionservicerequestrequestcancelled}} @@@@
 
 As a general princple, when performing an update type of operation (of which cancellation is a special case), only the focus resource, any resources that are mandated due to contextual, linking or referential integrity reasons and any resources that include elements that are being changed, **should** be include. This is always defined within the relevent message definition.
 
@@ -158,13 +154,10 @@ In addition the specific workflow parameters that are required are as follows:
                         <td>MessageHeader (ReasonCode) = update</td>
                     </tr>
                     <tr>
-                        <td>ServiceRequest (Status) = revoked</td>
+                        <td>ServiceRequest (Status) = revoked @@Entered-in-error@@??</td>
                     </tr>
                     <tr>
                         <td>ServiceRequest (Category) = referral</td>
-                    </tr>
-					<tr>
-                        <td>ServiceRequest (Category) = referraltopharmacy</td>
                     </tr>
                     <tr>
                         <td>Encounter (Status) = triaged/finished</td>
@@ -192,7 +185,6 @@ X-Request-Id = <GUID_107>
 X-Correlation-Id = <GUID_108>
 NHSD-End-User-Organisation = {FHIR Organisation (Base64 Encoded)}
 NHSD-Requesting-Practitioner = {FHIR Practitioner (Base64 Encoded)} 
-NHSD-Requesting-Person = {FHIR Person (Base64 Encoded)}
 NHSD-Requesting-Software =  {FHIR Device (Base64 Encoded)}
 ```
 
@@ -211,7 +203,6 @@ X-Request-Id = <GUID_000003>
 X-Correlation-Id = <GUID_000002>
 NHSD-End-User-Organisation = {FHIR Organisation (Base64 Encoded)}
 NHSD-Requesting-Practitioner = {FHIR Practitioner (Base64 Encoded)} 
-NHSD-Requesting-Person = {FHIR Person (Base64 Encoded)}
 NHSD-Requesting-Software =  {FHIR Device (Base64 Encoded)}
 ```
 
@@ -224,7 +215,7 @@ X-Correlation-Id = <GUID_000002>
 
 ### Bundle Processing - detailed
 
-Below is a pseudo code example of how a bundle could be processed based on the above workflow variables ???? All pseudo code needs updating for Validation - currently includes GP to Pharmacy?????:
+Below is a pseudo code example of how a bundle could be processed based on the above workflow variables ????@@@@ All pseudo code needs updating for Validation - currently includes GP to Pharmacy?????:
 
 <details>
     <summary>> <b class="barslink">Logical - Based on a logical step through in a code format</b></summary>
