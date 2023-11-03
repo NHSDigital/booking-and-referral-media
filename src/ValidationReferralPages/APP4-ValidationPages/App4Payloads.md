@@ -87,6 +87,9 @@ There are specific instances where an Observation **must** be used to convey inf
 ### Consent 
 The level of consent currently supported by BaRS is for 'Direct Care' only. In emergency care use cases this is usually implied consent. A referral **must** contain a Consent resource and it **must** adhere to the [example](https://simplifier.net/NHSBookingandReferrals/8fc39b95-89a6-45fb-914f-1458a10e9e14/~json) provided under the BaRS FHIR assets. 
 <br>
+<br>
+<hr>
+
 ## Validation Interim Response Payload
 The below details the specific guidance around the use of key resources required to create a validation response by the referral receiver to the original referral sender. See [ServiceRequest - Response Validation Interim](https://simplifier.net/nhsbookingandreferrals/bars-messagedefinition-servicerequest-response-validation-interim) message definition for details.
 <br>
@@ -120,6 +123,9 @@ In the initial referral request, the Sender will include an Encounter resource a
 A second Encounter resource is used to transfer the human readable reference of the newly created referral, at the Receiver side. When a referral request is made, the Receiver **should** include a new, secondary, encounter resource with the status of 'planned' in their synchronous HTTP response (200) to the Sender's request. This new 'planned' encounter will have both an Id and an Identifier value, indicating the Receiver's local reference and human readable one, respectively. (See the {{pagelink:APP3-EntityRelationshipDiagrams, text:Entity Relationship Diagram}} for reference). The human readable (Identifier) reference is a useful link for the services to use when discussing a patient's transition of care. The local (Id) reference is not intended to be human readable but rather machine readable.
 
 When the interim response is sent an Encounter status of 'in-progress' **should** be set on the second Encounter. This is to indicate to the Sender that the request has started with the receiving service. 
+<br>
+<br>
+<hr>
 
 ## Validation Final Response Payload
 The below details the specific guidance around the use of key resources required to create a validation response by the referral receiver to the original referral sender. See [ServiceRequest - Response Validation Full](https://simplifier.net/nhsbookingandreferrals/bars-messagedefinition-servicerequest-response-validation-full) message definition for details.
@@ -210,6 +216,8 @@ There are specific instances where an Observation **must** be used to convey inf
 The level of consent currently supported by BaRS is for 'Direct Care' only. In emergency care use cases this is usually implied consent. A referral **must** contain a Consent resource and it **must** adhere to the [example](https://simplifier.net/NHSBookingandReferrals/8fc39b95-89a6-45fb-914f-1458a10e9e14/~json) provided under the BaRS FHIR assets. 
 <br>
 <br>
+<hr>
+
 ## Validation Cancellation Payload
 The below details the specific guidance around the use of key resources required to create a cancellation of a validation request. See [ServiceRequest - Request - Cancelled](https://simplifier.net/nhsbookingandreferrals/messagedefinition-barsmessagedefinitionservicerequestrequestcancelled) message definition for details.
 
