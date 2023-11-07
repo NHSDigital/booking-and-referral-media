@@ -4,7 +4,7 @@ topic: APP4-Payloads
 
 
 ## {{page-title}}
-## Validation Request (Referral) Payload
+## Validation Request Payload
 The below details the specific guidance around the use of resources required to create a validation request by the referral sender. See [ServiceRequest - Request Validation](https://simplifier.net/nhsbookingandreferrals/messagedefinition-bars-messagedefinition-servicerequest-request-validation) message definition for details.
 
 ### MessageHeader Resource
