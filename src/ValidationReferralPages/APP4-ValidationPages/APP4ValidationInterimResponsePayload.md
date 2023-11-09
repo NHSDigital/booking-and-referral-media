@@ -12,7 +12,6 @@ This payload is used to transmit all the necessary information that is required 
  <div markdown="span" class="alert alert-warning" role="alert"><i class="fa fa-warning"></i>
   <b>Please expand each resource below to view implementation guidance.</b>
  </div>
-</div>
 <br>
 
 
