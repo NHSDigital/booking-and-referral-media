@@ -11,7 +11,7 @@ topic: Application4
 
 This application supports the use of the following use cases:
 
-* Validation from 999 to Clinical Assessment Centres(CAS)
+* Validation from 999 to Clinical Assessment Service(CAS)
 </br>
 </br>
 

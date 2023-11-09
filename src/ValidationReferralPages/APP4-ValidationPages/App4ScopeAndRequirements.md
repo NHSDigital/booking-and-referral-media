@@ -15,7 +15,8 @@ The payloads and workflow have been designed to support these services. Other {{
 For this application we will be referring to the actors as 'Requester' and the 'Responder'. A Requester would be the end that created a validation request to be undertaken and completed by the Responder. A Responder would be the end completing the validation request and responding back with the outcome of the assessment to the Requester. Below you can see a table describing this.
 <br>
 <img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/General/ValidationActors.svg" width="500"></img></a>
-
+<br>
+<br>
 
 ### Functional Scope
 
