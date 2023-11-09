@@ -12,6 +12,7 @@ topic: Application4
 This application supports the use of the following use cases:
 
 * 999 Ambulance Service Trust (AST) validation request to Clinical Assessment Service (CAS) (CAS)
+
 </br>
 </br>
 
