@@ -1,3 +1,27 @@
+---
+topic: CORE-ReferralCancelPayload
+---
+
+## {{page-title}}
+
+### Payload for a Validation Interim Response, using Service Request
+
+This payload is used to transmit all the necessary information that is required to transmit the cancellation of a Referral.
+
+<br> 
+ <div markdown="span" class="alert alert-warning" role="alert"><i class="fa fa-warning"></i>
+  <b>Please expand each resource below to view implementation guidance.</b>
+ </div>
+<br>
+
+<details>
+  <summary>> <b class="barslink">Bundle</b></summary>
+      <p>
+              
+        <p>The Bundle resource is the container for the event message.</p>
+        {{tree:https://fhir.nhs.uk/StructureDefinition/BARSBundleMessage, hybrid}}
+        <p>
+        
 
 
 | Data Item                                                        | Implementation Guidance                                                                                                                                                                                                                                                                                                                                                                                                                                               | Necessity | Profile Cardinality | Example Value(s)                                                                         |
@@ -12,6 +36,22 @@
 | Bundle.entry(s)                                                  | Follow BaRS profile guidance for populating this element                                                                                                                                                                                                                                                                                                                                                                                                              | MUST      | 1..*                |                                                                                          |
 | Bundle.entry.fullUrl                                             | unique identifier for the resource entry. Transient id relative to the bundle                                                                                                                                                                                                                                                                                                                                                                                         | MUST      | 0..1                | urn:uuid:1cbdfb97-5859-48a4-8301-d54eab818d68                                            |
 | Bundle.entry.resourceType                                        | Resources detailed in the message definition.                                                                                                                                                                                                                                                                                                                                                                                                                         | MUST      | 0..1                | MessageHeader,Patient, Encounter                                                         |
+
+
+
+</details>
+<p>
+<details>
+  <summary>> <b class="barslink">Message Header</b></summary>
+  
+      <p>
+     
+        <p>A resource that describes the BaRS message being exchanged between two systems.</p>
+        {{tree:https://fhir.nhs.uk/StructureDefinition/BARSMessageHeader-servicerequest-request, hybrid}}
+        <p>
+
+
+
 
 
 | Data Item                                                        | Implementation Guidance                                                                                                                                                                                                                                                                                                                                                                                                                                               | Necessity | Profile Cardinality | Example Value(s)                                                                         |
@@ -55,6 +95,19 @@
 | MessageHeader.definition                                         | This MUST be populated with the MessageDefinition the bundle is based on. This will be used for validation. Value - https://fhir.nhs.uk/MessageDefinition/bars-message-servicerequest-request-cancelled                                                                                                                                                                                                                                                               | MUST      | 0..1                | https://fhir.nhs.uk/MessageDefinition/bars-message-servicerequest-request-cancelled      |
 
 
+
+</details>
+<p>
+
+<details>
+  <summary>> <b class="barslink">Service Request</b></summary>
+      <p>
+        <p> A resource to carry a request for a service to be performed, in this case a Validation. This Resource is the focus of the Validation Request interaction.</p>
+        {{tree:https://fhir.nhs.uk/StructureDefinition/BARSServiceRequest-request-referral      , hybrid}}
+        <p>
+
+       
+
 | Data Item                                                        | Implementation Guidance                                                                                                                                                                                                                                                                                                                                                                                                                                               | Necessity | Profile Cardinality | Example Value(s)                                                                         |
 |------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|---------------------|------------------------------------------------------------------------------------------|
 | ServiceRequest                                                   | A resource to carry a request for a service to be performed, in this case a Validation. This Resource is the focus of the Validation Request interaction https://simplifier.net/nhsbookingandreferrals/barsservicerequest-request-validation                                                                                                                                                                                                                          |           | 1..1                |                                                                                          |
@@ -80,6 +133,18 @@
 | ServiceRequest.occurrencePeriod.end                              | The time by which the validation must be complete (validation breach time)                                                                                                                                                                                                                                                                                                                                                                                            | MUST      | 0..1                | 2023-03-08T12:01:08.4677672+00:00                                                        |
 | ServiceRequest.reasonCode                                        | This will ONLY be populated  in a cancellation message with the reason for cancellation                                                                                                                                                                                                                                                                                                                                                                               | SHOULD    | 0..*                |                                                                                          |
 | ServiceRequest.reasonCode.text                                   | This SHOULD be populated. This will ONLY be populated  in a cancellation message with the reason for cancellation and SHOULD only be used in conjunction with a corresponding status - revoked or entered-in-error                                                                                                                                                                                                                                                    | SHOULD    | 0..1                | Revoked as patient has been dealt with.                                                  |
+
+
+</details>
+<p>
+
+<details>
+  <summary>> <b class="barslink">Patient</b></summary>
+  <p>This resource is used to communicate details about the patient who is the subject of the referral.<br>It also includes contact information for third parties when required.</p>
+        {{tree:https://fhir.hl7.org.uk/StructureDefinition/UKCore-Patient , hybrid}}
+        <p>
+
+
 
 
 | Data Item                                                        | Implementation Guidance                                                                                                                                                                                                                                                                                                                                                                                                                                               | Necessity | Profile Cardinality | Example Value(s)                                                                         |
@@ -149,6 +214,18 @@
 | Patient.generalPractitioner.reference                            | This SHOULD be populated. Where populated this MUST reference to an Organisation resource                                                                                                                                                                                                                                                                                                                                                                             | SHOULD    | 0..1                | urn:uuid:b83d13e2-8c2e-422c-88ac-63b8e86a4411                                            |
 
 
+
+</details>
+<p>
+
+<details>
+  <summary>> <b class="barslink">Organization</b></summary>
+  <p>This resource is used to communicate details about the sender and receiver organisations.</p>
+        {{tree:https://fhir.hl7.org.uk/StructureDefinition/UKCore-Organization , hybrid}}
+        <p>
+
+
+
 | Data Item                                                        | Implementation Guidance                                                                                                                                                                                                                                                                                                                                                                                                                                               | Necessity | Profile Cardinality | Example Value(s)                                                                         |
 |------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|---------------------|------------------------------------------------------------------------------------------|
 | Organization                                                     | This resource is used to communicate details about the sender organisations. <br><br>https://simplifier.net/hl7fhirukcorer4/ukcore-organization                                                                                                                                                                                                                                                                                                                       |           | 2..*                |                                                                                          |
@@ -160,3 +237,8 @@
 | Organization.identifier.system                                   | This MUST be populated. Follow UK Core guidance for populating this element                                                                                                                                                                                                                                                                                                                                                                                           | MUST      | 0..1                | https://fhir.nhs.uk/id/ods-organization-code                                             |
 | Organization.identifier.value                                    | This MUST be populated. Follow UK Core guidance for populating this element                                                                                                                                                                                                                                                                                                                                                                                           | MUST      | 0..1                | ABD01                                                                                    |
 | Organization.name                                                | This MUST be populated. Follow UK Core guidance for populating this element                                                                                                                                                                                                                                                                                                                                                                                           | MUST      | 0..1                | Organisation name                                                                        |
+
+
+
+</details>
+<p>

@@ -87,6 +87,19 @@ This payload is used to transmit all the necessary information that is required 
 
 </details>
 <p>
+<details>
+  <summary>> <b class="barslink">Appointment</b></summary>
+  
+  
+    
+      <p>
+              
+        <p>This resource will be used to communicate information about an Appointment and is the focus of the Booking interation.</p>
+        {{tree:https://fhir.hl7.org.uk/StructureDefinition/UKCore-Appointment , hybrid}}
+        <p>
+
+
+
 
 | Data Item                                                        | Implementation Guidance                                                                                                                                                                                                                                                                                                                                                                                                                                               | Necessity | Profile Cardinality | Example Value(s)                                                                         |
 |------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|---------------------|------------------------------------------------------------------------------------------|
@@ -108,6 +121,15 @@ This payload is used to transmit all the necessary information that is required 
 | Appointment.participant.actor                                    | This MUST be populated with reference to the patient                                                                                                                                                                                                                                                                                                                                                                                                                  | MUST      | 0..1                |                                                                                          |
 | Appointment.participant.actor.reference                          | This MUST be populated with the local logical bundle reference to the Patient resource                                                                                                                                                                                                                                                                                                                                                                                | MUST      | 0..1                | urn:uuid:3a62607b-df65-4932-940c-14262787f62d                                            |
 | Appointment.participant.actor.status                             | This MUST be populated with 'accepted' - FIXED VALUE                                                                                                                                                                                                                                                                                                                                                                                                                  | MUST      | 1..1                | accepted                                                                                 |
+</details>
+<p>
+<details>
+  <summary>> <b class="barslink">Patient</b></summary>
+  <p>This resource is used to communicate details about the patient who is the subject of the referral.<br>It also includes contact information for third parties when required.</p>
+        {{tree:https://fhir.hl7.org.uk/StructureDefinition/UKCore-Patient , hybrid}}
+        <p>
+
+
 
 
 | Data Item                                                        | Implementation Guidance                                                                                                                                                                                                                                                                                                                                                                                                                                               | Necessity | Profile Cardinality | Example Value(s)                                                                         |
@@ -177,6 +199,17 @@ This payload is used to transmit all the necessary information that is required 
 | Patient.generalPractitioner.reference                            | This SHOULD be populated. Where populated this MUST reference to an Organisation resource                                                                                                                                                                                                                                                                                                                                                                             | SHOULD    | 0..1                | urn:uuid:b83d13e2-8c2e-422c-88ac-63b8e86a4411                                            |
 
 
+
+</details>
+<p>
+<details>
+  <summary>> <b class="barslink">Organization</b></summary>
+  <p> This resource is used to communicate details about the sender and receiver organisations.</p>
+        {{tree:https://fhir.hl7.org.uk/StructureDefinition/UKCore-Organization , hybrid}}
+        <p>
+
+
+
 | Data Item                                                        | Implementation Guidance                                                                                                                                                                                                                                                                                                                                                                                                                                               | Necessity | Profile Cardinality | Example Value(s)                                                                         |
 |------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|---------------------|------------------------------------------------------------------------------------------|
 | Organization                                                     | This resource is used to communicate details about the sender organisations. <br><br>https://simplifier.net/hl7fhirukcorer4/ukcore-organization                                                                                                                                                                                                                                                                                                                       |           | 2..*                |                                                                                          |
@@ -188,3 +221,10 @@ This payload is used to transmit all the necessary information that is required 
 | Organization.identifier.system                                   | This MUST be populated. Follow UK Core guidance for populating this element                                                                                                                                                                                                                                                                                                                                                                                           | MUST      | 0..1                | https://fhir.nhs.uk/id/ods-organization-code                                             |
 | Organization.identifier.value                                    | This MUST be populated. Follow UK Core guidance for populating this element                                                                                                                                                                                                                                                                                                                                                                                           | MUST      | 0..1                | ABD01                                                                                    |
 | Organization.name                                                | This MUST be populated. Follow UK Core guidance for populating this element                                                                                                                                                                                                                                                                                                                                                                                           | MUST      | 0..1                | Organisation name                                                                        |
+
+</details>
+<p>
+
+<br>
+
+<hr>
