@@ -11,6 +11,14 @@ This BaRS Application (application 4) covers only use cases:
 
 The payloads and workflow have been designed to support these services. Other {{pagelink:applications, text:BaRS Applications}} offer scope for alternative use cases.
 
+|                       | Actors              |                     | 
+|-----------------------|--------------------|-----------------------|
+|**Workflow**         | Referral sender    | Referral Recipient    |
+|**999-CAS Validation** |Requester         | Responder             |
+
+
+
+
 ### Functional Scope
 
 **Service Discovery**
