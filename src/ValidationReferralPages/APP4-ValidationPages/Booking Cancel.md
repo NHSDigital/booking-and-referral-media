@@ -6,7 +6,7 @@ topic: CORE-BookingCancelPayload
 
 ### Payload for a Validation Interim Response, using Service Request
 
-This payload is used to transmit all the necessary information that is required to transmit the cancellation of a Booking..
+This payload is used to transmit all the necessary information that is required to transmit the cancellation of a Booking.
 
 <br> 
  <div markdown="span" class="alert alert-warning" role="alert"><i class="fa fa-warning"></i>
