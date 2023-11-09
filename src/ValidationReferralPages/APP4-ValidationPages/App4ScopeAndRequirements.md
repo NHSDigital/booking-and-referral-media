@@ -11,6 +11,14 @@ This BaRS Application (application 4) covers only use cases:
 
 The payloads and workflow have been designed to support these services. Other {{pagelink:applications, text:BaRS Applications}} offer scope for alternative use cases.
 
+|                       | Actors              |                     | 
+|-----------------------|--------------------|-----------------------|
+|**Workflow**         | Referral sender    | Referral Recipient    |
+|**999-CAS Validation** |Requester         | Responder             |
+
+
+
+
 ### Functional Scope
 
 **Service Discovery**
@@ -47,65 +55,65 @@ The payloads and workflow have been designed to support these services. Other {{
 * The service **must** support a unique identifier which the Sender extracts to engage in referral workflows
 
 **Validation Request**
-* The Receiver **must** accept the Validation Request regardless of whether the patient is known to the service provider
-* The Receiver **must** accept potential patients who do **<ins>not</ins>** have a national validated identifier e.g. NHS Number
-* The Validation Requester (Sender) **must** send incident location information as part of their request
-* The Validation Requester (Sender) **must** send scene safety information as part of their request
+* The Responder **must** accept the Validation Request regardless of whether the patient is known to the service provider
+* The Responder **must** accept potential patients who do **<ins>not</ins>** have a national validated identifier e.g. NHS Number
+* The Requester **must** send incident location information as part of their request
+* The Requester **must** send scene safety information as part of their request
 * Any new or existing safeguarding concern, recorded as part of the assessment, **must** be included in the Validation Request
-* The Receiver **must** clearly identify any included safeguarding concern to the end user
-* The Receiver **must** accurately represent information made by the Sender to the end user
-* The Validation Requester (Sender) **must** make available the human readable identifier for the referral, included in the HTTP synchronous response, to the end user
-* Where the Validation Request was <ins>not</ins> successful, the Receiver **must** send an appropriate response. See {{pagelink:failure_scenarios, text:failure scenarios}} for more detail
-* Where the Validation Request was <ins>not</ins> successful, the Sender **must** present an appropriate message to the end user. See {{pagelink:failure_scenarios, text:failure scenarios}} for more detail
+* The Responder **must** clearly identify any included safeguarding concern to the end user
+* The Responder **must** accurately represent information made by the Sender to the end user
+* The Requester **must** make available the human readable identifier for the referral, included in the HTTP synchronous response, to the end user
+* Where the Validation Request was <ins>not</ins> successful, the Responder **must** send an appropriate response. See {{pagelink:failure_scenarios, text:failure scenarios}} for more detail
+* Where the Validation Request was <ins>not</ins> successful, the Requester **must** present an appropriate message to the end user. See {{pagelink:failure_scenarios, text:failure scenarios}} for more detail
 
 **Update Validation Request**
-*	The Sender **must** be capable of updating any Validation Request made by them, within the current consultation or after the consultation event
-*	The Sender **must** retrieve the Validation Request to be updated from the Validation Request Receiver prior to cancellation to ensure they are working with the most up-to date version and it has not already been completed
-*	The Validation Requester (Sender) **must** provide visible confirmation to the end user of the status returned by the referral Receiver, i.e. whether the original referral was successfully updated or not
-*	If the update fails, the Validation Request Receiver **must** respond with the most appropriately aligned error. See {{pagelink:failure_scenarios, text:failure scenarios}} for more detail
-*	The Validation Request Receiver **must** store all previous versions of the referral
-*	The Validation Request Receiver **must <ins>not</ins>** be required to inform the patient of the updating of the referral.  Business/clinical responsibility for informing the patient must remain with the Validation Requester (Sender)
-*  The Validation Requester (Sender) **should not** send updates after receiving an Interim Response
+*	The Requester **must** be capable of updating any Validation Request made by them, within the current consultation or after the consultation event
+*	The Requester **must** retrieve the Validation Request to be updated from the Responder prior to cancellation to ensure they are working with the most up-to date version and it has not already been completed
+*	The Requester **must** provide visible confirmation to the end user of the status returned by the Responder, i.e. whether the original Validation Request was successfully updated or not
+*	If the update fails, the Responder **must** respond with the most appropriately aligned error. See {{pagelink:failure_scenarios, text:failure scenarios}} for more detail
+*	The Responder **must** store all previous versions of the referral
+*	The Requester **must <ins>not</ins>** be required to inform the patient of the updating of the referral.  Business/clinical responsibility for informing the patient must remain with the Requester
+*  The Requester  **should not** send updates after receiving an Interim Response
 
 
 **Cancel Validation Request** 
-*	The Validation Requester (Sender) **must** be capable of cancelling any Validation Request made by them, within the current consultation or after the consultation event
-*	The Validation Requester (Sender) **must** retrieve the Validation Request to be cancelled from the Validation Request Receiver prior to cancellation to ensure they are working with the most up-to date version and it has not already been completed
-*	The Validation Requester (Sender) **must** provide visible confirmation to the end user of the status returned by the Validation Request Receiver, i.e. whether the original Validation Request was successfully cancelled or not
-*	If the update fails the Validation Request Receiver **must** respond with the most appropriately aligned error 
-*	The Validation Request Receiver **must** store all previous versions of the referral
-*	TheValidation Request Receiver **must <ins>not</ins>** be required to inform the patient of the cancellation of the Validation Request.  Business/clinical responsibility for informing the patient must remain with the Validation Requester (Sender)
+*	The Requester **must** be capable of cancelling any Validation Request made by them, within the current consultation or after the consultation event
+*	The Requester  **must** retrieve the Validation Request to be cancelled from the Responder prior to cancellation, to ensure they are working with the most up-to date version and it has not already been completed
+*	The Requester  **must** provide visible confirmation to the end user of the status returned by the Responder, i.e. whether the original Validation Request was successfully cancelled or not
+*	If the update fails the Responder **must** respond with the most appropriately aligned error 
+*	The Responder **must** store all previous versions of the referral
+*	The Responder **must <ins>not</ins>** be required to inform the patient of the cancellation of the Validation Request.  Business/clinical responsibility for informing the patient must remain with the Requester
 
 **Interim Validation Response**
-*  The Validation Request Receiver **must** send an Interim Validation Response when the clinician starts the consultation in the CAS system. This **must not** be triggered by a clinician attempting to contact the patient or by a welfare call.
-*  The Validation Requester (Sender) **must** process the Interim Validation Response, update the case in the CAD and display the status change to the end user.
+*  The Responder **must** send an Interim Validation Response when the clinician starts the consultation in the CAS system. This **must not** be triggered by a clinician attempting to contact the patient or by a welfare call.
+*  The Requester **must** process the Interim Validation Response, update the case in the CAD and display the status change to the end user.
 
 **Final Validation Response**
-*  The Validation Request Receiver **must** send an Final Response when the clinician has completed the consultation in the CAS system.
-*  The Validation Requester (Sender) **must** process the final response, update the case in the CAD and display the status change to the end user.
+*  The Responder **must** send an Final Response when the clinician has completed the consultation in the CAS system.
+*  The Requester **must** process the final response, update the case in the CAD and display the status change to the end user.
 * The status on the Final Validation Response **must** indicate to the end user if a ambulance is required and the case has moved to dispatch, or whether the case can be closed or has been closed automatically with no further action required.
 * The final triage should form part of the consultation history of the case in the CAD. 
-* All triages should form part of the audit in the CAD.
+* All triage instances should form part of the audit in the CAD.
 
 **Incident Location**
-*  The Sender  **must** include the incident location in the referral request
-*  The Receiver  **must** include the incident location in the referral response
+*  The Requester  **must** include the incident location in the referral request
+*  The Responder  **must** include the incident location in the referral response
 *  All Locations **must** include a co-ordinate (Eastings/Northings, Lat/Long or What3Words equivalent) or a property location identifier (UPRN, Address and Postcode)
 
 **Timings**
-*  The referral Sender **must** send the Clock start date/Time (T5). Definition as per AmbSys specification
-*  The referral Sender **must** send the validation breach time
-*  The referral Receiver **must** send the dispatch (or disposition) code identification datetime in the **final response**:
+*  The Requester **must** send the Clock start date/Time (T5). Definition as per AmbSys specification
+*  The Responder **must** send the validation breach time
+*  The Requester **must** send the dispatch (or disposition) code identification datetime in the **final response**:
     - If the Validation ARP code is the same or downgraded from the original 999 triage, this **must** be populated with the original 999 Clock start date/Time (T5).
     - If the Validation ARP code is upgraded from the original 999 triage this **must** be populated with the Dispatch/Disposition code identification date/time determined by the CAS
 
 
 **Scene Safety**
-*  The referral Sender **must** send scene safety information in the referral
+*  The Requester **must** send scene safety information in the referral
 *  Where scene safety questions have not been asked, the Flag resource relating to scene safety  **must** be populated with 'UNK' unknown.
-*  The referral Receiver **should** populate the scene safety flag in their system and **must** display scene safety information to end users.
-*  The referral Receiver **must** send scene safety information in the final response, including any updates.
-*  The referral Sender **should** update their system scene safety flag with any updates in the response and **must** display scene safety updates to end users
+*  The Responder **should** populate the scene safety flag in their system and **must** display scene safety information to end users.
+*  The Responder **must** send scene safety information in the final response, including any updates.
+*  The Requester **should** update their system scene safety flag with any updates in the response and **must** display scene safety updates to end users
 
 **Contacts** 
 * A minimum of one contact (patient or third party) with a contact method (phone, email, etc.) of phone **must** be provided in requests
