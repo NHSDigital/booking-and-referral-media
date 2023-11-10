@@ -6,6 +6,8 @@ topic: APP4-RequestorPayloads
 ## Validation Request Payload
 The below details the specific guidance around the use of resources required to create a Validation Request by the Requester. See [ServiceRequest - Request Validation](https://simplifier.net/nhsbookingandreferrals/messagedefinition-bars-messagedefinition-servicerequest-request-validation) message definition for details.
 
+_Note that Requesters will also have to build the capability to receive and process the Validation Response payloads._
+
 ### MessageHeader Resource
 The MessageHeader resource is required as part of the technical capability of making a request or response. Rather than providing clinical or administrative content for the end users; the function of all other resources are outlined. This resource holds key information about where the request has come from (*MessageHeader.source*), who it is intended for (*MessageHeader.destination*), what type of request it is (*MessageHeader.eventCoding*) and how to start interpreting the request (*MessageHeader.focus*). 
 
@@ -23,16 +25,16 @@ When generating asynchronous Response messages (as opposed to an HTTP synchronou
 The workflow dictates an asynchronous response is to be sent, the Responder **must** populate *MessageHeader.response.identifier* with the *Bundle.Id* of the original request 'message bundle' and set the *MessageHeader.response.code* value to 'ok'. 
 
 ### ServiceRequest Resource
-The 'focus' resource in a referral is the ServiceRequest resource. When the request 'message bundle' is created by the Requester and processed by the Responder, this is the starting point from which the referral is understood. It provides either the detail or references to all key FHIR resources, for example, the Patient, Encounter and Careplan. The guidance for this resource below provides more granular, element level, detail. A key point when a Requester builds the referral FHIR 'message bundle' is to ensure the *MessageHeader.focus* references the ServiceRequest resource.
+The 'focus' resource in a Validation Request is the ServiceRequest resource. When the request 'message bundle' is created by the Requester and processed by the Responder, this is the starting point from which the request is understood. It provides either the detail or references to all key FHIR resources, for example, the Patient, Encounter and Careplan. The guidance for this resource below provides more granular, element level, detail. A key point when a Requester builds the Validation Request FHIR 'message bundle' is to ensure the *MessageHeader.focus* references the ServiceRequest resource.
 
 Additionally, the *ServiceRequest.occurrencePeriod* **must** be populated with the time that the receiving service must contact the patient by (validation breach time)
 
 ### Encounter Resource
 The Encounter is used to represent the interaction between a patient and healthcare service provider. It links with numerous other resources, to reflect the assessment performed. 
 
-In the initial referral request, the Requester will include an Encounter resource as the container for their assessment, which established the need for the referral. This encounter **should** include a reference to the Requester's assessment under *encounter.identifier*. Additionally, the *encounter.episodeOfCare* **must** be populated with a 'Journey ID' reference which can be used in subsequent referrals to allow the audit of the route a patient took through service providers to resolve their initial request for care. 
+In the initial Validation Request, the Requester will include an Encounter resource as the container for their assessment, which established the need for the Validation Request. This encounter **should** include a reference to the Requester's assessment under *encounter.identifier*. Additionally, the *encounter.episodeOfCare* **must** be populated with a 'Journey ID' reference which can be used in subsequent referrals to allow the audit of the route a patient took through service providers to resolve their initial request for care. 
 
-A second Encounter resource is used to transfer the human readable reference of the newly created referral, at the Responder end. When a referral request is made, the Responder **should** include a new, secondary, encounter resource with the status of 'planned' in their synchronous HTTP response (200) to the Requester's request. This new 'planned' encounter will have both an Id and an Identifier value, indicating the Responder's local reference and human readable one, respectively. (See the {{pagelink:APP3-EntityRelationshipDiagrams, text:Entity Relationship Diagram}} for reference). The human readable (Identifier) reference is a useful link for the services to use when discussing a patient's transition of care. The local (Id) reference is not intended to be human readable but rather machine readable.
+A second Encounter resource is used to transfer the human readable reference of the newly created case, at the Responder end. When a Validation Request is made, the Responder **should** include a new, secondary, encounter resource with the status of 'planned' in their synchronous HTTP response (200) to the Requester's request. This new 'planned' encounter will have both an Id and an Identifier value, indicating the Responder's local reference and human readable one, respectively. (See the {{pagelink:APP3-EntityRelationshipDiagrams, text:Entity Relationship Diagram}} for reference). The human readable (Identifier) reference is a useful link for the services to use when discussing a patient's transition of care. The local (Id) reference is not intended to be human readable but rather machine readable.
 
 ### Location Resource ###
 The Location resource is used to transfer details of the incident location.
@@ -80,11 +82,11 @@ When a BaRS Responder processes information in a Flag resource;
 The Observation resource is used to carry assertions supporting the assessment performed by the Requester. Requesters **should** add clinical notes to the Careplan resource rather than Observation, especially where they expect a Responder to act upon the information. 
 
 There are specific instances where an Observation **must** be used to convey information and [examples](https://simplifier.net/nhsbookingandreferrals/~resources?category=Example&exampletype=Observation&sortBy=DisplayName) are provided to aid development: 
-* Where Birth Sex is communicated it **must** be transferred in a referral using Observation. This information **should** only be transferred when considered clinically relevant and it is not considered as demographic information, as administrative gender would be. It **should <ins>not</ins>** be included as an extension on the patient resource, as described in [UK Core](https://simplifier.net/hl7fhirukcorer4/ukcorepatient). 
+* Where Birth Sex is communicated it **must** be transferred in a Validation Request using Observation. This information **should** only be transferred when considered clinically relevant and it is not considered as demographic information, as administrative gender would be. It **should <ins>not</ins>** be included as an extension on the patient resource, as described in [UK Core](https://simplifier.net/hl7fhirukcorer4/ukcorepatient). 
 * Where Estimated Age is communicated it **must** be conveyed in an Observation.
 
 ### Consent 
-The level of consent currently supported by BaRS is for 'Direct Care' only. In emergency care use cases this is usually implied consent. A referral **must** contain a Consent resource and it **must** adhere to the [example](https://simplifier.net/NHSBookingandReferrals/8fc39b95-89a6-45fb-914f-1458a10e9e14/~json) provided under the BaRS FHIR assets. 
+The level of consent currently supported by BaRS is for 'Direct Care' only. In emergency care use cases this is usually implied consent. A Validation Request **must** contain a Consent resource and it **must** adhere to the [example](https://simplifier.net/NHSBookingandReferrals/8fc39b95-89a6-45fb-914f-1458a10e9e14/~json) provided under the BaRS FHIR assets. 
 <br>
 <br>
 <hr>
