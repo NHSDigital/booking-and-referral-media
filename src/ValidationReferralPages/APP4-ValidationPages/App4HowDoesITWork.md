@@ -463,7 +463,3 @@ Receive_Request
 <br>
 
 <hr>
-
-<!--
-![BaRS FHIR API end-to-end process](https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/WorkflowStatus-1.0.0.png)
--->
