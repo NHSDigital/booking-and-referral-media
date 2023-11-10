@@ -88,6 +88,7 @@ The level of consent currently supported by BaRS is for 'Direct Care' only. In e
 <br>
 <br>
 <hr>
+
 ## Validation Cancellation Payload
 The below details the specific guidance around the use of key resources required to create a cancellation of a validation request. See [ServiceRequest - Request - Cancelled](https://simplifier.net/nhsbookingandreferrals/messagedefinition-barsmessagedefinitionservicerequestrequestcancelled) message definition for details.
 
