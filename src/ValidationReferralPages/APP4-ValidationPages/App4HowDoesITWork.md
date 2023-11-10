@@ -67,8 +67,8 @@ In addition to that the specific workflow parameters that are required are as fo
                 </thead>
                 <tbody>
                     <tr>
-                        <td rowspan=6>Referral Request (New)@@</td>
-                        <td rowspan=6>POST /$process-message{servicerequest-request}</td>
+                        <td rowspan=6>Validation Request (New)</td>
+                        <td rowspan=6>POST /$process-message{validation-request}</td>
                         <td rowspan=6>ServiceRequest (active)</td>
                         <td>MessageHeader (EventCoding) = servicerequest-request</td>
                     </tr>
@@ -79,10 +79,10 @@ In addition to that the specific workflow parameters that are required are as fo
                         <td>ServiceRequest (Status) = active</td>
                     </tr>
                     <tr>
-                        <td>ServiceRequest (Category) = referral</td>
+                        <td>ServiceRequest (Category) = validation</td>
                     </tr>
                     <tr>
-                        <td>Encounter (Status) = triaged/finished</td>
+                        <td>Encounter (Status) = triaged</td>
                     </tr>
                     <tr>
                         <td><b>All resources to include 'lastUpdated' value, under meta section</b></td>
@@ -113,7 +113,7 @@ X-Request-Id = <GUID_000001>
 X-Correlation-Id = <GUID_000002>
 ```
 
-### Cancel a Referral (Validation Request)
+### Cancel Validation Request
 
 To cancel a Validation Request this application follows the {{pagelink:core-standardpattern, text:standard pattern for BaRS operations}} with an additional step. Before beginning the standard pattern as described on the linked section, the referral **sender** must perform a read of the referral to be cancelled, from the referral **receiver**, prior to cancellation to ensure they are working with the most up-to date information and it has not already been actioned or completed. This is done by performing a "GET ServiceRequest by ID" call to the **receiving** system's corresponding API endpoint (via the BaRS proxy).
 
@@ -141,14 +141,14 @@ In addition the specific workflow parameters that are required are as follows:
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Get Referral</td>
+                        <td>Get Validation</td>
                         <td>GET /ServiceRequest{id}</td>
                         <td>n/a</td>
                         <td>n/a</td>
                     </tr>
                     <tr>
-                        <td rowspan=8>Referral Request (Cancel) @@@</td>
-                        <td rowspan=8>POST /$process-message{servicerequest-request}</td>
+                        <td rowspan=8>Validation Request (Cancel)</td>
+                        <td rowspan=8>POST /$process-message{validation-request}</td>
                         <td rowspan=8>ServiceRequest (revoked)</td>
                         <td>MessageHeader (EventCoding) = servicerequest-request</td>
                     </tr>
@@ -156,13 +156,13 @@ In addition the specific workflow parameters that are required are as follows:
                         <td>MessageHeader (ReasonCode) = update</td>
                     </tr>
                     <tr>
-                        <td>ServiceRequest (Status) = revoked @@Entered-in-error@@??</td>
+                        <td>ServiceRequest (Status) = revoked/entered-in-error</td>
                     </tr>
                     <tr>
-                        <td>ServiceRequest (Category) = referral</td>
+                        <td>ServiceRequest (Category) = validation</td>
                     </tr>
                     <tr>
-                        <td>Encounter (Status) = triaged/finished</td>
+                        <td>Encounter (Status) = triaged</td>
                     </tr>
                     <tr rowspan=3>
                         <td>
