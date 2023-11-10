@@ -3,8 +3,8 @@ topic: APP4-ResponderPayloads
 ---
 
 # {{page-title}}
-## Validation Interim Response Payload
-The below details the specific guidance around the use of key resources required to create a validation response by the Responder to return to the original Requester. See [ServiceRequest - Response Validation Interim](https://simplifier.net/nhsbookingandreferrals/bars-messagedefinition-servicerequest-response-validation-interim) message definition for details.
+## Interim Validation Response Payload
+This section provides guidance on the use of key resources, for the Responder to create an Interim Validation Response to return to the Requester. See [ServiceRequest - Response Validation Interim](https://simplifier.net/nhsbookingandreferrals/bars-messagedefinition-servicerequest-response-validation-interim) message definition for details.
 
 _Note that Responders will also have to build the capability to receive and process the Validation Request and Cancellation payloads_
 <br>
@@ -15,13 +15,13 @@ The MessageHeader resource is required as part of the technical capability of ma
 Any Responder of the request 'message bundle' **must** first check the *MessageHeader.destination* and verify the *MessageHeader.destination.receiver.reference* refers to their Organisation. The *MessageHeader.destination.endpoint* is, in turn, the Healthcare Service ID they are expected to be processing the request on behalf of. 
 
 The type of request **must** be checked next and there are three important elements which drive workflow: 
-* **eventCoding** - determines the type of request. The value **must** be populated from this [CodeSystem](https://simplifier.net/NHSBookingandReferrals/message-events-bars) and will always be referral for this Application.
+* **eventCoding** - determines the type of request. The value **must** be populated from this [CodeSystem](https://simplifier.net/NHSBookingandReferrals/message-events-bars) and will always be 'referral' for this Application.
 * **reasonCode** - indicates whether the message is new or an update to something the Requester already has. The value **must** be populated from this [CodeSystem](https://simplifier.net/NHSBookingandReferrals/message-reason-bars).
 * **definition** - specifies the [MessageDefinition](https://simplifier.net/nhsbookingandreferrals/~resources?category=Example&exampletype=MessageDefinition&sortBy=DisplayName) the request **must** adhere to and **must** be rejected if it fails to do so.
 
 Once the above checks have been made the detail of the request can start to be unpacked and processed. The *MessageHeader.focus* provides the key to doing this. It indicates the lens through which the request 'message bundle' **must** be interpreted. In this Application the element will always point to the ServiceRequest. Most other FHIR resources in the 'message bundle' will link to or from the 'focus' resource. 
 
-When generating asynchronous (Interim or Final) Response messages (as opposed to an HTTP synchronous response (200) message), where a Responder is sending a 'message bundle' back to the Requester. Firstly, the Requester, in the original request **must** include a NHSD-Target-Identifier (their reference on the Endpoint Catalogue) under *MessageHeader.source.endpoint*, to which the Responder is able to direct a response back to, regardless of whether they expect a response or not. The Responder **must** take and store this value, along with the *Bundle.Id* value, to send a response message back to the Requester through the BaRS API Proxy. 
+???? FOR LEIGH When generating asynchronous (Interim or Final) Response messages (as opposed to an HTTP synchronous response (200) message), where a Responder is sending a 'message bundle' back to the Requester. Firstly, the Requester, in the original request **must** include a NHSD-Target-Identifier (their reference on the Endpoint Catalogue) under *MessageHeader.source.endpoint*, to which the Responder is able to direct a response back to, regardless of whether they expect a response or not. The Responder **must** take and store this value, along with the *Bundle.Id* value, to send a response message back to the Requester through the BaRS API Proxy. 
 
 The workflow dictates an asynchronous response is to be sent, the Responder **must** populate *MessageHeader.response.identifier* with the *Bundle.Id* of the original request 'message bundle' and set the *MessageHeader.response.code* value to 'ok'. 
 
@@ -60,7 +60,7 @@ The type of request **must** be checked next and there are three important eleme
 
 Once the above checks have been made, the detail of the Validation Request can be unpacked and processed by the Responder. The *MessageHeader.focus* provides the key to doing this. It indicates the lens through which the Validation Request 'message bundle' **must** be interpreted. In this Application the element will always point to the ServiceRequest. Most other FHIR resources in the 'message bundle' will link to or from the 'focus' resource. 
 
-????When generating asynchronous Interim Validation Response or Validation Response messages (as opposed to an HTTP synchronous response (200) message), where a Responder is sending a 'message bundle' back to an originating Requester. Firstly, the Requester, in the original request **must** include a NHSD-Target-Identifier (their reference on the Endpoint Catalogue) under *MessageHeader.source.endpoint*, to which the Responder is able to direct a response back to, regardless of whether they expect a response or not. The Responder **must** take and store this value, along with the *Bundle.Id* value, to send a response message back to the Requester through the BaRS API Proxy.
+???? FOR LEIGH When generating asynchronous Interim Validation Response message (as opposed to an HTTP synchronous response (200) message), where a Responder is sending a 'message bundle' back to an originating Requester. Firstly, the Requester, in the original request **must** include a NHSD-Target-Identifier (their reference on the Endpoint Catalogue) under *MessageHeader.source.endpoint*, to which the Responder is able to direct a response back to, regardless of whether they expect a response or not. The Responder **must** take and store this value, along with the *Bundle.Id* value, to send a response message back to the Requester through the BaRS API Proxy.
 
 When the workflow dictates an asynchronous response is to be sent, the Responder **must** populate *MessageHeader.response.identifier* with the *Bundle.Id* of the original request 'message bundle' and set the *MessageHeader.response.code* value to 'ok'. 
 
@@ -131,11 +131,11 @@ When a BARS Requester processes information in a Flag resource in a validation r
 The Observation resource is used to carry assertions supporting the assessment performed by the Requester. Requesters **should** add clinical notes to the Careplan resource rather than Observation, especially where they expect a Responder to act upon the information. 
 
 There are specific instances where an Observation **must** be used to convey information and [examples](https://simplifier.net/nhsbookingandreferrals/~resources?category=Example&exampletype=Observation&sortBy=DisplayName) are provided to aid development: 
-* Where Birth Sex is communicated it **must** be transferred in a referral using Observation. This information **should** only be transferred when considered clinically relevant and it is not considered as demographic information, as administrative gender would be. It **should <ins>not</ins>** be included as an extension on the patient resource, as described in [UK Core](https://simplifier.net/hl7fhirukcorer4/ukcorepatient). 
+* Where Birth Sex is communicated it **must** be transferred in a ??? referral using Observation. This information **should** only be transferred when considered clinically relevant and it is not considered as demographic information, as administrative gender would be. It **should <ins>not</ins>** be included as an extension on the patient resource, as described in [UK Core](https://simplifier.net/hl7fhirukcorer4/ukcorepatient). 
 * Where Estimated Age is communicated it **must** be conveyed in an Observation.
 
 ### Consent 
-The level of consent currently supported by BaRS is for 'Direct Care' only. In emergency care use cases this is usually implied consent. A referral **must** contain a Consent resource and it **must** adhere to the [example](https://simplifier.net/NHSBookingandReferrals/8fc39b95-89a6-45fb-914f-1458a10e9e14/~json) provided under the BaRS FHIR assets. 
+The level of consent currently supported by BaRS is for 'Direct Care' only. In emergency care use cases this is usually implied consent. A ???referral **must** contain a Consent resource and it **must** adhere to the [example](https://simplifier.net/NHSBookingandReferrals/8fc39b95-89a6-45fb-914f-1458a10e9e14/~json) provided under the BaRS FHIR assets. 
 <br>
 <br>
 <hr>
