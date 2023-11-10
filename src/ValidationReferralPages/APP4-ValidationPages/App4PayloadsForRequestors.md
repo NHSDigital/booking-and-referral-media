@@ -1,5 +1,5 @@
 ---
-topic: APP4-RequestorPayloads
+topic: APP4-RequesterPayloads
 ---
 
 # {{page-title}}
