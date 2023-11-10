@@ -2,7 +2,7 @@
 topic: APP4-HowDoesItWork
 ---
 
-## {{page-title}}
+# {{page-title}}
 
 
 This section describes how the primary operations used in this application work. The following  diagram illustrates the workflow and interactions of a request from an 999 AST to a CAS to clinically validate an agreed cohort of ambulance triage outcomes (usually C3/C4), and the subsequent response(s):
@@ -42,7 +42,7 @@ To support the workflows for this application of the standard the operations tha
 
 <hr>
 
-### Make a Validation Request
+## Make a Validation Request
 
 Making a Validation Request for this application follows the {{pagelink:core-standardpattern, text:standard pattern for BaRS operations}}.
 
@@ -113,7 +113,7 @@ X-Request-Id = <GUID_000001>
 X-Correlation-Id = <GUID_000002>
 ```
 
-### Cancel Validation Request
+## Cancel Validation Request
 
 To cancel a Validation Request this application follows the {{pagelink:core-standardpattern, text:standard pattern for BaRS operations}} with an additional step. Before beginning the standard pattern as described on the linked section, the referral **sender** must perform a read of the referral to be cancelled, from the referral **receiver**, prior to cancellation to ensure they are working with the most up-to date information and it has not already been actioned or completed. This is done by performing a "GET ServiceRequest by ID" call to the **receiving** system's corresponding API endpoint (via the BaRS proxy).
 
@@ -215,7 +215,7 @@ X-Request-Id = <GUID_000003>
 X-Correlation-Id = <GUID_000002>
 ```
 
-### Bundle Processing - detailed
+## Bundle Processing - detailed
 
 Below is a pseudo code example of how a bundle could be processed based on the above workflow variables.
 

@@ -1,9 +1,9 @@
 ---
 topic: APP4-ScopeAndRequirements
 ---
-## {{page-title}}
+# {{page-title}}
 
-### Scope Overview
+## Scope Overview
 
 This BaRS Application (application 4) covers only use cases:
 * 999 Ambulance Service Trust (AST) validation request to Clinical Assessment Service (CAS)
@@ -14,11 +14,12 @@ The payloads and workflow have been designed to support these services. Other {{
 <br>
 For this application we will be referring to the actors as 'Requester' and the 'Responder'. A Requester would be the end that created a validation request to be undertaken and completed by the Responder. A Responder would be the end completing the validation request and responding back with the outcome of the assessment to the Requester. Below you can see a table describing this.
 <br>
+<br>
 <img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/General/ValidationActors.svg" width="500"></img></a>
 <br>
 <br>
 
-### Functional Scope
+## Functional Scope
 
 **Service Discovery**
 
@@ -48,7 +49,7 @@ For this application we will be referring to the actors as 'Requester' and the '
 * Receiving endpoints are to be internet facing.
 * Clinical Constraints exist - See Hazard Log
 
-### Requirements
+## Requirements
 
 **Service Discovery** 
 * The service **must** support a unique identifier which the Sender extracts to engage in referral workflows
