@@ -1,3 +1,8 @@
+---
+topic: core-SPCancellation
+---
+
+
 ## {{page-title}}
 
 The ability to reverse a digital request, by performing a cancellation, whether booking or referral, is a core workflow within BaRS. It completes the digital workflow, support genuine interoperability and removes the need for manual intervention by service providers.
