@@ -10,20 +10,12 @@ _Note that Responders will also have to build the capability to receive and proc
 <br>
 
 ### MessageHeader Resource
-The MessageHeader resource is required as part of the technical capability of making a request or response. Rather than providing clinical or administrative content for the end users; the function of all other resources are outlined. This resource holds key information about where the request has come from (*MessageHeader.source*), who it is intended for (*MessageHeader.destination*), what type of request it is (*MessageHeader.eventCoding*) and how to start interpreting the request (*MessageHeader.focus*). 
+For detailed information on the use of MessageHeader please refer to the {{pagelink:core-SPMessageHeader text: Standard Pattern - Message Header}} for more information. 
 
-Any Responder of the request 'message bundle' **must** first check the *MessageHeader.destination* and verify the *MessageHeader.destination.receiver.reference* refers to their Organisation. The *MessageHeader.destination.endpoint* is, in turn, the Healthcare Service ID they are expected to be processing the request on behalf of. 
-
-The type of request **must** be checked next and there are three important elements which drive workflow: 
-* **eventCoding** - determines the type of request. The value **must** be populated from this [CodeSystem](https://simplifier.net/NHSBookingandReferrals/message-events-bars) and will always be 'referral' for this Application.
-* **reasonCode** - indicates whether the message is new or an update to something the Requester already has. The value **must** be populated from this [CodeSystem](https://simplifier.net/NHSBookingandReferrals/message-reason-bars).
-* **definition** - specifies the [MessageDefinition](https://simplifier.net/nhsbookingandreferrals/~resources?category=Example&exampletype=MessageDefinition&sortBy=DisplayName) the request **must** adhere to and **must** be rejected if it fails to do so.
-
-Once the above checks have been made the detail of the request can start to be unpacked and processed. The *MessageHeader.focus* provides the key to doing this. It indicates the lens through which the request 'message bundle' **must** be interpreted. In this Application the element will always point to the ServiceRequest. Most other FHIR resources in the 'message bundle' will link to or from the 'focus' resource. 
-
-???? FOR LEIGH When generating asynchronous (Interim or Final) Response messages (as opposed to an HTTP synchronous response (200) message), where a Responder is sending a 'message bundle' back to the Requester. Firstly, the Requester, in the original request **must** include a NHSD-Target-Identifier (their reference on the Endpoint Catalogue) under *MessageHeader.source.endpoint*, to which the Responder is able to direct a response back to, regardless of whether they expect a response or not. The Responder **must** take and store this value, along with the *Bundle.Id* value, to send a response message back to the Requester through the BaRS API Proxy. 
-
-Where the workflow dictates an asynchronous response is to be sent, the Responder **must** populate *MessageHeader.response.identifier* with the *Bundle.Id* of the original request 'message bundle' and set the *MessageHeader.response.code* value to 'ok'. 
+The MessageHeader resource in the Interim Validation Response should have the following resource elements set as follows:
+* **MessageHeader.eventCoding** - **must** be populated with 'servicerequest-response'
+* **MessageHeader.reasonCode** - **must** be 'new'
+* **MessgeHeader.Response** - **must** be the original request BundleID
 
 ### ServiceRequest Resource
 The 'focus' resource in a Validation Request is the ServiceRequest resource. (*Note that the focus resource for the Interim Validation Response is the Encounter resource created in the Responder system*). When the request 'message bundle' is created by the Requester and processed by the Responder, this is the starting point from which the Validation Request is understood. It provides either the detail or references to all key FHIR resources, for example, the Patient, Encounter and Careplan. The guidance for this resource below provides more granular, element level, detail. A key point when a Responder builds the Validation Response 'message bundle' is to ensure the *MessageHeader.focus* references the ServiceRequest resource.
@@ -33,7 +25,7 @@ Additionally, the *ServiceRequest.occurrencePeriod* **must** be populated with t
 ### Encounter Resource
 The Encounter is used to represent the interaction between a patient and healthcare service provider. It links with numerous other resources, to reflect the activities performed in that encounter. 
 
-??? NEEDS TO STATE THAT THE ENCOUNTER IS THE FOCUS OF THE VALIDATION RESPONSE
+The Encounter resource becomes the focus in a ServiceRequest in the Interim Validation Response workflow. 
 
 In the initial Validation Request, the Requester will include an Encounter resource as the container for their assessment, which established the need for the Validation Request. This encounter **should** include a reference to the Requester's case identifier under *encounter.identifier*. Additionally, the *encounter.episodeOfCare* **must** be populated with a 'Journey ID' reference which can be used in subsequent referrals to allow the audit of the route a patient took through service providers to resolve their initial request for care. 
 
@@ -49,20 +41,12 @@ The *encounter.reasonCode* **must** be included on the second encounter to indic
 This section provides guidance on the use of key resources, for the Responder to create a Validation Response to return to the original Requester. See [ServiceRequest - Response Validation Full](https://simplifier.net/nhsbookingandreferrals/bars-messagedefinition-servicerequest-response-validation-full) message definition for details.
 
 ### MessageHeader Resource
-The MessageHeader resource is required as part of the technical capability of making a request or response. Rather than providing clinical or administrative content for the end users; the function of all other resources are outlined. This resource holds key information about where the request has come from (*MessageHeader.source*), who it is intended for (*MessageHeader.destination*), what type of request it is (*MessageHeader.eventCoding*) and how to start interpreting the request (*MessageHeader.focus*). 
+For detailed information on the use of MessageHeader please refer to the {{pagelink:core-SPMessageHeader text: Standard Pattern - Message Header}} for more information. 
 
-???? DO WE NEED TO REPEAT THIS HERE? THEY WILL HAVE DONE THIS BEFORE SENDING THE INTERIM RESPONSE?On receipt of the Validation Request  'message bundle', Responders **must** first check the *MessageHeader.destination* and verify that the *MessageHeader.destination.receiver.reference* refers to their Organisation. The *MessageHeader.destination.endpoint* is, in turn, the Healthcare Service ID they are expected to be processing the request on behalf of. 
-
-The type of request **must** be checked next and there are three important elements which drive workflow: 
-* **eventCoding** - determines the type of request. The value **must** be populated from this [CodeSystem](https://simplifier.net/NHSBookingandReferrals/message-events-bars) and will always be referral for this Application.
-* **reasonCode** - indicates whether the message is new or an update to something the Requester already has. The value **must** be populated from this [CodeSystem](https://simplifier.net/NHSBookingandReferrals/message-reason-bars).
-* **definition** - specifies the [MessageDefinition](https://simplifier.net/nhsbookingandreferrals/~resources?category=Example&exampletype=MessageDefinition&sortBy=DisplayName) the request **must** adhere to and **must** be rejected if it fails to do so.
-
-Once the above checks have been made, the detail of the Validation Request can be unpacked and processed by the Responder. The *MessageHeader.focus* provides the key to doing this. It indicates the lens through which the Validation Request 'message bundle' **must** be interpreted. In this Application the element will always point to the ServiceRequest. Most other FHIR resources in the 'message bundle' will link to or from the 'focus' resource. ?????
-
-???? FOR LEIGH When generating asynchronous Interim Validation Response message (as opposed to an HTTP synchronous response (200) message), where a Responder is sending a 'message bundle' back to an originating Requester. Firstly, the Requester, in the original request **must** include a NHSD-Target-Identifier (their reference on the Endpoint Catalogue) under *MessageHeader.source.endpoint*, to which the Responder is able to direct a response back to, regardless of whether they expect a response or not. The Responder **must** take and store this value, along with the *Bundle.Id* value, to send a response message back to the Requester through the BaRS API Proxy.
-
-When the workflow dictates an asynchronous response is to be sent, the Responder **must** populate *MessageHeader.response.identifier* with the *Bundle.Id* of the original request 'message bundle' and set the *MessageHeader.response.code* value to 'ok'. 
+The MessageHeader resource in the Interim Validation Response should have the following resource elements set as follows:
+* **MessageHeader.eventCoding** - **must** be populated with 'servicerequest-response'
+* **MessageHeader.reasonCode** - **must** be 'update' or 'new' if the Interim Validation Response was not sent
+* **MessgeHeader.Response** - **must** be the original request BundleID
 
 ### ServiceRequest Resource
 The 'focus' resource in a Validation Request is the ServiceRequest resource. (*Note that the focus resource for the Validation Response is the Encounter resource created in the Responder system*) When the Validation Request 'message bundle' is created by the Requester and processed by the Responder, this is the starting point from which the Validation Request is understood. It provides either the detail or references to all key FHIR resources, for example, the Patient, Encounter and Careplan. The guidance for this resource below, provides more granular, element level, detail. A key point when a Responder builds the Validation Response 'message bundle' is to ensure the *MessageHeader.focus* references the ServiceRequest resource.
@@ -71,6 +55,8 @@ Additionally, the *ServiceRequest.occurrencePeriod* **must** be populated with t
 
 ### Encounter Resource
 The Encounter is used to represent the interaction between a patient and healthcare service provider. It links with numerous other resources, to reflect the assessment performed. 
+
+The Encounter resource becomes the focus in a ServiceRequest in the final Validation Response workflow. 
 
 In the initial Validation Request, the Requester will include an Encounter resource as the container for their assessment, which established the need for the Validation Request. This encounter **should** include a reference to the Requester's case identifier under *encounter.identifier*. Additionally, the *encounter.episodeOfCare* **must** be populated with a 'Journey ID' reference which can be used in subsequent referrals to allow the audit of the route a patient took through service providers to resolve their initial request for care. ????
 
