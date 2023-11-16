@@ -2,7 +2,7 @@
 topic: APP4-HowDoesItWork
 ---
 
-# {{page-title}}
+# {{How Does It Work?}}
 
 
 This section describes how the primary operations used in this application work. The following  diagram illustrates the workflow and interactions of a request from an 999 AST to a CAS to clinically validate an agreed cohort of ambulance triage outcomes (usually C3/C4), and the subsequent response(s):
@@ -11,7 +11,7 @@ This section describes how the primary operations used in this application work.
 <img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/ValidationRequestSimplified-1.0.0.svg" width="1000"></img></a>
 
 
-This details a Validation Request into a CAS from a 999 Ambulance Service Trust (AST) for clinical validation of a triage outcome:
+This details a 999 Ambulance Service Trust (AST) Referral into Clinical Assessment Service (CAS) for Validation:
 
 - Prior to making a Validation Request, the 999 AST will undertake a triage of the patient to determine the acuity of the case. This will typically be undertaken by a call handler on the Computer Aided Dispatch (CAD) system, using an approved Clinical Decision Support System (CDSS) such as NHS Pathways or AMPDS. For cases with an ambulance disposition, local business rules will be applied to determine if the case meets the requirement for validation by a CAS clinician. This will usually be Ambulance Response Programme (ARP) priority C3 and C4 cases, but may include C2 segmentation cases, subject to local agreements between the 999 AST and the CAS.
 - For cases requiring clinical validation, a suitable CAS is identified based on the patient’s clinical need and location. Service discovery will use local directories or UEC DOS to ascertain the ServiceID
