@@ -25,7 +25,7 @@ Additionally, the *ServiceRequest.occurrencePeriod* **must** be populated with t
 ### Encounter Resource
 The Encounter is used to represent the interaction between a patient and healthcare service provider. It links with numerous other resources, to reflect the activities performed in that encounter. 
 
-??? NEEDS TO STATE THAT THE ENCOUNTER IS THE FOCUS OF THE VALIDATION RESPONSE
+The Encounter resource becomes the focus in a ServiceRequest in the Interim Validation Response workflow. 
 
 In the initial Validation Request, the Requester will include an Encounter resource as the container for their assessment, which established the need for the Validation Request. This encounter **should** include a reference to the Requester's case identifier under *encounter.identifier*. Additionally, the *encounter.episodeOfCare* **must** be populated with a 'Journey ID' reference which can be used in subsequent referrals to allow the audit of the route a patient took through service providers to resolve their initial request for care. 
 
@@ -55,6 +55,8 @@ Additionally, the *ServiceRequest.occurrencePeriod* **must** be populated with t
 
 ### Encounter Resource
 The Encounter is used to represent the interaction between a patient and healthcare service provider. It links with numerous other resources, to reflect the assessment performed. 
+
+The Encounter resource becomes the focus in a ServiceRequest in the final Validation Response workflow. 
 
 In the initial Validation Request, the Requester will include an Encounter resource as the container for their assessment, which established the need for the Validation Request. This encounter **should** include a reference to the Requester's case identifier under *encounter.identifier*. Additionally, the *encounter.episodeOfCare* **must** be populated with a 'Journey ID' reference which can be used in subsequent referrals to allow the audit of the route a patient took through service providers to resolve their initial request for care. ????
 
