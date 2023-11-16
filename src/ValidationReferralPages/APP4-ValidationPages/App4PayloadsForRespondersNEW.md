@@ -10,7 +10,12 @@ _Note that Responders will also have to build the capability to receive and proc
 <br>
 
 ### MessageHeader Resource
-Link to {{Message Header}}
+For detailed information on the use of MessageHeader please refer to the {{pagelink:core-SPMessageHeader text: Standard Pattern - Message Header}} for more information. 
+
+The MessageHeader resource in the Interim Validation Response should have the following resource elements set as follows:
+* **MessageHeader.eventCoding** - **must** be populated with 'servicerequest-response'
+* **MessageHeader.reasonCode** - **must** be 'new'
+* **MessgeHeader.Response** - **must** be the original request BundleID
 
 ### ServiceRequest Resource
 The 'focus' resource in a Validation Request is the ServiceRequest resource. (*Note that the focus resource for the Interim Validation Response is the Encounter resource created in the Responder system*). When the request 'message bundle' is created by the Requester and processed by the Responder, this is the starting point from which the Validation Request is understood. It provides either the detail or references to all key FHIR resources, for example, the Patient, Encounter and Careplan. The guidance for this resource below provides more granular, element level, detail. A key point when a Responder builds the Validation Response 'message bundle' is to ensure the *MessageHeader.focus* references the ServiceRequest resource.
@@ -36,7 +41,12 @@ The *encounter.reasonCode* **must** be included on the second encounter to indic
 This section provides guidance on the use of key resources, for the Responder to create a Validation Response to return to the original Requester. See [ServiceRequest - Response Validation Full](https://simplifier.net/nhsbookingandreferrals/bars-messagedefinition-servicerequest-response-validation-full) message definition for details.
 
 ### MessageHeader Resource
-Link to {{Message Header}}
+For detailed information on the use of MessageHeader please refer to the {{pagelink:core-SPMessageHeader text: Standard Pattern - Message Header}} for more information. 
+
+The MessageHeader resource in the Interim Validation Response should have the following resource elements set as follows:
+* **MessageHeader.eventCoding** - **must** be populated with 'servicerequest-response'
+* **MessageHeader.reasonCode** - **must** be 'update' or 'new' if the Interim Validation Response was not sent
+* **MessgeHeader.Response** - **must** be the original request BundleID
 
 ### ServiceRequest Resource
 The 'focus' resource in a Validation Request is the ServiceRequest resource. (*Note that the focus resource for the Validation Response is the Encounter resource created in the Responder system*) When the Validation Request 'message bundle' is created by the Requester and processed by the Responder, this is the starting point from which the Validation Request is understood. It provides either the detail or references to all key FHIR resources, for example, the Patient, Encounter and Careplan. The guidance for this resource below, provides more granular, element level, detail. A key point when a Responder builds the Validation Response 'message bundle' is to ensure the *MessageHeader.focus* references the ServiceRequest resource.
