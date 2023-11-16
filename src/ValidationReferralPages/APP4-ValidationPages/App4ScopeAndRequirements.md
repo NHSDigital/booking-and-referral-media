@@ -1,12 +1,12 @@
 ---
 topic: APP4-ScopeAndRequirements
 ---
-# {{page-title}}
+# {{Scope and Requirements}}
 
 ## Scope Overview
 
 This BaRS Application (application 4) covers only use cases:
-* 999 AST Referral into CAS for Validation
+* 999 Ambulance Service Trust (AST) Referral into Clinical Assessment Service (CAS) for Validation
 
 
 The payloads and workflow have been designed to support these services. Other {{pagelink:applications, text:BaRS Applications}} offer scope for alternative use cases.
