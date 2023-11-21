@@ -98,6 +98,11 @@ The *careplan.activity* holds the assessment information, whether it be coded or
 *  Further clinical narrative can also be included under additional instances of *careplan.activity.outcomeCodeableConcept.text*
 *  The Ambulance Response Programme (ARP) priority code
 
+The *CarePlan.period.start* is used to calculate the clock start time for dispatch and **must** be populated populated with the datetime of the identification of the dispatch code.
+*  If the Validation ARP code is the same or downgraded from the original 999 triage, this **must* be populated with the original 999 Dispatch/Disposition code identification date/time (clock start time).
+*  If the Validation ARP code is upgraded from the original 999 triage this **must** be populated with the Dispatch/Disposition code identification date/time determined by the CAS
+
+
 ### Flag Resource
 
 The *Flag* resource is used to communicate prospective warnings of potential issues when providing care to the patient. The *Flag.subject* may be the *Patient* (e.g. Safeguarding concern) or the *Location* (e.g. Scene safety). The population of the *Flag* is optional as not all subjects will have relevant issues. *Flag* details may change during the course of the assessment and any additional or modified *Flag* details will be captured in the Responder system. The new and updated *Flag* details **must** be sent in the Validation Response. Where there are no changes the original *Flag* details **must** be sent.
