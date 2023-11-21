@@ -32,7 +32,6 @@ In the initial Validation Request, the Requester will include an Encounter resou
 
 When a Validation Request is made, the Responder **should** include a new, secondary, encounter resource with the status of 'planned' in their synchronous HTTP response (200) to the Requester's request. This second Encounter resource is used to transfer the human readable reference of the newly created case, at the Responder end. This new 'planned' encounter will have an Identifier value, indicating *the Responder's* local human readable reference. (See the {{pagelink:APP3-EntityRelationshipDiagrams, text:Entity Relationship Diagram}} for reference). The human readable (Identifier) reference is a useful link for the services to use when discussing a patient's transition of care. The local (Id) reference is not intended to be human readable but rather machine readable.
 
-???? TIMINGS
 
 ### Location Resource ###
 The Location resource is used to transfer details of the incident location.
@@ -64,6 +63,8 @@ Primarily, *careplan.activity* is the section which holds this information, whet
 *  The Pathways, Symptom Group (SG),  Symptom Discriminator (SD) and Disposition (DX) codes, along with the Pathways consultation summary. 
 *  Further clinical narrative, provided outside of the AMPDS or Pathways assessment, can also be included under this element using 'text'
 *  The Ambulance Response Programme (ARP) priority code
+
+The *CarePlan.period.start* is used to calculate the clock start time for dispatch and **must** be populated populated with Clock start date/Time Definition as per AmbSys specification.
 
 ### Flag Resource
 The Flag resource is used to communicate prospective warnings of potential issues when providing care to the patient. The *Flag.subject* may be the *Patient* (e.g. Safeguarding concern) or the *Location* (e.g. Scene safety). The population of the *Flag* is optional as not all subjects will have relevant issues.
