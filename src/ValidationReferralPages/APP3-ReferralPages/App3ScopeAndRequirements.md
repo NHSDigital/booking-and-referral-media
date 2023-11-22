@@ -41,6 +41,7 @@ The payloads and workflow have been designed to support these services. Other {{
 * Receiving endpoints are to be internet facing.
 * Clinical Constraints exist - See Hazard Log.
 
+
 ### Requirements
 
 **Service Discovery** 
@@ -81,6 +82,7 @@ The payloads and workflow have been designed to support these services. Other {{
 **Incident Location**
 *  The Sender **must** include the incident location in the referral request
 *  All Locations **must** include a co-ordinate (Eastings/Northings, Lat/Long or what3words equivalent) or a property location identifier (UPRN, Address and Postcode)
+
 
 **Timings**
 *  The referral Sender **must** send the dispatch (or disposition) code identification time

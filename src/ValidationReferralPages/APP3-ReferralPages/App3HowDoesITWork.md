@@ -32,6 +32,8 @@ To support the workflows for this application of the standard the operations tha
 
 Making a referral for this application follows the {{pagelink:core-standardpattern, text:standard pattern for BaRS operations}}.
 
+
+
 The message definition that defines this payload for this application is: {{link:MessageDefinition-BARS-MessageDefinition-ServiceRequest-Request-Referral}}
 <p>
 
