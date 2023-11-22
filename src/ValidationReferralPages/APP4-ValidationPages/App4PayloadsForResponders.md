@@ -3,6 +3,7 @@ topic: APP4-ResponderPayloads
 ---
 
 # {{page-title}}
+
 ## Interim Validation Response Payload
 This section provides guidance on the use of key resources, for the Responder to create an Interim Validation Response to return to the Requester. See [ServiceRequest - Response Validation Interim](https://simplifier.net/nhsbookingandreferrals/bars-messagedefinition-servicerequest-response-validation-interim) message definition for details of resources required for this payload.
 

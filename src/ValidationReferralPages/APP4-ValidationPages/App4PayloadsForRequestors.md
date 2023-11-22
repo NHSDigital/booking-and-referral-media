@@ -3,6 +3,7 @@ topic: APP4-RequesterPayloads
 ---
 
 # {{page-title}}
+
 ## Validation Request Payload
 The below details the specific guidance around the use of resources required to create a Validation Request by the Requester. See [ServiceRequest - Request Validation](https://simplifier.net/nhsbookingandreferrals/messagedefinition-bars-messagedefinition-servicerequest-request-validation) message definition for details of resources required for this payload.
 

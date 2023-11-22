@@ -2,7 +2,7 @@
 topic: APP4-HowDoesItWork
 ---
 
-# {{How Does It Work?}}
+# {{page-title}}
 
 
 This section describes how the primary operations used in this application work. The following  diagram illustrates the workflow and interactions of a request from an 999 AST to a CAS to clinically validate an agreed cohort of ambulance triage outcomes (usually C3/C4), and the subsequent response(s):
