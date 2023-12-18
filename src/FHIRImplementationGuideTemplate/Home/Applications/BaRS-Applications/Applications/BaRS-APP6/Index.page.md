@@ -10,7 +10,12 @@ topic: application6
 
 This application supports the use of the following use cases:
 
-* AST Computer Aided Dispatch system (CAD) to AST CAD Referral (also known as CAD to CAD)
+*Note: when this application is used for Referrals from an AST Computer Aided Dispatch system (CAD) to an AST CAD it is known as 'CAD to CAD'*
+
+* CAD to CAD Out of Area referral
+* CAD to CAD Call Assist Request
+* CAD to CAD Mutual Aid Request
+
 
 ## Introduction
 
