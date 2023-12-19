@@ -17,7 +17,46 @@ This section describes how the primary operations used in this application work.
 ???? ADD WORKFLOW IMAGES AND REPLACE TEXT
 
 
-This details a 999 Ambulance Service Trust (AST) Referral into Clinical Assessment Service (CAS) for Validation:
+This details a CAD to CAD Out of Area Referral:
+
+Calls may be re-routed by the BT Emergency Call Service to an Ambulance Service Trust (AST) outside of the geographic area of the incident (the Call Receiving AST) for the following reasons:
+* The BT Intelligent Routing Platform (IRP) re-routes the call if the AST in the geographic area of the incident (the Home AST) does not have sufficient Call Handlers to answer the call within a given time frame
+    * The Home AST has a 'buddying' arrangement with an out-of-area AST to take their calls under defined circumstances (e.g. system downtime, periods of surge)
+    * A third party caller calls about a patient in another area
+    * Calls where the incident is on the boundary between two ASTs
+
+Receive Call
+- When a call is re-routed by BT Emergency Services, call details are also sent electronically to the Call Receiving AST's CAD via the Enhanced Information Service for Emergency Calls (EISEC) interface.
+
+Create Case
+- On receipt of this information the Call Receiving AST CAD creates a case that is subsequently further populated by system end users, the associated telephony system and other interfaced systems e.g. Clinical Decision Support Systems (CDSS) such as NHS Pathways and Advanced Medical Priority Dispatch System (AMPDS).
+
+Pre Triage Sieve
+- On answering the call the Call Handler will undertake a Pre Triage Sieve (PTS) to facilitate the early identification of patients with a potentially life-threatening emergency, in order that immediate dispatch of an appropriate resource can take place at the earliest possible point in the call cycle.
+    - If a life-threatening emergency is identified by the PTS the Call Receiving Trust may make a BaRS referral at this point in the call cycle, and all subsequent information will be communicated in BaRS Referral updates (see Sending a BaRS Referral)
+
+Reason for Call
+- The Call Handler will capture a Reason for Call based on what the patient or their representative tells them. This may also be known as 'What's the Problem text or the Presenting complaint.
+
+Nature of Call (NOC)
+- The Call Handler will capture a NOC code to facilitate the early identification of patients with a potentially life-threatening emergency.
+    - If a life-threatening emergency is identified by the NOC the Call Receiving Trust may make a BaRS referral at this point in the call cycle, and all subsequent information will be communicated in BaRS Referral updates (see Sending a BaRS Referral)
+    
+Confirm Location
+- The Call Handler will record the location of the incident and confirm using Gazetteer services. This is undertaken at the earliest opportunity and may be prior or subsequent to PTS and NOC.
+
+Record demographics
+- The Call Handler will capture the patient's baseline demographics where possible. This may be followed up by a Personal Demographics Service (PDS) search later in the call cycle.
+
+Complete Triage
+- The Receiving AST will complete a triage of the patient to determine the acuity of the case. This will typically be undertaken by a call handler on the Computer Aided Dispatch (CAD) system, using an approved Clinical Decision Support System (CDSS) such as NHS Pathways or AMPDS.
+
+Sending a BaRS Referral
+- The Home AST is identified based on nationally agreed polygons that set geographic boundaries of responsibility for each AST. Service discovery will use these polygons to ascertain the ServiceID of the Home Trust.
+- The Service ID is used to query the BaRS Endpoint Catalogue to identify the Home Trust's CAD system's endpoint details
+- The Call Receiving AST will send the BaRS Referral to the Home AST, which includes information required by the Home AST to continue the patent's clinical care. This will also include the JourneyID created at the patient's first contact.
+- The Home AST CAD will acknowledge the BaRS Referral on receipt
+
 
 - Prior to making a Validation Request, the 999 AST will undertake a triage of the patient to determine the acuity of the case. This will typically be undertaken by a call handler on the Computer Aided Dispatch (CAD) system, using an approved Clinical Decision Support System (CDSS) such as NHS Pathways or AMPDS. For cases with an ambulance disposition, local business rules will be applied to determine if the case meets the requirement for validation by a CAS clinician. This will usually be Ambulance Response Programme (ARP) priority C3 and C4 cases, but may include C2 segmentation cases, subject to local agreements between the 999 AST and the CAS.
 - For cases requiring clinical validation, a suitable CAS is identified based on the patient’s clinical need and location. Service discovery will use local directories or UEC DOS to ascertain the ServiceID
