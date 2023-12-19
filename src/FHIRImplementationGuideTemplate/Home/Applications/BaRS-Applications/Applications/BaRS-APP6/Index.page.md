@@ -12,7 +12,7 @@ This application supports the use of the following use cases:
 
 *Note: when this application is used for Referrals from an AST Computer Aided Dispatch system (CAD) to an AST CAD it is known as 'CAD to CAD'*
 
-* CAD to CAD Out of Area referral
+* CAD to CAD Out of Area Referral
 * CAD to CAD Call Assist Request
 * CAD to CAD Mutual Aid Request
 
@@ -27,6 +27,15 @@ This page provides guidance for implementing the Referral Standard (BaRS) specif
 
 The referral information data model is based on user research with NHS 111 service providers, 999 Ambulance Service Trusts, Clinical Assessment Services and clinical and administrative Emergency Department staff.  We carried out this research in parallel with the [Professional Records Standards Body (PRSB)](https://theprsb.org/) who examined the wider brief of 'referrals from NHS 111 to any other care setting' 
 
-For the CAD to CAD use case, the data model was agreed by the CAD to CAD Reference Group following a period of user research involving site visits, reference group workshops and desk research. This was endorsed by the CAD to CAD working Group and shared with the [Association of Ambulance Chief Executives (AACE)](https://aace.org.uk/),  National Ambulance Information Group (NAIG), National Ambulance Services Medical Directors' Group (NASMeD) and National Ambulance Digital Leaders Group (NADLG)
+For the CAD to CAD use case, the data model was agreed by the CAD to CAD Reference Group following a period of user research involving site visits, Reference Group workshops and desk research. This was endorsed by the CAD to CAD Working Group and shared with the the following organisations:
+
+* National Ambulance Programme Board (NAPB)
+* National Ambulance Advisory Group (NAAG)
+* National Ambulance Information Group (NAIG)
+* National Ambulance Services Medical Directors' Group (NASMeD)
+* National Ambulance Digital Leaders Group (NADLG)
+* National Heads of EOC Group (NHoEOC)
+* National Information Governance Group
+* National Directors of Operations Group (NDOG)
 
 <hr>
