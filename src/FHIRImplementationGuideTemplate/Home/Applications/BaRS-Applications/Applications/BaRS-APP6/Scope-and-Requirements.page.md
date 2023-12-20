@@ -27,6 +27,7 @@ The payloads and workflow have been designed to support these services. Other {{
 **Referral**
 * A referral is a request for care on behalf of an individual from one service to another 
 * The referral can be sent without having to establish the capacity the service offers
+*  The referral Sender **must** have the capability to send a referral at points in the call cycle that are appropriate for the acuity of the case
 * The referral will contain primarily clinical information, indicating the need of the individual and **should** state the anticipated action required by the Receiving service
 * Supporting information, other than the assessment, is expected to be included in a referral, if collected, including:
     * new or existing safeguarding concerns
@@ -34,6 +35,7 @@ The payloads and workflow have been designed to support these services. Other {{
     * external information sources used during initial assessment prior to referral
     * scene safety information
     * timing information to support the timely delivery of care and reporting
+* For Call Assist and Mutual Aid requests the referral can be rejected if the recipient can't meet the needs of the request
 
 **API-M**
 * All requests and response associated with BaRS must occur through the BaRS API Proxy
@@ -52,6 +54,7 @@ The payloads and workflow have been designed to support these services. Other {{
 * The service **must** support a unique identifier which the Sender extracts to engage in referral workflows
 
 **Referral Request**
+
 * The referral Receiver **must** accept the referral request regardless of whether the patient is known to the service provider
 * The referral Receiver **must** accept potential patients who do **<ins>not</ins>** have a national validated identifier e.g. NHS Number.
 * The referral Sender **must** send incident location information as part of their request
@@ -65,6 +68,7 @@ The payloads and workflow have been designed to support these services. Other {{
 
 **Update referral**
 *	The referral Sender **must** be capable of updating any referral made by them, within the current consultation or after the consultation event
+*   The referral Sender **must** send a referral update each time critical information is added to the case
 *	The referral Sender **must** retrieve the referral to be updated from the referral Receiver prior to update to ensure they are working with the most up-to date version and it has not already been completed
 *	The referral Sender **must** provide visible confirmation to the end user of the status returned by the referral Receiver, i.e. whether the original referral was successfully updated or not
 * Where the update was <ins>not</ins> successful, the Receiver **must** send an appropriate response. See {{pagelink:failure_scenarios, text:failure scenarios}} for more detail.
@@ -85,15 +89,31 @@ The payloads and workflow have been designed to support these services. Other {{
 
 **Incident Location**
 *  The Sender **must** include the incident location in the referral request
+*  The Incident Location **must** include a co-ordinate (Eastings/Northings, Lat/Long or what3words equivalent) or a property location identifier (UPRN, Address and Postcode)
+* The referral Sender **should** state if the Incident Location is provisional or confirmed
+
+**Other Locations**
+*  The Sender **may** include the other locations in the referral request
 *  All Locations **must** include a co-ordinate (Eastings/Northings, Lat/Long or what3words equivalent) or a property location identifier (UPRN, Address and Postcode)
 
 **Timings**
-*  The referral Sender **must** send the dispatch (or disposition) code identification time
-*  The referral sender **should** send the callback time
+* The referral Sender **should** send the time that BT Emergency Services answered the initial 999 call (BTStartTime)
+* The referral sender **should** send the Call Connect time (T0)
+* The referral sender **should** send the Call Connect Answer time (T1)
+* The referral sender **should** send the Incident Location confirmation time (T2)
+*  The referral Sender **must** send the clock start time (T5)
+*  The referral Sender **should** send the time Cardiopulmonary Resuscitation (CPR) started for cases where CPR was undertaken by a bystander 
 
 **Scene Safety**
 *  The referral Sender **should** send scene safety information in the referral
 *  Where scene safety questions have not been asked, the Flag resource relating to scene safety **must** be populated with 'UNK' unknown.
+* When the scene is unsafe the referral Sender **must** send the reason(s) for the scene being unsafe
+
+**Crew information**
+* The referral Sender **should** send information relevant to the ambulance crew in the referral 
+
+**Call Log information**
+* The referral Sender **should** send Call Log information relevant to the referral Receiver in the referral 
 
 **Contacts** 
 * A minimum of one contact (patient or third party) with a contact method (phone, email, etc.) of phone **must** be provided in requests
