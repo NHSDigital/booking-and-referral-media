@@ -14,12 +14,12 @@ This section describes how the primary operations used in this application work.
 
 <br>
 
-???? ADD WORKFLOW IMAGES AND REPLACE TEXT
+???? ADD WORKFLOW IMAGES
 
 
-This details a BaRS CAD to CAD Referral:
 
-Actors:
+
+### Actors:
 
 | Use Case             | Referral Sender     | Referral Recipient |
 | -------------------- | ------------------- | ------------------ |
@@ -27,15 +27,15 @@ Actors:
 | Call Assist Request  | Home AST            | Supporting AST     |
 | Mutual Aid Request   | Home AST            | Supporting AST     |
 
-Out of area calls
+### Out of area calls
 
 Calls may be re-routed by the BT Emergency Call Service to an Ambulance Service Trust (AST) outside of the geographic area of the incident (the Call Receiving AST) for the following reasons:
-* The BT Intelligent Routing Platform (IRP) re-routes the call if the AST in the geographic area of the incident (the Home AST) does not have sufficient Call Handlers to answer the call within a given time frame
+* The BT Intelligent Routing Platform (IRP) re-routes the call if the AST in the geographic area of the incident (the Home AST) has insufficient available Call Handlers to answer the call within a given time frame
     * The Home AST has a 'buddying' arrangement with an out-of-area AST to take their calls under defined circumstances (e.g. system downtime, periods of surge)
     * A third party caller calls about a patient in another area
     * Calls where the incident is on the boundary between two ASTs
     
-Call Assist Requests
+### Call Assist Requests
 - A Home AST may request support from a Supporting AST when they cannot send a resource to an incident within their geographic boundary of responsibility.
 - The supporting AST may accept or reject this request
 - If the Supporting AST rejects the request, the Home AST will make alternative arrangements
@@ -43,7 +43,7 @@ Call Assist Requests
     - the Supporting AST is responsible for dispatching an appropriate resource within the time frame specified by the ARP Priority code
     - The Home AST may close the case on their CAD
     
-Mutual Aid Requests
+### Mutual Aid Requests
 
 - A Home AST may request support from a Supporting AST when they cannot meet all of the resource requirements for and incident within their geographic boundary of responsibility.
 - The supporting AST may accept or reject this request
@@ -53,71 +53,55 @@ Mutual Aid Requests
     - The Home AST remains responsible for the case and for dispatching the resources not specified in the request
 Note: The BaRS Referral may be used to support single patient Mutual aid requests. IT is not intended to replace processes relating to Mutual Aid Requests to support Major Incidents with multiple patients.
 
-Receive Call
+This details a BaRS CAD to CAD Referral:
+
+### Receive Call
 - When a call is re-routed by BT Emergency Services, call details are also sent electronically to the Referral Sender's AST's CAD via the Enhanced Information Service for Emergency Calls (EISEC) interface.
 - For the Call Assist and Mutual aid use cases, the initial call may be received via BT Emergency Services EISEC interface or directly into the CAD e.g. Healthcare Professional (HCP) direct line
 
-Create Case
+### Create Case
 - On receipt of this information the Call Receiving AST CAD creates a case that is subsequently further populated by system end users, the associated telephony system and other interfaced systems e.g. Clinical Decision Support Systems (CDSS) such as NHS Pathways and Advanced Medical Priority Dispatch System (AMPDS).
 
-Pre Triage Sieve (PTS)
-- On answering the call the Referral Sender AST will undertake a Pre Triage Sieve (PTS) to facilitate the early identification of patients with a potentially life-threatening emergency, in order that immediate dispatch of an appropriate resource can take place at the earliest possible point in the call cycle.
-    - If a life-threatening emergency is identified by the PTS the Referral Sender AST may make a BaRS referral at this point in the call cycle, and all subsequent information will be communicated in BaRS Referral updates (see Sending a BaRS Referral)
+### Pre Triage Sieve (PTS)
+- On answering the call the Referral Sender AST will undertake a Pre Triage Sieve (PTS) to facilitate the early identification of patients with a potentially life-threatening emergency, in order that immediate dispatch of an appropriate resource can take place at the earliest possible point in the call cycle. *If a life-threatening emergency is identified by the PTS the Referral Sender AST may make a BaRS referral at this point in the call cycle, and all subsequent information will be communicated in BaRS Referral updates (see Sending a BaRS Referral)*
 
-Reason for Call
-- The Referral Sender AST will capture a Reason for Call based on what the patient or their representative tells them. This may also be known as 'What's the Problem text or the Presenting complaint.
+### Reason for Call
+- The Referral Sender AST will capture a Reason for Call based on what the patient or their representative tells them. This may also be known as 'What's the Problem' text or the Presenting complaint.
 
-Nature of Call (NOC)
-- The Referral Sender will capture a NOC code to facilitate the early identification of patients with a potentially life-threatening emergency.
-    - If a life-threatening emergency is identified by the NOC, the Referral Sender AST may make a BaRS referral at this point in the call cycle, and all subsequent information will be communicated in BaRS Referral updates (see Sending a BaRS Referral)
+### Nature of Call (NOC)
+- The Referral Sender will capture a NOC code to facilitate the early identification of patients with a potentially life-threatening emergency. *If a life-threatening emergency is identified by the NOC, the Referral Sender AST may make a BaRS referral at this point in the call cycle, and all subsequent information will be communicated in BaRS Referral updates (see Sending a BaRS Referral)*
     
-Confirm Location
+### Confirm Location
 - The Referral Sender AST will record the location of the incident and confirm using Gazetteer services. This is undertaken at the earliest opportunity and may be prior or subsequent to PTS and NOC.
 
-Record demographics
+### Record demographics
 - The Referral Sender AST will capture the patient's baseline demographics where possible. This may be followed up by a Personal Demographics Service (PDS) search later in the call cycle.
 
-Complete Triage
-- The Referral Sender AST will complete a triage of the patient to determine the acuity of the case. This will typically be undertaken by a call handler on the Computer Aided Dispatch (CAD) system, using an approved Clinical Decision Support System (CDSS) such as NHS Pathways or AMPDS.
+### Complete Triage
+- The Referral Sender AST will complete a triage of the patient to determine the acuity of the case. This will typically be undertaken by a call handler on the Computer Aided Dispatch (CAD) system, using an approved Clinical Decision Support System (CDSS) such as NHS Pathways or AMPDS. *This is the point at which the Referral Sender AST will make a BaRS referral for non-life threatening emergencies; all subsequent information captured will be communicated in BaRS Referral updates (see Sending a BaRS Referral)*
 
-Sending a BaRS Referral
+### Sending a BaRS Referral
 - The Referral Receiver is identified based on nationally agreed polygons that set geographic boundaries of responsibility for each AST. Service discovery will use these polygons to ascertain the ServiceID of the Referral Receiver.
 - The Service ID is used to query the BaRS Endpoint Catalogue to identify the Referral Recipient's CAD system's endpoint details
 - The Referral Sender AST will send the BaRS Referral to the Referral Recipient AST, which includes information required by the Referral Recipient AST to continue the patent's clinical care. This will also include the JourneyID created at the patient's first contact.
 
-Create Case
+### Create Case
 - The Referral Recipient AST CAD will create a new case on receipt of the BaRS Referral and populate it with the details from the Referral Sender AST
 
-Acknowledge Receipt
-
+### Acknowledge Receipt
 - The Referral Recipient AST CAD will send an acknowledgment back to the Referral Sender AST, when it has successfully processed the payload. If it fails to do this it will send a BaRS error code.
 
-Continue updates
+### Continue updates
 - If additional or changed information about the case is captured by the Referral Sender AST, subsequent to sending the BaRS Referral, they may send a BaRS Referral Update to ensure that the Referral Recipient AST has the most up to date information.
 - If the Sending AST no longer requires the Receiving AST to perform the validation, for example the patient calls back and says they do not require an ambulance, they may send a Cancellation.
 - On receipt of a Referral Update, the Receiving AST will send an acknowledgment back to the Sending AST on when it has successfully processed the payload. If it fails to do this it will send a BaRS error code.
 
-Manage Stack
+### Manage Stack
 - The Receiving AST will manage the case in accordance with the Ambulance Response Programme (ARP) Priority Level. This may include:
     - Dispatching an appropriate resource within the specified time frame
     - Validating the triage outcome
     - Referring onward to another care setting e.g. Emergency Department
-- when the status of a case changes in the Receiving AST, a BaRS Status Update will be sent to the Sending AST so they are aware of the current case status.
-
-
-- Prior to the CAS consultation the case will typically be posted to a queue on the CAS system for prioritisation, based on the validation breach time in the referral. This is determined locally or nationally from the triage outcome codes.
-- The CAS Clinician will contact the patient, or their representative, utilising contact details in the referral message.
-- On commencement of the consultation the CAS system sends an Interim Validation Response back to the Sending 999 AST to inform them that the validation activity is in progress.
-- The CAS clinician undertakes a consultation to validate the Sending Service's triage outcome. The consultation will be informed by the clinical information sent by the requesting service. The outcome of the validation will be recorded in the CAS system.
-- The outcome of the consultation under taken by the CAS clinician to validate the original 999 AST triage outcome, is sent to the Sending service in a Final Validation Response. This may include:
-	* An outcome that requires an upgraded ambulance response from the Sending 999 AST
-	* An outcome that requires an downgraded ambulance response from the Sending 999 AST
-	* An outcome that requires an unchanged ambulance response from the Sending 999 AST
-	* An outcome that can be met by the provision of care advice with or without an electronic prescription (Hear and Treat)
-	* An outcome that can be met by the onward referral to another service provider e.g. ED
-- On receipt of the Final Validation Response the 999 AST will update the case on the CAD and undertake the required action. This may include:
-	* Moving the case from the pending stack to the dispatch stack and dispatching a resource within the timescales appropriate for the ARP Priority in the Final Validation Response.
-	* Closing the case if an ambulance is not required. 
+- When the status of a case changes in the Receiving AST, a BaRS Status Update will be sent to the Sending AST so they are aware of the current case status.
 
 <br>
 <br>
