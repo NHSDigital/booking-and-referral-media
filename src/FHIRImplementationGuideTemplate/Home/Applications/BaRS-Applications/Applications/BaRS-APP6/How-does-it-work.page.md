@@ -13,11 +13,13 @@ This section describes how the primary operations used in this application work.
 * CAD to CAD Mutual Aid Request
 
 <br>
+<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/Out of Area.svg" width="1000"></img></a>
 
-???? ADD WORKFLOW IMAGES
+<br>
+<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/Call Assist.svg" width="1000"></img></a>
 
-
-
+<br>
+<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/Mutual Aid.svg" width="1000"></img></a>
 
 ### Actors:
 
