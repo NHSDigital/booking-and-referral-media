@@ -58,20 +58,20 @@ Note: The BaRS Referral may be used to support single patient Mutual aid request
 This details a BaRS CAD to CAD Referral:
 
 ### Receive Call
-- When a call is re-routed by BT Emergency Services, call details are also sent electronically to the referral Sender via the Enhanced Information Service for Emergency Calls (EISEC) interface.
+- When a call is re-routed by BT Emergency Services, call details are also sent electronically to the Referral Sender's AST's CAD via the Enhanced Information Service for Emergency Calls (EISEC) interface.
 - For the Call Assist and Mutual aid use cases, the initial call may be received via BT Emergency Services EISEC interface or directly into the CAD e.g. Healthcare Professional (HCP) direct line
 
 ### Create Case
-- On receipt of this information the referral Sender's CAD creates a case that is subsequently further populated by system end users, the associated telephony system and other interfaced systems e.g. Clinical Decision Support Systems (CDSS) such as NHS Pathways and Advanced Medical Priority Dispatch System (AMPDS).
+- On receipt of this information the referral Sender CAD creates a case that is subsequently further populated by system end users, the associated telephony system and other interfaced systems e.g. Clinical Decision Support Systems (CDSS) such as NHS Pathways and Advanced Medical Priority Dispatch System (AMPDS).
 
 ### Pre Triage Sieve (PTS)
-- On answering the call the referral Sender will undertake a Pre Triage Sieve (PTS) to facilitate the early identification of patients with a potentially life-threatening emergency, in order that immediate dispatch of an appropriate resource can take place at the earliest possible point in the call cycle. *If a life-threatening emergency is identified by the PTS the referral Sender AST may make a BaRS referral at this point in the call cycle, and all subsequent information will be communicated in BaRS Referral updates (see Sending a BaRS Referral)*
+- On answering the call the referral Sender will undertake a Pre Triage Sieve (PTS) to facilitate the early identification of patients with a potentially life-threatening emergency, in order that immediate dispatch of an appropriate resource can take place at the earliest possible point in the call cycle. *If a life-threatening emergency is identified by the PTS the referral Sender may make a BaRS referral at this point in the call cycle, and all subsequent information will be communicated in BaRS Referral updates (see Sending a BaRS Referral)*
 
 ### Reason for Call
 - The referral Sender will capture a Reason for Call based on what the patient or their representative tells them. This may also be known as 'What's the Problem' text or the Presenting complaint.
 
 ### Nature of Call (NOC)
-- The referral Sender will capture a NOC code to facilitate the early identification of patients with a potentially life-threatening emergency. *If a life-threatening emergency is identified by the NOC, the referral Sender AST may make a BaRS referral at this point in the call cycle, and all subsequent information will be communicated in BaRS Referral updates (see Sending a BaRS Referral)*
+- The referral Sender will capture a NOC code to facilitate the early identification of patients with a potentially life-threatening emergency. *If a life-threatening emergency is identified by the NOC, the referral Sender may make a BaRS referral at this point in the call cycle, and all subsequent information will be communicated in BaRS Referral updates (see Sending a BaRS Referral)*
     
 ### Confirm Location
 - The referral Sender will record the location of the incident and confirm using Gazetteer services. This is undertaken at the earliest opportunity and may be prior or subsequent to PTS and NOC.
@@ -83,27 +83,27 @@ This details a BaRS CAD to CAD Referral:
 - The referral Sender will complete a triage of the patient to determine the acuity of the case. This will typically be undertaken by a call handler on the Computer Aided Dispatch (CAD) system, using an approved Clinical Decision Support System (CDSS) such as NHS Pathways or AMPDS. *This is the point at which the Referral Sender AST will make a BaRS referral for non-life threatening emergencies; all subsequent information captured will be communicated in BaRS Referral updates (see Sending a BaRS Referral)*
 
 ### Sending a BaRS Referral
-- The referral Receiver is identified based on nationally agreed polygons that set geographic boundaries of responsibility for each AST. Service discovery will use these polygons to ascertain the ServiceID of the referral Receiver.
+- The referral Receiver is identified based on nationally agreed polygons that set geographic boundaries of responsibility for each AST. Service discovery will use these polygons to ascertain the ServiceID of the Referral Receiver.
 - The Service ID is used to query the BaRS Endpoint Catalogue to identify the referral Receiver's CAD system's endpoint details
-- The referral Sender will send the BaRS Referral to the referral Receiver, which includes information required by the referral Receiver to continue the patent's clinical care. This will also include the JourneyID created at the patient's first contact.
+- The referral Sender will send the BaRS Referral to the referral Receiver, which includes information required by the Referral Receiver to continue the patent's clinical care. This will also include the JourneyID created at the patient's first contact.
 
 ### Create Case
-- The referral Receiver's CAD will create a new case (Encounter) on receipt of the BaRS Referral and populate it with the patient and clinical details provided in the referral
+- The Referral Receiver's CAD will create a new case on receipt of the BaRS Referral and populate it with the details from the Referral Sender AST
 
 ### Acknowledge Receipt
-- The referral Receiver will send an acknowledgment back to the referral Sender, when it has successfully processed the payload. If it fails to do this it will send a BaRS error code.
+- The referral Receiver will send an acknowledgment back to the referral Sender AST, when it has successfully processed the payload. If it fails to do this it will send a BaRS error code.
 
 ### Continue updates
-- If additional or changed information about the case is captured by the referral Sender, subsequent to sending the BaRS Referral, they may send a BaRS Referral Update to ensure that the referral Receiver has the most up to date information.
-- If the referral Sender no longer requires the Receiving AST to perform the validation, for example the patient calls back and says they do not require an ambulance, they may send a Cancellation.
-- On receipt of a Referral Update, the referral Receiver will send an acknowledgment back to the Sending AST on when it has successfully processed the payload. If it fails to do this it will send a BaRS error code.
+- If additional or changed information about the case is captured by the Referral Sender AST, subsequent to sending the BaRS Referral, they may send a BaRS Referral Update to ensure that the Referral Recipient AST has the most up to date information.
+- If the Sending AST no longer requires the Receiving AST to perform the validation, for example the patient calls back and says they do not require an ambulance, they may send a Cancellation.
+- On receipt of a Referral Update, the Receiving AST will send an acknowledgment back to the Sending AST on when it has successfully processed the payload. If it fails to do this it will send a BaRS error code.
 
 ### Manage Stack
-- The referral Receiver will manage the case in accordance with the Ambulance Response Programme (ARP) Priority Level. This may include:
+- The Receiving AST will manage the case in accordance with the Ambulance Response Programme (ARP) Priority Level. This may include:
     - Dispatching an appropriate resource within the specified time frame
     - Validating the triage outcome
     - Referring onward to another care setting e.g. Emergency Department
-- When the status of a case changes in the referral Receiver's CAD, a BaRS Status Update will be sent to the referral Sender so they are aware of the current case status.
+- When the status of a case changes in the Receiving AST, a BaRS Status Update will be sent to the Sending AST so they are aware of the current case status.
 
 <br>
 <br>
