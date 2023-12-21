@@ -98,7 +98,7 @@ The payloads and workflow have been designed to support these services. Other {{
 **Incident Location**
 *  The referral Sender **must** include the incident location in the referral request
 *  The Incident Location **must** include a co-ordinate (Eastings/Northings, Lat/Long or what3words equivalent) or a property location identifier (UPRN, Address and Postcode)
-* The referral Sender **must** send a UPRN for all addressable locations ???TASK AND FINISH
+* The referral Sender **should** send a UPRN for all addressable locations ???TASK AND FINISH
 * The referral Sender **should** state if the Incident Location is provisional or confirmed
 * The referral Receiver **must** re-plot the location on receipt
 * The referral Receiver **must** use the UPRN to identify a location and record this locally ???TASK AND FINISH* ??? NEED TO ADD OTHER TRASK AND FINISH REQUIRMENTS. MAY NEED TO PROVIDE MORE DETAIL ON ADDRESS STRUCTURE
