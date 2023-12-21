@@ -57,7 +57,7 @@ When a BaRS Responder processes information in an Incident Location resource:
 *  They **must** display **all** address fields sent by the Requester
 
 
-Location Resource
+### Location Resource
 
 The Location resource is used to transfer details of location types other than the Incident Location
 
@@ -91,13 +91,26 @@ Primarily, *careplan.activity* is the section which holds this information, whet
 
 The *CarePlan.period.start* is used to transfer the clock start time for dispatch and **must** be populated populated with Clock start date/Time Definition as per AmbSys specification.
 
+* The *careplan.author.reference* **should** be populated with a reference to the *PractionerRole* when when a triage has been validated or an assessment has been undertaken by a clinician. It **must not** 
 
-????Got to here
+
+### Flag (Scene safety)
+The Flag (Scene Safety) resource is used to communicate safety information about the incident location. The *Flag.subject* is the *Incident Location* 
+
+When populating this resource, Requesters **must** include both *flag.category* and *flag.code* values using the specific [BaRS CodeSystems](https://simplifier.net/nhsbookingandreferrals/scene-safety-codes-bars)
+
+When the scene is unsafe the *Flag.code.text* **must** be populated with the free text reason(s) that the scene is unsafe
+
+When a Receiver processes information in a Flag (Scene Safety) resource;
+
+* they **should** populate a flag in their system schema, if their solution supports that flag
+* they **must** display the information in the Flag (Scene Safety) resource (including *Flag.category* and *Flag.code*) in a way that supports the associated workflow (i.e. the relevant end users can see it and act upon it)
+* rendering of Flag information must be in line with the {{pagelink:principles_prerequesites, text:Principles for rendering BaRS Payload }}.
 
 ### Flag Resource
-The Flag resource is used to communicate prospective warnings of potential issues when providing care to the patient. The *Flag.subject* may be the *Patient* (e.g. Safeguarding concern) or the *Location* (e.g. Scene safety). The population of the *Flag* is optional as not all subjects will have relevant issues.
+The Flag resource is used to communicate prospective warnings of potential issues when providing care to the patient. The *Flag.subject* may be the *Patient* (e.g. Safeguarding concern) or the *Location* (e.g. location specific alerts). The population of the *Flag* is optional as not all subjects will have relevant issues.
 
-BaRS Requesters **should** populate *Flag* resources and **should** make adequate provision in their solution to support key flags in BaRS Application workflows, for example, Scene Safety. When populating this resource, Requesters **must** include both *flag.category* and *flag.code* values using the specific [BaRS CodeSystems](https://simplifier.net/nhsbookingandreferrals/~resources?category=CodeSystem&sortBy=DisplayName).
+BaRS Requesters **should** populate *Flag* resources and **should** make adequate provision in their solution to support key flags in BaRS Application workflows. When populating this resource, Requesters **must** include both *flag.category* and *flag.code* values using the specific [BaRS CodeSystems](https://simplifier.net/nhsbookingandreferrals/~resources?category=CodeSystem&sortBy=DisplayName).
 
 When a BaRS Responder processes information in a Flag resource;
 
@@ -114,13 +127,26 @@ There are specific instances where an Observation **must** be used to convey inf
 
 ### Consent 
 The level of consent currently supported by BaRS is for 'Direct Care' only. In emergency care use cases this is usually implied consent. A Validation Request **must** contain a Consent resource and it **must** adhere to the [example](https://simplifier.net/NHSBookingandReferrals/8fc39b95-89a6-45fb-914f-1458a10e9e14/~json) provided under the BaRS FHIR assets. 
+
+### Questionnaire
+
+### Questionnaire Response
+
+### Condition
+
+### Procedure
+
+### Task
+
+### Communication
+
 <br>
 <br>
 <hr>
 
-## Validation Cancellation Payload
+## Referral Cancellation Payload
 
-The ability to cancel a Validation Request is a core workflow in BaRS. For details on the use of the standard pattern for cancellation please see the following {{pagelink:core-SPCancellation, text:Standard Patterns - Cancellation}}.
+The ability to cancel a referral is a core workflow in BaRS. For details on the use of the standard pattern for cancellation please see the following {{pagelink:core-SPCancellation, text:Standard Patterns - Cancellation}}.
 
 <br>
 
