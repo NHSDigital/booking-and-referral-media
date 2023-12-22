@@ -37,7 +37,7 @@ When a referral request is made, the Receiver **should** include a new, secondar
 ### Incident Location Resource ###
 The Incident Location resource is used to transfer details of the incident location.
 
-When a BaRS Requester populates the Incident Location resource:
+When the Sender populates the Incident Location resource:
 
 *  They **must** populate the *Location.extension* with at least one property or non-property element from the following:
     *  Unique Property Reference Number (UPRN)
@@ -51,17 +51,17 @@ When a BaRS Requester populates the Incident Location resource:
 *  They **should** populate *Location.address.name* when there is a property name
 *  They **should** populate *Location.address.text* with a text representation of the full address (including the address name), with each line separated by a comma
 
-When a BaRS Responder processes information in an Incident Location resource:
+When a the Receiver processes information in an Incident Location resource:
 
 *  They **should** consume and populate **all** address fields sent, into their system
-*  They **must** display **all** address fields sent by the Requester
+*  They **must** display **all** address fields sent by the Sender
 
 
 ### Location Resource
 
 The Location resource is used to transfer details of location types other than the Incident Location
 
-When a BaRS Requester populates the Location resource:
+When the Sender populates the Location resource:
 
 *  They **must** populate the *Location.extension* with at least one property or non-property element from the following:
     *  Unique Property Reference Number (UPRN)
@@ -74,16 +74,16 @@ When a BaRS Requester populates the Location resource:
 *  They **should** populate *Location.address.name* when there is a property name
 *  They **should** populate *Location.address.text* with a text representation of the full address (including the address name), with each line separated by a comma
 
-When a BaRS Responder processes information in a Location resource:
+When a the Receiver processes information in a Location resource:
 
 *  They **should** consume and populate **all** address fields sent, into their system
-*  They **must** display **all** address fields sent by the Requester
+*  They **must** display **all** address fields sent by the Sender
 
 
 ### CarePlan Resource
 The CarePlan resource is used in a Validation Request to communicate the Sender's triage outcome and any associated clinical information, based on the assessment performed by the Sender. The Receiver will utilise the detail in this resource to review what the previous assessment ascertained about the patient, and to inform any subsequent action.
 
-Primarily, *careplan.activity* is the section which holds this information, whether it be coded or free text. The *careplan.activity.outcomeCodeableConcept*  supports the transmission of AMPDS and Pathways coded outcomes and the clinical narrative. The element guidance for this resource below goes into the specific detail but, the Requester **must** include the following:
+Primarily, *careplan.activity* is the section which holds this information, whether it be coded or free text. The *careplan.activity.outcomeCodeableConcept*  supports the transmission of AMPDS and Pathways coded outcomes and the clinical narrative. The element guidance for this resource below goes into the specific detail but, the Sender **must** include the following:
 *  The selected AMPDS dispatch code and triage summary, or  
 *  The Pathways, Symptom Group (SG),  Symptom Discriminator (SD) and Disposition (DX) codes, along with the Pathways consultation summary. 
 *  Further clinical narrative, provided outside of the AMPDS or Pathways assessment, can also be included under this element using 'text'
@@ -97,7 +97,7 @@ The *CarePlan.period.start* is used to transfer the clock start time for dispatc
 ### Flag (Scene safety)
 The Flag (Scene Safety) resource is used to communicate safety information about the incident location. The *Flag.subject* is the *Incident Location* 
 
-When populating this resource, Requesters **must** include both *flag.category* and *flag.code* values using the specific [BaRS CodeSystems](https://simplifier.net/nhsbookingandreferrals/scene-safety-codes-bars)
+When populating this resource, Senders **must** include both *flag.category* and *flag.code* values using the specific [BaRS CodeSystems](https://simplifier.net/nhsbookingandreferrals/scene-safety-codes-bars)
 
 When the scene is unsafe the *Flag.code.text* **must** be populated with the free text reason(s) that the scene is unsafe
 
@@ -110,16 +110,16 @@ When a Receiver processes information in a Flag (Scene Safety) resource;
 ### Flag Resource
 The Flag resource is used to communicate prospective warnings of potential issues when providing care to the patient. The *Flag.subject* may be the *Patient* (e.g. Safeguarding concern) or the *Location* (e.g. location specific alerts). The population of the *Flag* is optional as not all subjects will have relevant issues.
 
-BaRS Requesters **should** populate *Flag* resources and **should** make adequate provision in their solution to support key flags in BaRS Application workflows. When populating this resource, Requesters **must** include both *flag.category* and *flag.code* values using the specific [BaRS CodeSystems](https://simplifier.net/nhsbookingandreferrals/~resources?category=CodeSystem&sortBy=DisplayName).
+The Sender **should** populate *Flag* resources and **should** make adequate provision in their solution to support key flags in BaRS Application workflows. When populating this resource, Senders **must** include both *flag.category* and *flag.code* values using the specific [BaRS CodeSystems](https://simplifier.net/nhsbookingandreferrals/~resources?category=CodeSystem&sortBy=DisplayName).
 
-When a BaRS Responder processes information in a Flag resource;
+When a the Receiver processes information in a Flag resource;
 
 * they **should** populate a flag in their system schema, if their solution supports that flag
 * they **must** display the information in the Flag resource (including *Flag.category* and *Flag.code*) in a way that supports the associated workflow (i.e. the relevant end users can see it and act upon it)
 * rendering of Flag information must be in line with the {{pagelink:principles_prerequesites, text:Principles for rendering BaRS Payload }}.
 
 ### Observation 
-The Observation resource is used to carry assertions supporting the assessment performed by the Requester. Requesters **should** add clinical notes to the Careplan resource rather than Observation, especially where they expect a Responder to act upon the information. 
+The Observation resource is used to carry assertions supporting the assessment performed by the Sender. Senders **should** add clinical notes to the Careplan resource rather than Observation, especially where they expect a Receiver to act upon the information. 
 
 There are specific instances where an Observation **must** be used to convey information and [examples](https://simplifier.net/nhsbookingandreferrals/~resources?category=Example&exampletype=Observation&sortBy=DisplayName) are provided below to aid development: 
 * Where Birth Sex is communicated it **must** be transferred in a Validation Request using Observation. This information **should** only be transferred when considered clinically relevant and it is not considered as demographic information, as administrative gender would be. It **should <ins>not</ins>** be included as an extension on the patient resource, as described in [UK Core](https://simplifier.net/hl7fhirukcorer4/ukcorepatient). 
@@ -129,16 +129,44 @@ There are specific instances where an Observation **must** be used to convey inf
 The level of consent currently supported by BaRS is for 'Direct Care' only. In emergency care use cases this is usually implied consent. A Validation Request **must** contain a Consent resource and it **must** adhere to the [example](https://simplifier.net/NHSBookingandReferrals/8fc39b95-89a6-45fb-914f-1458a10e9e14/~json) provided under the BaRS FHIR assets. 
 
 ### Questionnaire
+A Questionnaire is an organised collection of questions intended to solicit information from patients, providers or other individuals involved in the healthcare domain. They may be simple flat lists of questions or can be hierarchically organized in groups and sub-groups, each containing questions. The Questionnaire defines the questions to be asked, how they are ordered and grouped, any intervening instructional text and what the constraints are on the allowed answers. The results of a Questionnaire can be communicated using the QuestionnaireResponse resource.
+
+The Questionnaire resource is used to covey the Pre Triage Sieve and Nature of Call (NOC) questions and the potential responses.
+
 
 ### Questionnaire Response
+The Questionnaire Response resource is used to covey the PTS and NOC responses given by the patient (or their representative).
+
+The extension questionnaireresponse-reason **must** be populated to indicate which data is contained within, as outlined in the resource element guidance below.
+
+Using a nested set of questionnaireResponse.item, questionnaireResponse.linkId and questionnaireResponse.answer complex structured data can be generated and processed, by the Sender and Receiver, respectively. The element guidance for this resource below goes into detail but, essentially, the item and linkId can be continually nested to convey various types of information. The item indicates a new element, linkId provide the number of elements (within the item) and answer contains any the value, supported by many different data types.
 
 ### Condition
 
+The Condition resource is used to encapsulate the overall 'problem' the referral intends to resolve for the patient. The detail provided here underpins the rationale for the CarePlan and is a central resource for the Receiver looking for information about the patient and reason for referral.
+
+The Condition resources is used to transfer the Presenting complaint. This is also referred to as:
+* The Reason for Call (text)
+* Whats the problem? (text)
+
+The key information about the 'problem' is comprised of two components within this Application, condition.category and condition.code. The category is used to qualify the code value, providing additional context to interpret the issue identified. For example, in this Application, the category will stipulate this is a 'presenting complaint', highlighting the provenance of the 'problem' for the Receiver to start their consultation. This is in addition to other specific status fields on the resource.
+
+
 ### Procedure
+This resource is used to record the details of current and historical procedures performed on or for a patient. A procedure is an activity that is performed on, with, or for a patient as part of the provision of care.
+
+The Procedure resource is used to transfer that Cardio Pulmonary Resuscitation by a bystander is being undertaken, and when it started.
 
 ### Task
+The Task is used to direct the next action(s) required by the Sender making the referral. Task supports in fulfilling Careplan, which also references it. The narrative within the payload starts with the assessment performed by the Sender (Encounter), identifying a 'problem' (Condition) which a plan of care (CarePlan) is established to address. The Sender is unable to support the plan of care so transitions responsibility, via a referral (ServiceRequest), while directing the next requested action (Task).
+
+This Application utilises two elements within Task to direct the activity and timeframe, using Task.code and Task.restriction. The code will be a fixed value, indicating that a consultation is being request of the 'Community Pharmacist Consultation Service for minor illness', dictating the action should take place within thirty minutes, under the restriction.period element.
 
 ### Communication
+
+The Communication resource is a conveyance of information from a sender to a receiver. The information can include encoded data, text and optionally a related Patient and a related Encounter.
+
+In this application it is used to transfer Call Log information and Crew Notes.
 
 <br>
 <br>
