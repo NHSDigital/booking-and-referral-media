@@ -30,5 +30,5 @@ This *Encounter* is used to represent the interaction between the patient and th
 
 When sending an Referral Response the Receiver **must**:
 * Include the Receiver's current *Encounter* as the focus resource of the Referral Response
-* Include the current *encounter.status* on the Receiver's current *Encounter*. This is to indicate to the Sender the progress of the case.
+* Include the current *encounter.status* on the Receiver's current *Encounter*. This is to indicate to the Sender the progress of the case. It also indicates where a Call Assit or Mutual Aid request has been rejected.
 * *encounter.reasonCode* to be included on the Receiver's current *Encounter* to indicate that it is a response message.

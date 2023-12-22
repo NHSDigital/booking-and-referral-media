@@ -41,6 +41,7 @@ The payloads and workflow have been designed to support these services. Other {{
 * A referral response is sent by the referral Receiver back to the referral Sender to notify them of the current status of the case
 * A Referral response update is used to communicate each change in status
 * For Call Assist and Mutual Aid requests, the referral rejection is communicated in a referral response
+( The Receiver **must** send a Referral Response each time the Encounter Status changes)
 
 **API-M**
 * All requests and response associated with BaRS must occur through the BaRS API Proxy
