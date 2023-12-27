@@ -4,24 +4,21 @@ topic: APP6-HowDoesItWork
 
 ## {{page-title}}
 
-# {{page-title}}
-
-
 This section describes how the primary operations used in this application work. The following  diagrams illustrate the workflows and interactions of the following use cases :
 * CAD to CAD Out of Area referral
 * CAD to CAD Call Assist Request
 * CAD to CAD Mutual Aid Request
 
 <br>
-<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/Out of Area.svg" width="1000"></img></a>
+<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADOutOfArea-1.0.0.svg" width="1000"></img></a>
 
 <br>
-<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/Call Assist.svg" width="1000"></img></a>
+<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADCallAssist-1.0.0.svg" width="1000"></img></a>
 
 <br>
-<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/Mutual Aid.svg" width="1000"></img></a>
+<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADMutualAid-1.0.0.svg" width="1000"></img></a>
 
-### Actors:
+### Actors
 
 | Use Case             | Referral Sender     | Referral Recipient |
 | -------------------- | ------------------- | ------------------ |
@@ -32,14 +29,14 @@ This section describes how the primary operations used in this application work.
 ### Out of area calls
 
 Calls may be re-routed by the BT Emergency Call Service to an Ambulance Service Trust (AST) outside of the geographic area of the incident (the Call Receiving AST) for the following reasons:
-* The BT Intelligent Routing Platform (IRP) re-routes the call if the AST in the geographic area of the incident (the Home AST) has insufficient available Call Handlers to answer the call within a given time frame
+* The BT Intelligent Routing Platform (IRP) re-routes the call if the AST in the geographic area of the incident (the Home AST) has insufficient Call Handlers available to answer the call within a given time frame
     * The Home AST has a 'buddying' arrangement with an out-of-area AST to take their calls under defined circumstances (e.g. system downtime, periods of surge)
     * A third party caller calls about a patient in another area
     * Calls where the incident is on the boundary between two ASTs
     
 ### Call Assist Requests
-- A Home AST may request support from a Supporting AST when they cannot send a resource to an incident within their geographic boundary of responsibility.
-- The supporting AST may accept or reject this request
+- A Home AST may request support from a Supporting AST when they cannot send a resource to an incident within their geographic boundary of responsibility
+- The Supporting AST may accept or reject this request
 - If the Supporting AST rejects the request, the Home AST will make alternative arrangements
 - If the Supporting AST accepts the request:
     - the Supporting AST is responsible for dispatching an appropriate resource within the time frame specified by the ARP Priority code
@@ -48,14 +45,17 @@ Calls may be re-routed by the BT Emergency Call Service to an Ambulance Service 
 ### Mutual Aid Requests
 
 - A Home AST may request support from a Supporting AST when they cannot meet all of the resource requirements for and incident within their geographic boundary of responsibility.
-- The supporting AST may accept or reject this request
+- The Supporting AST may accept or reject this request
 - If the Supporting AST rejects the request, the Home AST will make alternative arrangements
 - If the Supporting AST accepts the request:
     - the Supporting AST is responsible for dispatching the requested resource within the time frame specified in the request
     - The Home AST remains responsible for the case and for dispatching the resources not specified in the request
-Note: The BaRS Referral may be used to support single patient Mutual aid requests. IT is not intended to replace processes relating to Mutual Aid Requests to support Major Incidents with multiple patients.
+    
+    Note: The BaRS Referral may be used to support single patient Mutual aid requests. It is not intended to replace processes relating to Mutual Aid Requests to support Major Incidents with multiple patients.
+    
+</br>
 
-This details a BaRS CAD to CAD Referral:
+### This details a BaRS CAD to CAD Referral:
 
 ### Receive Call
 - When a call is re-routed by BT Emergency Services, call details are also sent electronically to the referral Sender via the Enhanced Information Service for Emergency Calls (EISEC) interface.
@@ -65,13 +65,13 @@ This details a BaRS CAD to CAD Referral:
 - On receipt of this information the referral Sender's CAD creates a case that is subsequently further populated by system end users, the associated telephony system and other interfaced systems e.g. Clinical Decision Support Systems (CDSS) such as NHS Pathways and Advanced Medical Priority Dispatch System (AMPDS).
 
 ### Pre Triage Sieve (PTS)
-- On answering the call the referral Sender will undertake a Pre Triage Sieve (PTS) to facilitate the early identification of patients with a potentially life-threatening emergency, in order that immediate dispatch of an appropriate resource can take place at the earliest possible point in the call cycle. *If a life-threatening emergency is identified by the PTS the referral Sender AST may make a BaRS referral at this point in the call cycle, and all subsequent information will be communicated in BaRS Referral updates (see Sending a BaRS Referral)*
+- On answering the call the referral Sender will undertake a Pre Triage Sieve (PTS) question set to facilitate the early identification of patients with a potentially life-threatening emergency, in order that immediate dispatch of an appropriate resource can take place at the earliest possible point in the call cycle. *If a life-threatening emergency is identified by the PTS the referral Sender AST may make a BaRS referral at this point in the call cycle, and all subsequent information will be communicated in BaRS Referral updates (see Sending a BaRS Referral)*
 
 ### Reason for Call
 - The referral Sender will capture a Reason for Call based on what the patient or their representative tells them. This may also be known as 'What's the Problem' text or the Presenting complaint.
 
 ### Nature of Call (NOC)
-- The referral Sender will capture a NOC code to facilitate the early identification of patients with a potentially life-threatening emergency. *If a life-threatening emergency is identified by the NOC, the referral Sender AST may make a BaRS referral at this point in the call cycle, and all subsequent information will be communicated in BaRS Referral updates (see Sending a BaRS Referral)*
+- The referral Sender will capture a NOC code to facilitate the early identification of patients with a potentially life-threatening emergency. *If a life-threatening emergency is identified by the NOC, the referral Sender AST may make a BaRS referral at this point in the call cycle, and all subsequent information will be communicated in BaRS Referral updates (see Sending a BaRS Referral below)*
     
 ### Confirm Location
 - The referral Sender will record the location of the incident and confirm using Gazetteer services. This is undertaken at the earliest opportunity and may be prior or subsequent to PTS and NOC.
@@ -80,7 +80,7 @@ This details a BaRS CAD to CAD Referral:
 - The referral Sender will capture the patient's baseline demographics where possible. This may be followed up by a Personal Demographics Service (PDS) search later in the call cycle.
 
 ### Complete Triage
-- The referral Sender will complete a triage of the patient to determine the acuity of the case. This will typically be undertaken by a call handler on the Computer Aided Dispatch (CAD) system, using an approved Clinical Decision Support System (CDSS) such as NHS Pathways or AMPDS. *This is the point at which the Referral Sender AST will make a BaRS referral for non-life threatening emergencies; all subsequent information captured will be communicated in BaRS Referral updates (see Sending a BaRS Referral)*
+- The referral Sender will complete a triage of the patient to determine the acuity of the case. This will typically be undertaken by a call handler on the Computer Aided Dispatch (CAD) system, using an approved Clinical Decision Support System (CDSS) such as NHS Pathways or AMPDS. *This is the point at which the Referral Sender AST will make a BaRS referral for non-life threatening emergencies; all subsequent information captured will be communicated in BaRS Referral updates (see Sending a BaRS Referral below)*
 
 ### Sending a BaRS Referral
 - The referral Receiver is identified based on nationally agreed polygons that set geographic boundaries of responsibility for each AST. Service discovery will use these polygons to ascertain the ServiceID of the referral Receiver.
@@ -91,12 +91,12 @@ This details a BaRS CAD to CAD Referral:
 - The referral Receiver's CAD will create a new case (Encounter) on receipt of the BaRS Referral and populate it with the patient and clinical details provided in the referral
 
 ### Acknowledge Receipt
-- The referral Receiver will send an acknowledgment back to the referral Sender, when it has successfully processed the payload. If it fails to do this it will send a BaRS error code.
+- The referral Receiver will send an acknowledgement back to the referral Sender, when it has successfully processed the payload. If it fails to do this it will send a BaRS error code. See {{pagelink:failure_scenarios, text:failure scenarios}} for more detail.
 
 ### Continue updates
 - If additional or changed information about the case is captured by the referral Sender, subsequent to sending the BaRS Referral, they may send a BaRS Referral Update to ensure that the referral Receiver has the most up to date information.
 - If the referral Sender no longer requires the Receiving AST to perform the validation, for example the patient calls back and says they do not require an ambulance, they may send a Cancellation.
-- On receipt of a Referral Update, the referral Receiver will send an acknowledgment back to the Sending AST on when it has successfully processed the payload. If it fails to do this it will send a BaRS error code.
+- On receipt of a Referral Update, the referral Receiver will send an acknowledgement back to the Sending AST on when it has successfully processed the payload. If it fails to do this it will send a BaRS error code. See {{pagelink:failure_scenarios, text:failure scenarios}} for more detail.
 
 ### Manage Stack
 - The referral Receiver will manage the case in accordance with the Ambulance Response Programme (ARP) Priority Level. This may include:
@@ -184,7 +184,7 @@ X-Correlation-Id = <GUID_000002>
 
 ### Cancel a Referral
 
-To cancel a referral this application follows the {{pagelink:Core-StandardPattern, text:standard pattern for BaRS operations}} with an additional step. Before beginning the standard pattern as descbribed on the linked section, the referral **sender** must perform a read of the referral to be cancelled, from the referral **receiver**, prior to cancellation to ensure they are working with the most up-to date information and it has not already been actioned. This is done by performing a "GET ServiceRequest by ID" call to the **receiving** system's corresponding API endpoint (via the BaRS proxy).
+To cancel a referral this application follows the {{pagelink:Core-StandardPattern, text:standard pattern for BaRS operations}} with an additional step. Before beginning the standard pattern as described on the linked section, the referral **Sender** must perform a read of the referral to be cancelled, from the referral **Receiver**, prior to cancellation to ensure they are working with the most up-to date information and it has not already been actioned. This is done by performing a "GET ServiceRequest by ID" call to the **Receiving** system's corresponding API endpoint (via the BaRS proxy).
 
 The response to this request will be the requested ServiceRequest resource which should be checked for its current status to ensure it does not already have a status of "revoked" or "completed". If not, this version of the ServiceRequest should be used when re-submitting the modified resource in the POST bundle as described in the {{pagelink:core-standardpattern, text:standard pattern}}.
 

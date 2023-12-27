@@ -1,5 +1,5 @@
 ---
-topic: APP6-EntityRelationshipDiagram
+topic: APP6-EntityRelationshipDiagrams
 ---
 
 ## {{page-title}}
