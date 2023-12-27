@@ -16,12 +16,17 @@ This application supports the use of the following use cases:
 * CAD to CAD Call Assist Request
 * CAD to CAD Mutual Aid Request
 
+</br>
+</br>
 
 ## Introduction
 
 ### Overview
 
 This page provides guidance for implementing the Referral Standard (BaRS) specifically for the use cases listed above. It should be used alongside the {{pagelink:design-core, text:BaRS Core implementation guide}} and Payload Definitions when developing to the standard. 
+
+</br>
+</br>
 
 ## Data model endorsements
 
