@@ -91,7 +91,7 @@ Primarily, *careplan.activity* is the section which holds this information, whet
 
 The *CarePlan.period.start* is used to transfer the clock start time for dispatch and **must** be populated populated with Clock start date/Time Definition as per AmbSys specification.
 
-* The *careplan.author.reference* **should** be populated with a reference to the *PractionerRole* when when a triage has been validated or an assessment has been undertaken by a clinician. It **must not** be populated if the user is not a clinical user. @@@????@@@
+* The *careplan.author.reference* **should** be populated with a reference to the *PractionerRole* when when a triage has been validated or an assessment has been undertaken by a clinician. The *careplan.author.reference* **must not** be populated if the user undertaking the triage/assessment is NOT a clinical user.
 
 
 ### Flag (Scene safety)
