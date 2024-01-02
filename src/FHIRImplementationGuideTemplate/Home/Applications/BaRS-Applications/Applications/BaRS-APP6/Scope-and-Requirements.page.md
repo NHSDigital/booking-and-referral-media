@@ -21,6 +21,7 @@ The payloads and workflow have been designed to support these services. Other {{
 * Establishing a service to direct requests to is a mandatory step in the workflow
 * There is no restriction on the service discovery tools used. Any are capable of being supported whether national or proprietary
 * The service **must** be configured within the BaRS infrastructure (Endpoint Catalogue) before requests can be made to the service
+* For CAD to CAD Out of Area referrals the Home AST **should** be selected using the incident location and nationally agreed polygons
 
 **Referral**
 * A referral is a request for care on behalf of an individual from one service to another 
@@ -77,7 +78,7 @@ Referral Response (Status Update)
 **Update referral**
 *	The referral Sender **must** be capable of updating any referral made by them, within the current consultation or after the consultation event
 *   The referral Sender **must** send a referral update each time critical information is added to the case
-*	The referral Sender **must** retrieve the referral to be updated from the referral Receiver prior to update to ensure they are working with the most up-to date version and it has not already been completed - @@@ We agreed to remove this step to aid with the speed of updates. Can we remove this?? @@@
+*	The referral Sender **must** retrieve the referral to be updated from the referral Receiver prior to update to ensure they are working with the most up-to date version and it has not already been completed
 *	The referral Sender **must** provide visible confirmation to the end user of the status returned by the referral Receiver, i.e. whether the original referral was successfully updated or not
 * Where the update was <ins>not</ins> successful, the Receiver **must** send an appropriate response. See {{pagelink:failure_scenarios, text:failure scenarios}} for more detail.
 * Where the update was <ins>not</ins> successful, the Sender **must** present an appropriate message to the end user. See {{pagelink:failure_scenarios, text:failure scenarios}} for more detail. 
@@ -98,10 +99,10 @@ Referral Response (Status Update)
 **Incident Location**
 *  The referral Sender **must** include the incident location in the referral request
 *  The Incident Location **must** include a co-ordinate (Eastings/Northings, Lat/Long or what3words equivalent) or a property location identifier (UPRN, Address and Postcode)
-* The referral Sender **should** send a UPRN for all addressable locations ???TASK AND FINISH
+* The referral Sender **should** send a UPRN for all addressable locations 
 * The referral Sender **should** state if the Incident Location is provisional or confirmed
 * The referral Receiver **must** re-plot the location on receipt
-* The referral Receiver **must** use the UPRN to identify a location and record this locally ???TASK AND FINISH* ??? NEED TO ADD OTHER TRASK AND FINISH REQUIRMENTS. MAY NEED TO PROVIDE MORE DETAIL ON ADDRESS STRUCTURE
+* The referral Receiver **must** use the UPRN to identify a location and record this locally 
 
 **Other Locations**
 *  The Sender **may** include other locations in the referral request
