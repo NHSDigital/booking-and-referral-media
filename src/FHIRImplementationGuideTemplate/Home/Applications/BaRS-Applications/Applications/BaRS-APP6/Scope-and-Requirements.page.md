@@ -144,6 +144,7 @@ Referral Response (Status Update)
 * On receipt of a Referral rejection the referral Sender **must** process and display the referral rejection
 <br>
 <br>
+
 ### Population of address fields
 Consistent population of address fields can improve interoperability by reducing the erroneous rejection of cases where the address is correct but information is in a different address field than is expected by the receiver. The FHIR address fields used in this BaRS application are:
 * **Patient.address**
@@ -152,9 +153,9 @@ Consistent population of address fields can improve interoperability by reducing
 
 The following convention, which has been informed by the PDS FHIR API Implementation Guide, is recommended when populating address fields:
 
- * **adddress.line** (1) - premises ID and/or house name, for example 'Flat ' or 'The Old Schoolhouse
- * **adddress.line** (2) - house number, dependent thoroughfare name and descriptor (if present), thoroughfare name and descriptor, for example ' 23 Mill Lane'
- * **adddress.line** (3) - dependent locality/village, locality (if present) for example' Boxgrove'
+ * **adddress.line** (1) - premises ID and/or house name, for example 'Flat' or 'The Old Schoolhouse'
+ * **adddress.line** (2) - house number, dependent thoroughfare name and descriptor (if present), thoroughfare name and descriptor, for example '23 Mill Lane'
+ * **adddress.line** (3) - dependent locality/village, locality (if present) for example 'Boxgrove'
  * **adddress.line** (4) - post town for example, Leeds
  * **adddress.line** (5) - county (if present) for example, West Yorkshire
  * **adddress.city** - post town for example, Leeds
