@@ -292,6 +292,7 @@ Below is a pseudo code example of how a bundle could be processed based on the a
     <summary>> <b class="barslink">Logical - Based on a logical step through in a code format</b></summary>
 
 ```c#
+
 Receive_Request
 {
 	initialise_variable "messageType" 
@@ -330,8 +331,7 @@ Receive_Request
 					switch(ServiceRequest.Category.coding[0].code) //https://fhir.nhs.uk/CodeSystem/message-category-servicerequest
 					{
 						case "Referral":
-						   
-							if (Careplan.status != "Active")
+							if (Careplan.status != "active" && CarePlan.intent != "plan" && Task.status != "requested")
 							{
 								RequestType = "unknown"
 								OperationOutcome.issue.code = "invariant"//A content validation rule failed
@@ -372,6 +372,25 @@ Receive_Request
 						case "Referral":
 							if(ServiceRequest.status.In("entered-in-error","revoked"))
 							{RequestType = "im receiving a cancelled referral"}
+							else if (Careplan.status != "active" && CarePlan.intent != "plan" && Task.status != "requested")
+							{
+								RequestType = "unknown"
+								OperationOutcome.issue.code = "invariant"//A content validation rule failed
+								throw exception with "REC_BAD_REQUEST"
+								then return  HTTP.ResponseCode 400
+							}
+							else if(Encounter.Status.In("triaged","finished","in-progess")&& Encounter.class.code=="EMER")
+							{ 
+								switch(ServiceRequest.Category.coding[1].code)  //https://fhir.nhs.uk/CodeSystem/usecases-categories-bars
+								{
+									case "MutualAidRequest":
+										RequestType = "Im Receiving a new Mutual Aid Request update";
+									case:"CallAssistRequest":
+										RequestType = "Im Receiving a new Call Assist Request update";
+									case:"OutOfArea":
+										RequestType = "Im Receiving a new Out of Area Request update";
+								}									
+							}
 							else
 							{
 								RequestType = "unknown"
@@ -397,9 +416,9 @@ Receive_Request
 					break;
 				}
 			case "servicerequest-response":
-				if (MessageHeader.reason.code == "update" )
+				if (ServiceRequest.status == "active")
 					{
-						if (ServiceRequest.status == "active")
+						if (MessageHeader.reason.code == "new")
 						{
 							switch(ServiceRequest.Category.coding[0].code) //https://fhir.nhs.uk/CodeSystem/message-category-servicerequest
 							{
@@ -430,50 +449,82 @@ Receive_Request
 								}
 							}	
 						}
-						else if (ServiceRequest.status == "revoked")
+						else (MessageHeader.reason.code == "update") // Not alpha
 						{
-								if(Encounter.Status.In("cancelled")&& Encounter.class.code=="EMER")
-							{ 
-								switch(ServiceRequest.Category.coding[1].code)  //https://fhir.nhs.uk/CodeSystem/usecases-categories-bars
+							switch(ServiceRequest.Category.coding[0].code) //https://fhir.nhs.uk/CodeSystem/message-category-servicerequest
+							{
+								case "Referral":
+								if(Encounter.Status.In("planned","finished","in-progess")&& Encounter.class.code=="EMER")
+									{ 
+										switch(ServiceRequest.Category.coding[1].code)  //https://fhir.nhs.uk/CodeSystem/usecases-categories-bars
+										{
+											case "MutualAidRequest":
+												RequestType = "Im Receiving a  Mutual Aid Request update response";
+											case:"CallAssistRequest":
+												RequestType = "Im Receiving a  Call Assist Request update response";
+											case:"OutOfArea":
+												RequestType = "Im Receiving a  Out of Area Request update response";
+											default:
+												RequestType = "unknown"
+												OperationOutcome.issue.code = "invariant"//A content validation rule failed
+												throw exception with "REC_BAD_REQUEST"
+												then return  HTTP.ResponseCode 400;
+										}									
+									}
+								default:
 								{
-									case "MutualAidRequest":
-										RequestType = "Im Receiving a new Mutual Aid Request rejection";
-									case:"CallAssistRequest":
-										RequestType = "Im Receiving a new Call Assist Request rejection";
-									default:
-										RequestType = "unknown"
-										OperationOutcome.issue.code = "invariant"//A content validation rule failed
-										throw exception with "REC_BAD_REQUEST"
-										then return  HTTP.ResponseCode 400;
-								}	
-							}								
-						}
-						else
-						{
-							RequestType = "unknown"
-							OperationOutcome.issue.code = "invariant"//A content validation rule failed
-							throw exception with "REC_BAD_REQUEST"
-							then return  HTTP.ResponseCode 400
-							break;
+									RequestType = "unknown"
+									OperationOutcome.issue.code = "invariant"//A content validation rule failed
+									throw exception with "REC_BAD_REQUEST"
+									then return  HTTP.ResponseCode 400;
+								}
+							}	
 						}
 					}
+				else if (ServiceRequest.status == "revoked")
+				{
+					if(Encounter.Status.In("cancelled")&& Encounter.class.code=="EMER")
+					{ 
+						switch(ServiceRequest.Category.coding[1].code)  //https://fhir.nhs.uk/CodeSystem/usecases-categories-bars
+						{
+							case "MutualAidRequest":
+								RequestType = "Im Receiving a new Mutual Aid Request rejection";
+							case:"CallAssistRequest":
+								RequestType = "Im Receiving a new Call Assist Request rejection";
+							default:
+								RequestType = "unknown"
+								OperationOutcome.issue.code = "invariant"//A content validation rule failed
+								throw exception with "REC_BAD_REQUEST"
+								then return  HTTP.ResponseCode 400;
+						}	
+					}								
+				}
+				if (MessageHeader.Response is null )
+				{
+						RequestType = "Invalid servicerequest-response"
+						OperationOutcome.issue.code = "invariant"//A content validation rule failed
+						throw exception with "REC_BAD_REQUEST"
+						then return  HTTP.ResponseCode 400;
+				}
+				else if ( !Message.Response.identifier.existsLocally())
+				{
+						RequestType = "none or invalid response ID"
+						OperationOutcome.issue.code = "not-found"//A content validation rule failed
+						throw exception with "REC_NOT_FOUND"
+						then return  HTTP.ResponseCode 404;
+				}	
+				else 
+				{
+					RequestType = "unknown"
+					OperationOutcome.issue.code = "invariant"//A content validation rule failed
+					throw exception with "REC_BAD_REQUEST"
+					then return  HTTP.ResponseCode 400
+					break;
+				}				
 		}
-		if (MessageHeader.Response is null )
-		{
-				RequestType = "Invalid servicerequest-response"
-				OperationOutcome.issue.code = "invariant"//A content validation rule failed
-				throw exception with "REC_BAD_REQUEST"
-				then return  HTTP.ResponseCode 400;
-		}
-		else if ( !Message.Response.identifier.existsLocally())
-		{
-				RequestType = "none or invalid response ID"
-				OperationOutcome.issue.code = "not-found"//A content validation rule failed
-				throw exception with "REC_NOT_FOUND"
-				then return  HTTP.ResponseCode 404;
-		}		
+	
 	}
-	//Submit //rework this
+	//Submit 
 	{
 		
 		if (Message == "update")
