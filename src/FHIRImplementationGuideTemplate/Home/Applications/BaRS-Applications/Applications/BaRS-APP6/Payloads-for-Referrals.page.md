@@ -196,7 +196,7 @@ The extension *questionnaireresponse-reason* **must** be populated to indicate w
 
 Using a nested set of *questionnaireResponse.item*, *questionnaireResponse.linkId* and *questionnaireResponse.answer* complex structured data can be generated and processed, by the Sender and Receiver, respectively. The element guidance for this resource below goes into detail but, essentially, the item and linkId can be continually nested to convey various types of information. The item indicates a new element, linkId provide the number of elements (within the item) and answer contains any the value, supported by many different data types.
 
-*Only the nationally agreed answers and associated codes in the associated Questionnaire are valid to be sent in the Questionnaire Response.* 
+*Only the nationally agreed answers and associated codes in the associated Questionnaire are valid to be sent in the QuestionnaireResponse.* 
 
 ### Condition
 
