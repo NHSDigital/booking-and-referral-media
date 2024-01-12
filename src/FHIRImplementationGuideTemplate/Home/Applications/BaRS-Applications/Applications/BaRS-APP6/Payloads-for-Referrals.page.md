@@ -131,7 +131,62 @@ The level of consent currently supported by BaRS is for 'Direct Care' only. In e
 ### Questionnaire
 A Questionnaire is an organised collection of questions intended to solicit information from patients, providers or other individuals involved in the healthcare domain. They may be simple flat lists of questions or can be hierarchically organised in groups and sub-groups, each containing questions. The Questionnaire defines the questions to be asked, how they are ordered and grouped, any intervening instructional text and what the constraints are on the allowed answers. The results of a Questionnaire can be communicated using the QuestionnaireResponse resource.
 
-The Questionnaire resource is used to covey the Pre Triage Sieve and Nature of Call (NOC) questions and the potential responses.
+The Questionnaire resource is used to covey the Pre Triage Sieve and Nature of Call (NOC) questions and the potential responses as detailed below:
+#### Pre Triage Sieve
+
+| Question                 | Answer| Code                  |
+| -------------------------| ------| ----------------------|
+|Is the patient breathing? |Yes      | 78064003  Breathing
+|   |No      |1023001  Not Breathing
+|Is the patient awake (conscious)?| Yes|428913001  No loss of consciousness|
+| | No|419045004  Loss of consciousness|
+|Is their breathing noisy?| Yes| 248573009  Noisy respiration|
+| | No| 248573009  48348007 Normal breath sounds|
+
+Only the nationally agreed answers and associated codes in this table are valid to be sent. No locally defined responses can be sent.
+
+#### Nature of Call (NOC)
+
+Nature of call types are nationally agreed by ECPAG for ASTs using both AMPDS and NHS Pathways as their CDSS. Receivers **MUST** be able to process and display NOC types and their associated code for both NHS Pathways and AMPDS NOC types  detailed below. 
+##### AMPDS NOC Types
+
+| Question                 | Answer (NOC type)| Code   |
+| -------------------------| ------| -------|
+|What is the Nature of Call?| Choking| CHOM|
+|                           |Dangerous Haemorrhage|DAHM|
+|                           | Drowning| DROM|
+|                           | Fitting now| FINM|
+|                           | Hanging| HANM|
+|                           | HCP/IFT C1| HI1M|
+|                           | Ineffective Breathing| INBM|
+|                           | Major Trauma| MATM|
+|                           | Maternity Complications| MACM|
+|                           | Medical (unconscious)| MEUM|
+|                           | Severe Allergic Reaction| SARM|
+|                           | Trauma (unconscious)| TRUM|
+
+*Only the nationally agreed answers and associated codes in this table are valid to be sent. No locally defined responses can be sent.*
+
+##### NHS Pathways NOC Types
+
+
+| Question                 | Answer (NOC type) | Code   |
+| -------------------------| ------| -------|
+|What is the Nature of Call?| Anaphylaxis| ANAP|
+|                           | Arrest/Peri Arrest (Cat1)|AP1P|
+|                           | Asthma (life threatening)| ALTP|
+|                           | Choking| CHOP|
+|                           | Drowning| DROP|
+|                           | Fitting Now| FINP|
+|                           | Hanging| HANP|
+|                           | HCP/IFT C1| HI1P|
+|                           | Obstetric Emergency| OBEP|
+|                           | Under 5 Severe Haemorrhage| 5SHP|
+|                           | Under 16 unconscious| 16UP|
+|                           | Unconscious pregnant >20 weeks | UNPP|
+
+*Only the nationally agreed answers and associated codes in this table are valid to be sent. No locally defined responses can be sent.*
+
 
 
 ### Questionnaire Response
@@ -140,6 +195,8 @@ The Questionnaire Response resource is used to covey the PTS and NOC responses g
 The extension *questionnaireresponse-reason* **must** be populated to indicate which data is contained within, as outlined in the resource element guidance below.
 
 Using a nested set of *questionnaireResponse.item*, *questionnaireResponse.linkId* and *questionnaireResponse.answer* complex structured data can be generated and processed, by the Sender and Receiver, respectively. The element guidance for this resource below goes into detail but, essentially, the item and linkId can be continually nested to convey various types of information. The item indicates a new element, linkId provide the number of elements (within the item) and answer contains any the value, supported by many different data types.
+
+*Only the nationally agreed answers and associated codes in the associated Questionnaire are valid to be sent in the QuestionnaireResponse.* 
 
 ### Condition
 

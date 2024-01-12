@@ -21,7 +21,7 @@ The MessageHeader resource in the Referral Response should have the following re
 * **MessgeHeader.Response** - **must** be the original request BundleID
 
 ### ServiceRequest Resource
-The *ServiceRequest* is an echo of that sent by the Requester, and maintains the active state of the referral. The *ServiceRequest.status* at this point would stay as 'active'.
+The *ServiceRequest* reflects that sent by the Requester, and maintains the active state of the referral. The *ServiceRequest.status* at this point would stay as 'active'.
 
 ### Encounter Resource
 The Responder's current *Encounter* is the focus resource in the Referral Response. This was originally the 'planned' Encounter created by the Receiver in the synchronous response to the Referral Request. 
