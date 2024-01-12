@@ -388,7 +388,6 @@ This payload is used to transmit all the necessary information that is required 
 
 </details>
 <p>
-
 <details>
   <summary>> <b class="barslink">Practitioner</b></summary>
   <p> This is used to carry details of the healthcare professional making the request.</p>
@@ -446,8 +445,6 @@ This payload is used to transmit all the necessary information that is required 
 
 </details>
 <p>
-<p>
-
 <details>
   <summary>> <b class="barslink">Flag </b></summary>
   <p>The Flag resource is used communicate to risks, alerts and special patient requirements e.g. additional patient information, reasonable adjustments, and safeguarding concerns . It can also be used to carry if an external agency has been contacted<br><br>NOTE: Use The 'Flag (Scene Safety)' resource to carry Scene Safety Information</p>
