@@ -143,7 +143,9 @@ The Questionnaire resource is used to covey the Pre Triage Sieve and Nature of C
 |Is their breathing noisy?| Yes| 248573009  Noisy respiration|
 | | No| 248573009  48348007 Normal breath sounds|
 
-Only the nationally agreed answers and associated codes in this table are valid to be sent. No locally defined responses can be sent.
+This is an [example](https://simplifier.net/NHSBookingandReferrals/9749ae76-28f7-4b8a-863f-aba64d19d678/~json) of the Pre triage Sieve questionnaire.
+
+*Only the nationally agreed answers and associated codes in this table are valid to be sent. No locally defined responses can be sent.*
 
 #### Nature of Call (NOC)
 
@@ -165,6 +167,8 @@ Nature of call types are nationally agreed by ECPAG for ASTs using both AMPDS an
 |                           | Severe Allergic Reaction| SARM|
 |                           | Trauma (unconscious)| TRUM|
 
+This is an [example](https://simplifier.net/NHSBookingandReferrals/81599e54-c713-4f3e-bca9-90225657f18d/~json) of the Nature of Call questionnaire.
+
 *Only the nationally agreed answers and associated codes in this table are valid to be sent. No locally defined responses can be sent.*
 
 ##### NHS Pathways NOC Types
@@ -185,16 +189,20 @@ Nature of call types are nationally agreed by ECPAG for ASTs using both AMPDS an
 |                           | Under 16 unconscious| 16UP|
 |                           | Unconscious pregnant >20 weeks | UNPP|
 
+This is an [example](https://simplifier.net/NHSBookingandReferrals/81599e54-c713-4f3e-bca9-90225657f18d/~json) of the Nature of Call questionnaire.
+
 *Only the nationally agreed answers and associated codes in this table are valid to be sent. No locally defined responses can be sent.*
 
 
 
 ### Questionnaire Response
-The Questionnaire Response resource is used to covey the PTS and NOC responses given by the patient (or their representative).
+The Questionnaire Response resource is used to convey the PTS and NOC responses given by the patient (or their representative).
 
 The extension *questionnaireresponse-reason* **must** be populated to indicate which data is contained within, as outlined in the resource element guidance below.
 
-Using a nested set of *questionnaireResponse.item*, *questionnaireResponse.linkId* and *questionnaireResponse.answer* complex structured data can be generated and processed, by the Sender and Receiver, respectively. The element guidance for this resource below goes into detail but, essentially, the item and linkId can be continually nested to convey various types of information. The item indicates a new element, linkId provide the number of elements (within the item) and answer contains any the value, supported by many different data types.
+Using a nested set of *questionnaireResponse.item*, *questionnaireResponse.linkId* and *questionnaireResponse.answer* complex structured data can be generated and processed, by the Sender and Receiver, respectively. The element guidance for this resource below goes into detail but, essentially, the item and linkId can be continually nested to convey various types of information, as guided by the corresponding questionnaire. The item indicates a new answer, linkId **must** correspond with the questionnaire question linkId, forging the relationship between the questionnaire and questionnaireResponse, and answer contains any the value recorded. The *questionnaireResponse.item.answer* datatype **must** correspond with that defined in the *questionnaire.item.answerOption*.
+
+We have published examples of [Pre Triage Sieve](https://simplifier.net/NHSBookingandReferrals/Examples-QuestionnaireResponse-for-PTS/~json) and [Nature of Call](https://simplifier.net/NHSBookingandReferrals/Examples-QuestionnaireResponse-for-NOC/~json) questionnaire responses.
 
 *Only the nationally agreed answers and associated codes in the associated Questionnaire are valid to be sent in the QuestionnaireResponse.* 
 
