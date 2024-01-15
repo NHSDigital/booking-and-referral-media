@@ -13,15 +13,13 @@ Implementation Guide   | 1.4.0   | v1      | Live     | Current Release | 11/09/
 {{pagelink:application5, text:BaRS-APP5}}   | 1.0.0-beta.2  | beta      | Live     | Current Release | 23/11/2023   | Pre-Release |{{pagelink:trn-app5,text:BaRS APP5 Change Log}}
 {{pagelink:application6, text:BaRS-APP6}}   | 1.0.0-alpha  | alpha      | Live     | Current Release | 17/01/2024   | Pre-Release |{{pagelink:trn-app6,text:BaRS APP6 Change Log}}
 
-
-
 ### Overview of the release
 
-This is a minor point release with non-breaking changes. The main highlight of this release is the first publication of documentation for Applications 3 and 4. Both these applications are at 1.0.0-beta and are about to start public beta testing. There has also been a minor iteration to the Application 5 beta release to incorporate feedback and scope amendments from the development of public beta participants as well as some recent use case policy updates.
+This release marks the first appearance of Application 6. This is to support an Ambulance service use case where cases need to be moved between different services for operational reasons. Application 6 is released as a "preview" release and has the status of alpha.
 
-There was also a minor reconfiguration of the guidance across all applications to move a number of sections from the application guidance to the Core guidance in a new section "Standard Patterns for BaRS Operations". The applications now reference these sections via links in the appropriate places. The main purpose for this is to reduce significant duplication across the aplicaitons as these particular operations follow a standard set of patterns that are common across all applications of the standard.
+Also this release of the BaRS marks the conclusion of the beta period for applications 3 and 4 and this application now moves to a stable v1.0.0 release available for wide use and adoption.
 
-Finally, there was a very small update to the Core documentation to reflect three non-breaking changes to core payloads.
+There has also been a number of minor bug fixes and corrections across all other applications
 
 A Clinical Safety assessment of the scope of this release has determined that it has not significantly changed the clinical safety profile of the BaRS. No new Hazards have been identified in this release. The latest version of the BaRS Clinical Safety Case and Hazard Log can be downloaded from the <a href="https://digital.nhs.uk/developer/api-catalogue/booking-and-referral-fhir/onboarding-support-information" target="_blank">BaRS FHIR API onboarding support information page</a>. 
 
