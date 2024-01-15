@@ -372,11 +372,18 @@ Receive_Request
 						case "Referral":
 							if(ServiceRequest.status.In("entered-in-error","revoked"))
 							{RequestType = "im receiving a cancelled referral"}
-							else if (Careplan.status != "active" && CarePlan.intent != "plan" && Task.status != "requested")
+							else if (Task.status != "requested")
 							{
 								RequestType = "unknown"
 								OperationOutcome.issue.code = "invariant"//A content validation rule failed
 								throw exception with "REC_BAD_REQUEST"
+								then return  HTTP.ResponseCode 400
+							}
+							else if(!LocalServiceRequestData.ResourceId.Contains(ServiceRequest.id))//if ServiceRequest does not exist locally. 
+							{
+								RequestType = "unknown"
+								OperationOutcome.issue.code = "not-found"//A content validation rule failed
+								throw exception with "REC_NOT_FOUND"
 								then return  HTTP.ResponseCode 400
 							}
 							else if(Encounter.Status.In("triaged","finished","in-progess")&& Encounter.class.code=="EMER")
@@ -547,7 +554,7 @@ Receive_Request
 						then return with HTTP.ResponseCode 409
 						break;
 					}
-					if(Entry.LastUpdated > currentLocalData.Item.meta.LastUpdated && Entry.fullUrl = currentLocalData.Item.fullUrl)
+					if(Entry.LastUpdated > currentLocalData.Item.meta.LastUpdated)
 						currentLocalData.Item = Entry.Item
 						Entry.SubmitWith(currentLocalData.Item.meta.LastUpdated == Entry.LastUpdated )
 					else
