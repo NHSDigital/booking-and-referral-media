@@ -12,6 +12,5 @@ These guides are designed to be used in conjunction with the documentation for {
 
 | Application                                                                 |  Use Cases                                                     | Current Release |
 | ----------------------------------------------------------------------------|--------------------------------------------------------------- | --------------- |
-| {{pagelink:application3, text: Referral into UEC (Application 3)  }} | <p>999-CAS Referral<br> | 1.0.0-beta     |
-| {{pagelink:application4, text: Referral into UEC for Validation (Application 4)  }} | <p>999-CAS Validation<br> | 1.0.0-beta     |
-| {{pagelink:application5, text: Referrals into Pharmacy (Application 5)}}      | <p>GP to Pharmacy CPCS Minor Illness<br> | 1.0.0-beta.1     |
+| {{pagelink:application5, text: Referrals into Pharmacy (Application 5)}}      | <p>GP to Pharmacy CPCS Minor Illness<br> | 1.0.0-beta.2     |
+| {{pagelink:application6, text: Referrals from an AST Computer Aided Dispatch system (CAD) to an AST CAD (Application 6)}} | <p>CAD to CAD Out of Area Referral<br>CAD to CAD Call Assist Request<br>CAD to CAD Mutual Aid Request | 1.0.0-alpha    |
