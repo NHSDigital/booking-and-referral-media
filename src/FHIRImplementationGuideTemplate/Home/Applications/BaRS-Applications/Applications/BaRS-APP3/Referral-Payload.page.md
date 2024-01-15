@@ -413,8 +413,6 @@ This payload is used to transmit all the necessary information that is required 
 
 </details>
 <p>
-<p>
-
 <details>
   <summary>> <b class="barslink">Flag (Scene Safety) </b></summary>
   <p> The Flag (Scene safety) resource is used to communicate safety information about the incident location</p>
@@ -447,6 +445,7 @@ This payload is used to transmit all the necessary information that is required 
 
 
 </details>
+<p>
 <details>
   <summary>> <b class="barslink">MedicationStatement </b></summary>
   <p> This resource MAY be used to carry new medication prescribed at the encounter. This SHOULD NOT be used to carry Medication History obtained from external sources.</p>
@@ -585,7 +584,6 @@ This payload is used to transmit all the necessary information that is required 
 
 </details>
 <p>
-
 <details>
   <summary>> <b class="barslink">Healthcare Service</b></summary>
   <p> The HealthcareService the request is being made of - the Receiver</p>
