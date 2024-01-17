@@ -16,9 +16,10 @@ This page provides a catalogue of implementation guides that have been developed
 These guides are designed to be used in conjunction with the documentation for {{pagelink:design-core}}.
 
 
-| Application                                                                 |  Use Cases                                                     | Current Release |
-| ----------------------------------------------------------------------------|--------------------------------------------------------------- | --------------- |  
-| {{pagelink:application1, text:Booking and Referrals into UEC (Application 1)}}  | <p>111 - ED <br>111 - UTC <br>CAS - ED <br>CAS - UTC <br> </p> | 1.0.1           |
-| {{pagelink:application2, text: Booking and Referrals into UEC (Application 2)}} | <p>111 Online - ED <br>111 Online - UTC <br> <p>               | 1.0.1           |
-| {{pagelink:application3, text: Referral into UEC (Application 3)}} | <p>999-CAS Referral<br> | 1.0.0     |
-| {{pagelink:application4, text: Referral into UEC for Validation (Application 4)}} | <p>999-CAS Validation<br> | 1.0.0     |
+
+| Application                                                                 |  Use Cases                                                     | Current Release | API Specification | Core Version |
+| ----------------------------------------------------------------------------|--------------------------------------------------------------- | --------------- | --------------- | --------------- |    
+| {{pagelink:application1, text:Booking and Referrals into UEC (Application 1)}}  | <p>111 - ED <br>111 - UTC <br>CAS - ED <br>CAS - UTC <br> </p> | 1.0.3           | <a href="https://digital.nhs.uk/developer/api-catalogue/booking-and-referral-fhir/v1_0_0" target="_blank">API Spec v1.0.0 and above</a> | <a href="https://simplifier.net/guide/nhsbookingandreferralstandard/Home/Design/BaRS-Core?version=1.0.0" target="_blank">Core v1.0.0 and above</a> |
+| {{pagelink:application2, text: Booking and Referrals into UEC (Application 2)}} | <p>111 Online - ED <br>111 Online - UTC <br> <p>               | 1.0.3           | <a href="https://digital.nhs.uk/developer/api-catalogue/booking-and-referral-fhir/v1_0_0" target="_blank">API Spec v1.0.0 and above</a> | <a href="https://simplifier.net/guide/nhsbookingandreferralstandard/Home/Design/BaRS-Core?version=1.0.0" target="_blank">Core v1.0.0 and above</a> |
+| {{pagelink:application3, text: Referral into UEC (Application 3)}} | <p>999-CAS Referral<br> | 1.0.0     | <a href="https://digital.nhs.uk/developer/api-catalogue/booking-and-referral-fhir/v1_0_0" target="_blank">API Spec v1.0.0 and above</a> | <a href="https://simplifier.net/guide/nhsbookingandreferralstandard/Home/Design/BaRS-Core?version=1.0.0" target="_blank">Core v1.0.0 and above</a> |
+| {{pagelink:application4, text: Referral into UEC for Validation (Application 4)}} | <p>999-CAS Validation<br> | 1.0.0     | <a href="https://digital.nhs.uk/developer/api-catalogue/booking-and-referral-fhir/v1_0_0" target="_blank">API Spec v1.0.0 and above</a> | <a href="https://simplifier.net/guide/nhsbookingandreferralstandard/Home/Design/BaRS-Core?version=1.0.0" target="_blank">Core v1.0.0 and above</a> |
