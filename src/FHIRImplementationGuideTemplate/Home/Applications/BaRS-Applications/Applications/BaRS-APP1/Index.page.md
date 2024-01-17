@@ -17,7 +17,7 @@ topic: Application1
 </thead>
 <tbody>
 	<tr>
-		<td>Application 1 v1.0.2</td>
+		<td>Application 1 v1.0.3</td>
 		<td><a href="https://simplifier.net/guide/nhsbookingandreferralstandard/Home/Design/BaRS-Core?version=1.0.0" target="_blank">Core v1.0.0 and above</a></td>
 		<td><a href="https://simplifier.net/guide/nhsbookingandreferralstandard/home?version=1.1.0" target="_blank">BaRS v1.1.0 and above</td>
 		<td><a href="https://digital.nhs.uk/developer/api-catalogue/booking-and-referral-fhir/v1_0_0" target="_blank">API Spec v1.0.0 and above</a></td>
