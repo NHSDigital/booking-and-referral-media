@@ -44,7 +44,7 @@ Calls may be re-routed by the BT Emergency Call Service to an Ambulance Service 
     
 ### Mutual Aid Requests
 
-- A Home AST may request support from a Supporting AST when they cannot meet all of the resource requirements for and incident within their geographic boundary of responsibility.
+- A Home AST may request support from a Supporting AST when they cannot meet all of the resource requirements for an incident within their geographic boundary of responsibility.
 - The Supporting AST may accept or reject this request
 - If the Supporting AST rejects the request, the Home AST will make alternative arrangements
 - If the Supporting AST accepts the request:
@@ -113,7 +113,6 @@ To support the workflows for this application of the standard the operations tha
 <hr>
 
 ## Make a Referral
-??? LEIGH I COPIED PSEUDO CODE FROM APP3 - PLEASE CHECK AND UPDATE
 
 Making a referral for this application follows the {{pagelink:Core-StandardPattern, text:standard pattern for BaRS operations}}.
 

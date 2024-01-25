@@ -1,10 +1,12 @@
 ---
 topic: Application1
 ---
-<div markdown="span" class="alert alert-warning" role="alert"><i class="fa fa-warning"></i><b> Important:</b>
-<p>
 
-### Versioning information
+# Bookings and Referrals into UEC Application 1
+
+
+<div markdown="span" class="alert alert-warning" role="alert"><i class="fa fa-warning"></i><b> Important:  Versioning information</b>
+<p>
 
 <table>
 <thead>
@@ -25,7 +27,8 @@ topic: Application1
 </tbody>
 </table>
 </div>
-# Bookings and Referrals into UEC Application 1
+
+
 
 ## Use Cases Supported
 
