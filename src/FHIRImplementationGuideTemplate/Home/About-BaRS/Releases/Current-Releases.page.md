@@ -1,4 +1,4 @@
-   ## {{page-title}} (1.4.0)
+   ## Current Release (1.4.0)
 
 Product Link           | Version | Handle  | Phase    | State           | Release Date | Stability  | Change Log Link
 -----------------------|---------|---------|----------|-----------------|--------------|----------------

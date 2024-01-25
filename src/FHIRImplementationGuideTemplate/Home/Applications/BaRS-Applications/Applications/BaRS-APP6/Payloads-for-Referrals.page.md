@@ -4,6 +4,8 @@ topic: APP6-Payloads
 
 ## {{page-title}}
 
+<br>
+
 ## Referral Payload
 The below details the specific guidance around the use of resources required to create a referral by the referral Sender. See [ServiceRequest - Request Referral](https://simplifier.net/nhsbookingandreferrals/messagedefinition-bars-messagedefinition-servicerequest-request-referral) message definition for details of resources required for this payload.
 
@@ -48,7 +50,7 @@ When the Sender populates the Incident Location resource:
 *  They *should* also populate the *Location.extension* with the percentage accuracy of the location
 *  They **should** populate the *Location.address* for all property based locations
 *  They **should** populate *Location.address.line* which is a repeatable element, with the order in which lines should appear in an address label
-*  They **should** populate *Location.address.name* when there is a property name
+*  They **should** populate *Location.name* when there is a property name
 *  They **should** populate *Location.address.text* with a text representation of the full address (including the address name), with each line separated by a comma
 
 When a the Receiver processes information in an Incident Location resource:
@@ -242,3 +244,5 @@ In this application it is used to transfer Call Log information and Crew Notes.
 The ability to cancel a referral is a core workflow in BaRS. For details on the use of the standard pattern for cancellation please see the following {{pagelink:core-SPCancellation, text:Standard Patterns - Cancellation}}.
 
 <br>
+<hr>    
+
