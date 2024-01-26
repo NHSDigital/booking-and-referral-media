@@ -10,13 +10,13 @@ This section describes how the primary operations used in this application work.
 * CAD to CAD Mutual Aid Request
 
 <br>
-<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADOutOfArea-1.0.0.svg" width="1000"></img></a>
+<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADOutOfArea-1.0.0.svg" width="1200"></img></a>
 
 <br>
-<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADCallAssist-1.0.0.svg" width="1000"></img></a>
+<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADCallAssist-1.0.0.svg" width="1200"></img></a>
 
 <br>
-<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADMutualAid-1.0.0.svg" width="1000"></img></a>
+<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADMutualAid-1.0.0.svg" width="1200"></img></a>
 
 ### Actors
 
