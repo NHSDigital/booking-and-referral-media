@@ -8,7 +8,7 @@ Booking - Request
 
 ServiceRequest - Request Validation
 
-ServiceRequest - Response Referrall
+ServiceRequest - Response Referral
 
 ServiceRequest - Response Validation Full
 
