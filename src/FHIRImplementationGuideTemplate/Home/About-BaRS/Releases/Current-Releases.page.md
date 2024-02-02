@@ -9,13 +9,13 @@ Implementation Guide   | 1.5.0   | v1      | Live     | Current Release | 28/02/
 {{pagelink:application1, text:BaRS-APP1}}   | 1.0.3   | v1      | Live     | Current Release | 11/05/2023   | Stable     |{{pagelink:trn-app1,text:BaRS APP1 Change Log}}
 {{pagelink:application2, text:BaRS-APP2}}   | 1.0.3   | v1      | Live     | Current Release | 11/05/2023   | Stable     |{{pagelink:trn-app2,text:BaRS APP2 Change Log}}
 {{pagelink:application3, text:BaRS-APP3}}   | 1.0.0   | v1      | Live     | Current Release | 17/01/2024   | Stable |{{pagelink:trn-app3,text:BaRS APP3 Change Log}}
-{{pagelink:application4, text:BaRS-APP4}}   | 1.0.0   | v1      | Live     | Current Release | 17/01/2024   | Stable |{{pagelink:trn-app4,text:BaRS APP4 Change Log}}
+{{pagelink:application4, text:BaRS-APP4}}   | 1.1.0   | v1      | Live     | Current Release | 28/02/2024   | Stable |{{pagelink:trn-app4,text:BaRS APP4 Change Log}}
 {{pagelink:application5, text:BaRS-APP5}}   | 1.0.0-beta.2  | beta      | Live     | Current Release | 23/11/2023   | Pre-Release |{{pagelink:trn-app5,text:BaRS APP5 Change Log}}
 {{pagelink:application6, text:BaRS-APP6}}   | 1.0.0-beta  | beta      | Live     | Current Release | 28/02/2024   | Pre-Release |{{pagelink:trn-app6,text:BaRS APP6 Change Log}}
 
 ### Overview of the release
 
-This release has an uplift of Application 6 to v1.0.0-beta. This is to support an Ambulance service use case where cases need to be moved between different services for operational reasons. Application 6 is released as a "preview" release and has the status of alpha.
+This release has an uplift of Application 6 to v1.0.0-beta. This is to support an Ambulance service use case where cases need to be moved between different services for operational reasons. Application 6 is released as a "preview" release and has the status of alpha. This release includes a new requirement for Application 4 which will allow a Responder(Receiver) to reject a validation request. 
 
 There has also been a number of minor bug fixes and corrections across all other applications
 
