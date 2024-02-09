@@ -28,10 +28,15 @@ The Responder's current *Encounter* is the focus resource in the Interim Validat
 
 This *Encounter* is used to represent the interaction between the patient and the Responder healthcare service provider. It links with numerous other resources, to reflect the activities performed in that encounter. 
 
-When sending an Interim Validation Response the Responder **must**:
+When sending an Interim Validation Response to convey that the Responder is starting the assessment, the Responder **must**:
 * Include the Responder's current *Encounter* as the focus resource of the Interim Validation Response
 * Include an *encounter.status* of 'in-progress' to be set on the Responder's current *Encounter*. This is to indicate to the Requester that the validation activity has started.
 * *encounter.reasonCode* to be included on the Responder's current *Encounter* to indicate that it is a response message (same code for both Interim and full Validation Response outcomes).
+
+When sending an Interim Validation Response to convey that the Responder is rejecting the Validation Request, the Responder **must**:
+* Include the Responder's current *Encounter* as the focus resource of the Interim Validation Response
+* Include an *encounter.status* of 'cancelled' to be set on the Responder's current *Encounter*. This is to indicate to the Requester that the Validation Request has been rejected.
+* *encounter.reasonCode* to be included on the Responder's current *Encounter* to indicate the reason for rejection.
 
 <br>
 <br>
