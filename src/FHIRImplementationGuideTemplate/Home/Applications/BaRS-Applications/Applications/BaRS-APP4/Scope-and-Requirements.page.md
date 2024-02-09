@@ -45,7 +45,7 @@ For this application we will be referring to the actors as 'Requester' and the '
         * When a CAS clinician starts to assess the patient an Interim Response **must** be sent to the Requester to covey that the status of the request has changed and is now 'in progress'
     * Communication that the Validation Responder has rejected the Validation Request
         * When CAS clinician cannot undertake the validation request (e.g. they fail to contact the patient within an appropriate timescale) an Interim Response **must** be sent to the Requester to convey that the status of the request has changed and is now 'cancelled'. It **should** include a reason for rejection.
-        * On receipt of a rejection of a Validation request, the Validation Requester *must* notify system users so they can take ownership of the case and perform the next activity.
+        * On receipt of an Interim Response with an Encounter.status of 'cancelled' conveying the rejection of a Validation request, the Validation Requester *must* notify system users so they can take ownership of the case and perform the next activity.
 * The Full Response contains the Validation Outcome, raising, lowering or preserving, the original ambulance category established by the 999 service, and **must** be sent to the Requester
 * If a Validation Outcome raises the ambulance category to either a CAT 1 or CAT 2, the Responder **must** raise an ambulance with the Requesting 999 service using the existing CDA over ITK method
 	* The new ambulance request, raised via ITK, **must** be included in the Full Response as an additional entity (FHIR Encounter)
