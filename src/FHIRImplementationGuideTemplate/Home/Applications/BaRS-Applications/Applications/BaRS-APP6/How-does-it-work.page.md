@@ -98,7 +98,7 @@ Calls may be re-routed by the BT Emergency Call Service to an Ambulance Service 
 
 ### Continue updates
 - If additional or changed information about the case is captured by the referral Sender, subsequent to sending the BaRS Referral, they may send a BaRS Referral Update to ensure that the referral Receiver has the most up to date information.
-- If the referral Sender may need to cancel a Referral, for example the patient calls back and says they do not require an ambulance, they may send a Cancellation.
+- If the referral Sender needs to cancel a Referral, for example the patient calls back and says they do not require an ambulance, they need to send a Cancellation.
 - On receipt of a Referral Update, the referral Receiver will send an acknowledgement back to the Sending AST on when it has successfully processed the payload. If it fails to do this it will send a BaRS error code. See {{pagelink:failure_scenarios, text:failure scenarios}} for more detail.
 
 ### Manage Stack
