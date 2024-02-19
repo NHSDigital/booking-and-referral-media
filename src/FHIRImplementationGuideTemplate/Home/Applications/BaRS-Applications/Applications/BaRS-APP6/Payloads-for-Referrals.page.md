@@ -227,7 +227,7 @@ The Procedure resource is used to communicate that Cardio Pulmonary Resuscitatio
 ### Task
 The Task is used to direct the next action(s) required by the Sender making the referral. Task supports in fulfilling Careplan, which also references it. The narrative within the payload starts with the assessment performed by the Sender (Encounter), identifying a 'problem' (Condition) which a plan of care (CarePlan) is established to address. The Sender is unable to support the plan of care so transitions responsibility, via a referral (ServiceRequest), while directing the next requested action (Task).
 
-This Application utilises two elements within Task to direct the activity and time-frame, using *Task.code* and *Task.restriction*. The code will be a fixed value, indicating that a consultation is being request of the 'Community Pharmacist Consultation Service for minor illness', dictating the action should take place within thirty minutes, under the *Restriction.period* element.
+This Application utilises two elements within Task to direct the activity and time-frame, using *Task.code* and *Task.restriction.period*.
 
 ### Communication
 
