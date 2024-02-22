@@ -65,6 +65,7 @@ The payloads and workflow have been designed to support these services. Other {{
 **Referral Request**
 
 * The referral Sender **must** specify the type of referral (use case) in the request
+* The referral Receiver **must** have the ability to specify the use cases that they are able to receive. 
 * The referral Receiver **must** accept the referral request regardless of whether the patient is known to the service provider
 * The referral Receiver **must** accept potential patients who do **<ins>not</ins>** have a national validated identifier e.g. NHS Number
 * The referral Sender **must** send incident location information as part of their request
