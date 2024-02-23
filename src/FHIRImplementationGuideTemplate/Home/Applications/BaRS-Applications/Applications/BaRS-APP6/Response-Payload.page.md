@@ -4,9 +4,16 @@ topic: APP6-ResponsePayload
 
 ## {{page-title}}
 
-### Payload for requesting a referral, using Service Request
+### Payload for a Referral Response
 
-This payload is used to transmit all the necessary information that is required for ASTs to accept a patient referred into their service.
+This payload is used to communicate the following:
+* Business acknowledgement of the receipt and progression of a case through status updates
+    * When a case has been accepted and is waiting for a resource to be allocated
+    * When a case has a resource allocated
+    * When a resource for a case is cancelled
+    * When a resource has cleared the scene
+    * When a case has been rejected by the Receiver (Mutual Aid Request and Call Assist Request   
+ONLY)
 
 <br> 
  <div markdown="span" class="alert alert-warning" role="alert"><i class="fa fa-warning"></i>
