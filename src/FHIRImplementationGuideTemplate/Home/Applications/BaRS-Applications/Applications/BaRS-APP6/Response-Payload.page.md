@@ -6,7 +6,7 @@ topic: APP6-ResponsePayload
 
 ### Payload for requesting a referral, using Service Request
 
-This payload is used to transmit all the necessary information that is required for pharmacies to accept a patient referred into their service.
+This payload is used to transmit all the necessary information that is required for ASTs to accept a patient referred into their service.
 
 <br> 
  <div markdown="span" class="alert alert-warning" role="alert"><i class="fa fa-warning"></i>
