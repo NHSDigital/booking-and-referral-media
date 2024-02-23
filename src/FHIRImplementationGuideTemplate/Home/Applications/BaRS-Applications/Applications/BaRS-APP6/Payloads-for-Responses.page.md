@@ -32,8 +32,17 @@ This *Encounter* is used to represent the interaction between the patient and th
 
 When sending an Referral Response the Receiver **must**:
 * Include the Receiver's current *Encounter* as the focus resource of the Referral Response
-* Include the current *Encounter.status* on the Receiver's current *Encounter*. This is to indicate to the Sender the progress of the case. It also indicates where a Call Assit or Mutual Aid request has been rejected.
-* *Encounter.reasonCode* to be included on the Receiver's current *Encounter* to indicate that it is a response message.
+* Include the current *Encounter.status* on the Receiver's current *Encounter*. This is to indicate to the Sender the progress of the case. 
+
+## Referral Response Payload (Reject referral) 
+This section provides guidance on the use of key resources, for the Receiver to create an Referral Response (Status update) to return to the Sender in order to reject a **Mutual Aid Request or Call Assist Request**. See [ServiceRequest - Response](https://simplifier.net/nhsbookingandreferrals/bars-messagedefinition-servicerequest-response-referral-short) message definition for details of resources required for this payload.
+
+This follows the payload for the Referral Response (Status Update) with minor changes to the guidance for the Encounter Resource:
+
+When sending an Referral Response the Receiver **must**:
+* Include the Receiver's current *Encounter* as the focus resource of the Referral Response
+* Include the current *Encounter.status* on the Receiver's current *Encounter*. This is to indicate to the Sender where a Call Assist or Mutual Aid request has been rejected.
+* *Encounter.reasonCode* to be included on the Receiver's current *Encounter* to provide the reason for rejection.
 
 <br>
 
