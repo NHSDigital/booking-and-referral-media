@@ -13,10 +13,10 @@ topic: Application6
 <table>
 <thead>
 	<tr>
-		<th>Application Version</th>
-		<th>Minimum Core Version</th>
-		<th>Minimum Guide Version</th>
-		<th>Minimum API Spec Version</th>
+		<th data-no-sort="">Application Version</th>
+		<th data-no-sort="">Minimum Core Version</th>
+		<th data-no-sort="">Minimum Guide Version</th>
+		<th data-no-sort="">Minimum API Spec Version</th>
 	</tr>
 </thead>
 <tbody>

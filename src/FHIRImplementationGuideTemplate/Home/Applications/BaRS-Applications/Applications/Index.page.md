@@ -82,13 +82,16 @@ These guides are designed to be used in conjunction with the documentation for {
 		<td><a href="https://simplifier.net/guide/nhsbookingandreferralstandard/home?version=1.4.0" target="_blank">v1.4.0</a></td>
 		<td rowspan=2 style="text-align: center; vertical-align: middle;"><a href="https://simplifier.net/guide/nhsbookingandreferralstandard/Home/Core/End-to-end-workflow?version=1.4.0" target="_blank">v1.2.1</a></td>
 	</tr>
-	<tr>
-		<td>Application 6 v1.0.0-alpha</td>
-		<td><a href="https://simplifier.net/guide/nhsbookingandreferralstandard/home?version=1.4.0" target="_blank">v1.4.0</a></td>
-	</tr>
+
 	<tr>
 		<td>Application 6 v1.0.0-beta</td>
 		<td><a href="https://simplifier.net/guide/nhsbookingandreferralstandard/home?version=1.4.0" target="_blank">v1.4.0</a></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
 	</tr>
 </tbody>
 </table>
