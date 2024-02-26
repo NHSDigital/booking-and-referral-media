@@ -7,7 +7,7 @@ topic: APP6-Responses
 <br>
 
 ## Referral Response Payload (Status update)
-This section provides guidance on the use of key resources, for the Receiver to create an Referral Response (Status update) to return to the Sender. See [ServiceRequest - Response](https://simplifier.net/nhsbookingandreferrals/bars-messagedefinition-servicerequest-response-referral-short) message definition for details of resources required for this payload.
+This section provides guidance on the use of key resources, for the Receiver to create a Referral Response (Status update) to return to the Sender. See [ServiceRequest - Response](https://simplifier.net/nhsbookingandreferrals/bars-messagedefinition-servicerequest-response-referral-short) message definition for details of resources required for this payload.
 
 *Note that Receivers will also have to build the capability to receive and process the Referral Request and Cancellation payloads*
 <br>
