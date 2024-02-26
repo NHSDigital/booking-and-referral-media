@@ -21,7 +21,9 @@ The MessageHeader resource for the Validation Request should have the following 
 ### ServiceRequest Resource
 The 'focus' resource in a Validation Request is the ServiceRequest resource. When the request payload (bundle) is created by the Requester and processed by the Responder, this is the starting point from which the request is understood. It provides either the detail and references to all key FHIR resources, for example, the Patient, Encounter and Careplan. The guidance for this resource below provides more granular, element level, detail.
 
-The *ServiceRequest.category* is important to denote the type of referral, which combined with the *MessageHeader.eventCoding* is key to drive workflow.
+The *ServiceRequest.category* is important to denote the type of referral, which combined with the *MessageHeader.eventCoding* is key to drive workflow. The serviceRequest.category must be populated with the relevant use case from [use-case CodeSystem](
+https://simplifier.net/nhsbookingandreferrals/usecases-categories-bars
+). Please refer to the guidance in {{pagelink:core-SPUseCaseCategories, text:use-case categories}}
 
 Additionally, the *ServiceRequest.occurrencePeriod* **must** be populated with the time by which the receiving service must complete the validation (validation breach time).
 
