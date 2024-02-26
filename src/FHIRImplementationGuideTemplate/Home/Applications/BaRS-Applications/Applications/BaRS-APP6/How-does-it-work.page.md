@@ -442,11 +442,11 @@ Receive_Request
 									{ 
 										switch(ServiceRequest.Category.coding[1].code)  //https://fhir.nhs.uk/CodeSystem/usecases-categories-bars
 										{
-											case "MutualAidRequest":
+											case "999to999MutualAidRequest":
 												RequestType = "Im Receiving a new Mutual Aid Request response";
-											case:"CallAssistRequest":
+											case:"999to999CallAssistRequest":
 												RequestType = "Im Receiving a new Call Assist Request response";
-											case:"OutOfArea":
+											case:"999to999OutOfArea":
 												RequestType = "Im Receiving a new Out of Area Request response";
 											default:
 												RequestType = "unknown"
@@ -473,11 +473,11 @@ Receive_Request
 									{ 
 										switch(ServiceRequest.Category.coding[1].code)  //https://fhir.nhs.uk/CodeSystem/usecases-categories-bars
 										{
-											case "MutualAidRequest":
+											case "999to999MutualAidRequest":
 												RequestType = "Im Receiving a  Mutual Aid Request update response";
-											case:"CallAssistRequest":
+											case:"999to999CallAssistRequest":
 												RequestType = "Im Receiving a  Call Assist Request update response";
-											case:"OutOfArea":
+											case:"999to999OutOfArea":
 												RequestType = "Im Receiving a  Out of Area Request update response";
 											default:
 												RequestType = "unknown"
@@ -502,9 +502,9 @@ Receive_Request
 					{ 
 						switch(ServiceRequest.Category.coding[1].code)  //https://fhir.nhs.uk/CodeSystem/usecases-categories-bars
 						{
-							case "MutualAidRequest":
+							case "999to999MutualAidRequest":
 								RequestType = "Im Receiving a new Mutual Aid Request rejection";
-							case:"CallAssistRequest":
+							case:"999to999CallAssistRequest":
 								RequestType = "Im Receiving a new Call Assist Request rejection";
 							default:
 								RequestType = "unknown"
