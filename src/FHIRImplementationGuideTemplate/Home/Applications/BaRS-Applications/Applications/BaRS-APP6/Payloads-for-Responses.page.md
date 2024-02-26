@@ -38,6 +38,7 @@ When sending an Referral Response the Receiver **must**:
 This section provides guidance on the use of key resources, for the Receiver to create an Referral Response (Status update) to return to the Sender in order to reject a **Mutual Aid Request or Call Assist Request**. See [ServiceRequest - Response](https://simplifier.net/nhsbookingandreferrals/bars-messagedefinition-servicerequest-response-referral-short) message definition for details of resources required for this payload.
 
 This follows the payload for the Referral Response (Status Update) with minor changes to the guidance for the Encounter Resource:
+### Encounter Resource
 
 When sending an Referral Response the Receiver **must**:
 * Include the Receiver's current *Encounter* as the focus resource of the Referral Response
