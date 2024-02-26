@@ -10,16 +10,16 @@ This section describes how the primary operations used in this application work.
 * CAD to CAD Mutual Aid Request
 
 <br>
-<a href="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADOutOfArea-1.0.0.svg" target="_blank>">
-<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADOutOfArea-1.0.0.svg" width="1200"></img></a>
+<a href="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADOutOfArea-1.0.1.svg" target="_blank>">
+<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADOutOfArea-1.0.1.svg" width="1200"></img></a>
 
 <br>
-<a href="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADCallAssist-1.0.0.svg" target="_blank>">
-<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADCallAssist-1.0.0.svg" width="1200"></img></a>
+<a href="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADCallAssist-1.0.1.svg" target="_blank>">
+<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADCallAssist-1.0.1.svg" width="1200"></img></a>
 
 <br>
-<a href="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADMutualAid-1.0.0.svg" target="_blank>">
-<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADMutualAid-1.0.0.svg" width="1200"></img></a>
+<a href="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADMutualAid-1.0.1.svg" target="_blank>">
+<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADMutualAid-1.0.1.svg" width="1200"></img></a>
 
 ### Actors
 
