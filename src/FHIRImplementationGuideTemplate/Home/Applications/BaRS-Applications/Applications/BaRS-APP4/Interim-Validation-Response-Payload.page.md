@@ -6,7 +6,7 @@ topic: APP4-InterimValidationResponsePayload
 
 ### Payload for a Interim Validation Response, using Service Request
 
-This payload is used to transmit the completed validation outcome back to the Requester.
+This payload is used to inform the Requester that the validation assessment has been started.
 
 
 <br> 

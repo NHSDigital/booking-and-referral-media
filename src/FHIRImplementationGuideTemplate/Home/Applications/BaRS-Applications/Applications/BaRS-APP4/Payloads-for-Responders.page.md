@@ -23,6 +23,12 @@ The MessageHeader resource in the Interim Validation Response should have the fo
 ### ServiceRequest Resource
 The *ServiceRequest* reflects that sent by the Requester, and maintains the active state of the referral. The *ServiceRequest.status* at this point would stay as 'active'.
 
+There are 2 instances of ServiceRequest.category Which are key to drive workflow:
+1. Denotes the type of referral e.g. Transfer of care
+2. Denotes the use case and must be populated with the relevant use case from [use-case CodeSystem](
+https://simplifier.net/nhsbookingandreferrals/usecases-categories-bars). e.g. Out of area, Mutual Aid or Call Assist. Please refer to the guidance in {{pagelink:core-SPUseCaseCategories, text:use-case categories}}
+
+
 ### Encounter Resource
 The Responder's current *Encounter* is the focus resource in the Interim Validation Response. This was originally the 'planned' Encounter created by the Responder in the synchronous response to the Validation Request. 
 
