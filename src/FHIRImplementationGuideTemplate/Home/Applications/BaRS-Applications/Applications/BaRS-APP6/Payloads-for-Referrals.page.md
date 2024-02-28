@@ -23,7 +23,7 @@ The MessageHeader resource for the Referral Request should have the following re
 ### ServiceRequest Resource
 The 'focus' resource in a referral is the ServiceRequest resource. When the request payload (bundle) is created by the Sender and processed by the Receiver, this is the starting point from which the request is understood. It provides either the detail and references to all key FHIR resources, for example, the Patient, Encounter and Careplan. The guidance for this resource below provides more granular, element level, detail.
 
-There are 2 instances of *ServiceRequest.category* Which are key to drive workflow:
+There are 2 instances of *ServiceRequest.category.coding* which are key to drive workflow:
 1. Denotes the type of referral e.g. Transfer of care
 2. Denotes the use case and must be populated with the relevant use case from [use-case CodeSystem](
 https://simplifier.net/nhsbookingandreferrals/usecases-categories-bars
