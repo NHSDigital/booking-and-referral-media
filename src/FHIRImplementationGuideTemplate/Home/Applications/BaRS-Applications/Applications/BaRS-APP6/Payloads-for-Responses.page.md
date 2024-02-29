@@ -25,7 +25,7 @@ The MessageHeader resource in the Referral Response should have the following re
 ### ServiceRequest Resource
 The *ServiceRequest* reflects that sent by the Requester, and maintains the active state of the referral. The *ServiceRequest.status* at this point would stay as 'active'.
 
-There are 2 instances of ServiceRequest.category Which are key to drive workflow:
+There are two *coding* entries within *ServiceRequest.category* which are key to driving workflow:
 
 1. Denotes the type of referral e.g. Transfer of care 
 2. Denotes the use case and must be populated with the relevant use case from [use-case CodeSystem](
