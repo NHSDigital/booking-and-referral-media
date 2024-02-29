@@ -10,16 +10,16 @@ This section describes how the primary operations used in this application work.
 * CAD to CAD Mutual Aid Request
 
 <br>
-<a href="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADOutOfArea-1.0.0.svg" target="_blank>">
-<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADOutOfArea-1.0.0.svg" width="1200"></img></a>
+<a href="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADOutOfArea-1.0.1.svg" target="_blank>">
+<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADOutOfArea-1.0.1.svg" width="1200"></img></a>
 
 <br>
-<a href="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADCallAssist-1.0.0.svg" target="_blank>">
-<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADCallAssist-1.0.0.svg" width="1200"></img></a>
+<a href="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADCallAssist-1.0.1.svg" target="_blank>">
+<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADCallAssist-1.0.1.svg" width="1200"></img></a>
 
 <br>
-<a href="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADMutualAid-1.0.0.svg" target="_blank>">
-<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADMutualAid-1.0.0.svg" width="1200"></img></a>
+<a href="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADMutualAid-1.0.1.svg" target="_blank>">
+<img src="https://raw.githubusercontent.com/NHSDigital/booking-and-referral-media/master/src/images/WorkFlows/CADMutualAid-1.0.1.svg" width="1200"></img></a>
 
 ### Actors
 
@@ -152,6 +152,9 @@ In addition to that the specific workflow parameters that are required are as fo
                     <tr>
                         <td>ServiceRequest (Category) = referral</td>
                     </tr>
+					<tr>
+                        <td>ServiceRequest (Category) = outofareareferral</td>
+                    </tr>
                     <tr>
                         <td>Encounter (Status) = triaged/finished</td>
                     </tr>
@@ -231,6 +234,9 @@ In addition the specific workflow parameters that are required are as follows:
                     </tr>
                     <tr>
                         <td>ServiceRequest (Category) = referral</td>
+                    </tr>
+					<tr>
+                        <td>ServiceRequest (Category) = outofareareferral</td>
                     </tr>
                     <tr>
                         <td>Encounter (Status) = triaged/finished</td>
@@ -436,11 +442,11 @@ Receive_Request
 									{ 
 										switch(ServiceRequest.Category.coding[1].code)  //https://fhir.nhs.uk/CodeSystem/usecases-categories-bars
 										{
-											case "MutualAidRequest":
+											case "999to999MutualAidRequest":
 												RequestType = "Im Receiving a new Mutual Aid Request response";
-											case:"CallAssistRequest":
+											case:"999to999CallAssistRequest":
 												RequestType = "Im Receiving a new Call Assist Request response";
-											case:"OutOfArea":
+											case:"999to999OutOfArea":
 												RequestType = "Im Receiving a new Out of Area Request response";
 											default:
 												RequestType = "unknown"
@@ -467,11 +473,11 @@ Receive_Request
 									{ 
 										switch(ServiceRequest.Category.coding[1].code)  //https://fhir.nhs.uk/CodeSystem/usecases-categories-bars
 										{
-											case "MutualAidRequest":
+											case "999to999MutualAidRequest":
 												RequestType = "Im Receiving a  Mutual Aid Request update response";
-											case:"CallAssistRequest":
+											case:"999to999CallAssistRequest":
 												RequestType = "Im Receiving a  Call Assist Request update response";
-											case:"OutOfArea":
+											case:"999to999OutOfArea":
 												RequestType = "Im Receiving a  Out of Area Request update response";
 											default:
 												RequestType = "unknown"
@@ -496,9 +502,9 @@ Receive_Request
 					{ 
 						switch(ServiceRequest.Category.coding[1].code)  //https://fhir.nhs.uk/CodeSystem/usecases-categories-bars
 						{
-							case "MutualAidRequest":
+							case "999to999MutualAidRequest":
 								RequestType = "Im Receiving a new Mutual Aid Request rejection";
-							case:"CallAssistRequest":
+							case:"999to999CallAssistRequest":
 								RequestType = "Im Receiving a new Call Assist Request rejection";
 							default:
 								RequestType = "unknown"
